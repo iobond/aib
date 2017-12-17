@@ -316,15 +316,12 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     // TODO: AIB MERGE RECEHCEK
     // -testnet mode
     if (isTestNetMode && pindexLast->nHeight + 1 >= 50) {
-        if (fDebug) LogPrintf("Running to V2 GWP\n");
         return GetNextWorkRequired_V2(pindexLast, pblock,params);
     }
     // not in TestNetMode due to lazy eval
     if (pindexLast->nHeight + 1 >= WTMINT_KGW_StartBlock) {
-        if (fDebug) LogPrintf("Running to V2 GWP\n");
         return GetNextWorkRequired_V2(pindexLast, pblock, params);
     }
-    if (fDebug) LogPrintf("Running to V1 GWP\n");
     return GetNextWorkRequired_V1(pindexLast, pblock, params);
 
     /*if ( ( isTestNetMode && pindexLast->nHeight+1 >= 50 ) ||
