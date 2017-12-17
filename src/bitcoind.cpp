@@ -133,7 +133,7 @@ bool AppInit(int argc, char* argv[])
         fDaemon = GetBoolArg("-daemon", false);
         if (fDaemon)
         {
-            fprintf(stdout, "AIB server - Build 9 - %s starting\n", FormatFullVersion().c_str());
+            fprintf(stdout, "AIB server - Build 10 - %s starting\n", FormatFullVersion().c_str());
 
             // Daemonize
             pid_t pid = fork();
