@@ -1119,7 +1119,6 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
         std::vector<uint256>& vHashTxnToUncache) {
     const uint256 hash = tx.GetHash();
     AssertLockHeld(cs_main);
-    LogPrintf("running in AcceptToMemoryPoolWorker\n");
     
     if (pfMissingInputs)
         *pfMissingInputs = false;
@@ -1554,7 +1553,7 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
 bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState &state, const CTransaction &tx, bool fLimitFree,
         bool* pfMissingInputs, bool fOverrideMempoolLimit, const CAmount nAbsurdFee) {
     std::vector<uint256> vHashTxToUncache;
-    LogPrintf("running in AcceptToMemoryPool \n");
+    
     bool res = AcceptToMemoryPoolWorker(pool, state, tx, fLimitFree, pfMissingInputs, fOverrideMempoolLimit, nAbsurdFee, vHashTxToUncache);
     if (!res) {
         BOOST_FOREACH(const uint256& hashTx, vHashTxToUncache)
