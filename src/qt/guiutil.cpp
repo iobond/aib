@@ -225,7 +225,9 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 
 QString formatBitcoinURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("aib:%1").arg(info.address);
+    // TODO: AIB MERGE change uri and remove aib:
+    //QString ret = QString("aib:%1").arg(info.address);
+    QString ret = QString("%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
