@@ -325,7 +325,7 @@
     </message>
     <message>
         <source>Send coins to a AIB address</source>
-        <translation type="unfinished">向一个AIB地址发送莱特币</translation>
+        <translation type="unfinished">向一个AIB地址发送AIB</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -377,7 +377,7 @@
     </message>
     <message>
         <source>Sign messages with your AIB addresses to prove you own them</source>
-        <translation type="unfinished">用AIB地址关联的私钥为消息签名，以证明您拥有这个莱特币地址</translation>
+        <translation type="unfinished">用AIB地址关联的私钥为消息签名，以证明您拥有这个AIB地址</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified AIB addresses</source>
@@ -927,7 +927,7 @@
     </message>
     <message>
         <source>%1 will download and store a copy of the AIB block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>%1 会下载并存储一份莱特币区块链的副本。至少有 %2GB 的数据会存储到这个目录中，并且还会持续增长。另外钱包资料也会储存在这个目录。</translation>
+        <translation>%1 会下载并存储一份AIB区块链的副本。至少有 %2GB 的数据会存储到这个目录中，并且还会持续增长。另外钱包资料也会储存在这个目录。</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1366,7 +1366,7 @@
     </message>
     <message>
         <source>Enter a AIB address (e.g. %1)</source>
-        <translation>请输入一个莱特币地址 (例如 %1)</translation>
+        <translation>请输入一个AIB地址 (例如 %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1727,7 +1727,7 @@
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the AIB network.</source>
-        <translation>可在付款请求上备注一条信息，在打开付款请求时可以看到。注意：该消息不是通过莱特币网络传送。</translation>
+        <translation>可在付款请求上备注一条信息，在打开付款请求时可以看到。注意：该消息不是通过AIB网络传送。</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -1856,7 +1856,7 @@
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>发送莱特币</translation>
+        <translation>发送AIB</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
@@ -2048,7 +2048,7 @@
     </message>
     <message>
         <source>Warning: Invalid AIB address</source>
-        <translation>警告: 莱特币地址无效</translation>
+        <translation>警告: AIB地址无效</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -2099,7 +2099,7 @@
     </message>
     <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less aibcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>交易费将从发送总额中扣除。接收人将收到比您在金额框中输入的更少的莱特币。如果选中了多个收件人，交易费平分。</translation>
+        <translation>交易费将从发送总额中扣除。接收人将收到比您在金额框中输入的更少的AIB。如果选中了多个收件人，交易费平分。</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2123,7 +2123,7 @@
     </message>
     <message>
         <source>A message that was attached to the aib: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AIB network.</source>
-        <translation>aib:URI 附带的备注信息，将会和交易一起存储，备查。 注意：该消息不会通过莱特币网络传输。</translation>
+        <translation>aib:URI 附带的备注信息，将会和交易一起存储，备查。 注意：该消息不会通过AIB网络传输。</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2164,7 +2164,7 @@
     </message>
     <message>
         <source>You can sign messages/agreements with your addresses to prove you can receive aibcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>您可以用你的地址对消息/协议进行签名，以证明您可以接收发送到该地址的莱特币。注意不要对任何模棱两可或者随机的消息进行签名，以免遭受钓鱼式攻击。请确保消息内容准确的表达了您的真实意愿。</translation>
+        <translation>您可以用你的地址对消息/协议进行签名，以证明您可以接收发送到该地址的AIB。注意不要对任何模棱两可或者随机的消息进行签名，以免遭受钓鱼式攻击。请确保消息内容准确的表达了您的真实意愿。</translation>
     </message>
     <message>
         <source>The AIB address to sign the message with</source>
@@ -2228,7 +2228,7 @@
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified AIB address</source>
-        <translation>验证消息，确保消息是由指定的莱特币地址签名过的。</translation>
+        <translation>验证消息，确保消息是由指定的AIB地址签名过的。</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
