@@ -1,4 +1,6 @@
-<TS language="zh_TW" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_TW">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -83,7 +85,7 @@
     </message>
     <message>
         <source>Export Address List</source>
-        <translation>匯出位址清單</translation>
+        <translation type="unfinished">導出位址清單</translation>
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
@@ -419,7 +421,9 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to AIB network</source>
-        <translation><numerusform>%n 個運作中的 AIB 網路連線</numerusform></translation>
+        <translation>
+            <numerusform>%n 個運作中的 AIB 網路連線</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -435,19 +439,27 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>已經處理了 %n 個區塊的交易紀錄。</numerusform></translation>
+        <translation>
+            <numerusform>已經處理了 %n 個區塊的交易紀錄。</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n 個小時</numerusform></translation>
+        <translation>
+            <numerusform>%n 個小時</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>%n 天</numerusform></translation>
+        <translation>
+            <numerusform>%n 天</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n 個星期</numerusform></translation>
+        <translation>
+            <numerusform>%n 個星期</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -455,7 +467,9 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n 年</numerusform></translation>
+        <translation>
+            <numerusform>%n 年</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -743,7 +757,7 @@
         <translation>優先度較高的交易比較有可能被接受放進區塊中。</translation>
     </message>
     <message>
-        <source>This label turns red if the priority is smaller than "medium".</source>
+        <source>This label turns red if the priority is smaller than &quot;medium&quot;.</source>
         <translation>當優先度低於「中等」時，文字會變紅色。</translation>
     </message>
     <message>
@@ -806,11 +820,11 @@
         <translation>編輯付款位址</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid AIB address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid AIB address.</source>
         <translation>輸入的位址 %1 並不是有效的 AIB 位址。</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book.</source>
+        <source>The entered address &quot;%1&quot; is already in the address book.</source>
         <translation>輸入的位址 %1 在位址簿中已經有了。</translation>
     </message>
     <message>
@@ -880,7 +894,7 @@
         <translation>啓動時選擇資料目錄(預設值: %u)</translation>
     </message>
     <message>
-        <source>Set language, for example "de_DE" (default: system locale)</source>
+        <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
         <translation>設定語言，比如說 de_DE (預設值: 系統語系)</translation>
     </message>
     <message>
@@ -927,7 +941,7 @@
         <translation>使用自訂的資料目錄:</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
         <translation>錯誤: 無法新增指定的資料目錄: %1</translation>
     </message>
     <message>
@@ -936,11 +950,15 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>可用空間尚存 %n GB</numerusform></translation>
+        <translation>
+            <numerusform>可用空間尚存 %n GB</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(需要 %n GB)</numerusform></translation>
+        <translation>
+            <numerusform>(需要 %n GB)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -1315,7 +1333,7 @@
         <translation>付款的要求被拒絕了</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>付款要求的網路類型跟客戶端不符。</translation>
     </message>
     <message>
@@ -1975,7 +1993,7 @@
         <translation>每千位元組</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then "per kilobyte" only pays 250 satoshis in fee, while "total at least" pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 satoshis in fee, while &quot;total at least&quot; pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>如果自訂手續費設定為 1000 satoshi, 而交易資料大小只有 250 個位元組的話，那麽選擇「每千位元組」就只會付 250 satoshi 的手續費，換做選「總共至少」就會付 1000 satoshi. 但是如果交易資料大小超過一千個位元組，那麽兩者都是每千位元組的費用。</translation>
     </message>
     <message>
@@ -2327,7 +2345,7 @@
         <translation>驗證訊息</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>請在下面輸入收款人的位址，訊息(請確定完整複製了所包含的換行，空格，跳位符號等等)，以及簽章，來驗證這個訊息。請小心，除了訊息內容以外，不要對簽章本身過度解讀，以避免被用「中間人攻擊法」詐騙。請注意，通過驗證的簽章只能證明簽章人確實可以從該位址收款，不能證明任何交易中的付款人身份！</translation>
     </message>
     <message>
@@ -2347,7 +2365,7 @@
         <translation>重設所有訊息驗證欄位</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
         <translation>請按一下「簽署訊息」來產生簽章</translation>
     </message>
     <message>
@@ -2417,7 +2435,9 @@
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>到下 %n 個區塊生出來前可修改</numerusform></translation>
+        <translation>
+            <numerusform>到下 %n 個區塊生出來前可修改</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2465,7 +2485,9 @@
     </message>
     <message numerus="yes">
         <source>, broadcast through %n node(s)</source>
-        <translation><numerusform>，已公告給 %n 個節點</numerusform></translation>
+        <translation>
+            <numerusform>，已公告給 %n 個節點</numerusform>
+        </translation>
     </message>
     <message>
         <source>Date</source>
@@ -2509,7 +2531,9 @@
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>再等 %n 個區塊生出來後成熟</numerusform></translation>
+        <translation>
+            <numerusform>再等 %n 個區塊生出來後成熟</numerusform>
+        </translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -2556,7 +2580,7 @@
         <translation>商家</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
         <translation>生產出來的錢要再等 %1 個區塊生出來後才成熟可以用。當區塊生產出來時會公布到網路上，來被加進區塊鏈。如果加失敗了，狀態就會變成「不被接受」，而且不能夠花。如果在你生產出區塊的幾秒鐘內，也有其他節點生產出來的話，就有可能會發生這種情形。</translation>
     </message>
     <message>
@@ -2611,7 +2635,9 @@
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>到下 %n 個區塊生出來前可修改</numerusform></translation>
+        <translation>
+            <numerusform>到下 %n 個區塊生出來前可修改</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -3029,7 +3055,7 @@
         <translation>轉發和開採時，交易資料中每個 sigop 的等同位元組數(預設值: %u)</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on a already existing non-HD wallet</source>
+        <source>Error loading %s: You can&apos;t enable HD on a already existing non-HD wallet</source>
         <translation>載入 %s 發生錯誤：不能對已存在的非 HD 錢包啟用 HD 功能。</translation>
     </message>
     <message>
@@ -3049,7 +3075,7 @@
         <translation>允許一次錢包交易或未加工交易付出的最高總手續費(單位是 %s)；設定太低的話，可能會無法進行資料量大的交易(預設值: %s)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>請檢查電腦日期和時間是否正確！%s 沒辦法在時鐘不準的情況下正常運作。</translation>
     </message>
     <message>
@@ -3061,7 +3087,7 @@
         <translation>設定指令碼驗證的執行緒數目 (%u 到 %d，0 表示程式自動決定，小於 0 表示保留處理器核心不用的數目，預設值: %d)</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>區塊資料庫中有來自未來的區塊。可能是你電腦的日期時間不對。如果確定電腦日期時間沒錯的話，就重建區塊資料庫看看。</translation>
     </message>
     <message>
@@ -3117,8 +3143,8 @@
         <translation>區塊製造選項:</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>沒辦法解析 -%s 參數指定的位址: '%s'</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>沒辦法解析 -%s 參數指定的位址: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3193,7 +3219,7 @@
         <translation>載入檔案 %s 時發生錯誤: 這個錢包需要新版的 %s</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on a already existing HD wallet</source>
+        <source>Error loading %s: You can&apos;t disable HD on a already existing HD wallet</source>
         <translation>載入 %s 發生錯誤：不能對已存在的 HD 錢包停用 HD 功能。</translation>
     </message>
     <message>
@@ -3225,16 +3251,16 @@
         <translation>初始化時的基本檢查失敗了。%s 就要關閉了。</translation>
     </message>
     <message>
-        <source>Invalid -onion address: '%s'</source>
-        <translation>無效的 -onion 位址: '%s'</translation>
+        <source>Invalid -onion address: &apos;%s&apos;</source>
+        <translation>無效的 -onion 位址: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>參數 -%s=&lt;金額&gt; 指定的金額無效: '%s'</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>參數 -%s=&lt;金額&gt; 指定的金額無效: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>設定 -fallbackfee=&lt;金額&gt; 的金額無效: '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>設定 -fallbackfee=&lt;金額&gt; 的金額無效: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Keep the transaction memory pool below &lt;n&gt; megabytes (default: %u)</source>
@@ -3397,8 +3423,8 @@
         <translation>當沒有設定 paytxfee 時，自動包含可以讓交易能在平均 n 個區塊內開始確認的手續費(預設值: %u)</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>-maxtxfee=&lt;amount&gt;: '%s' 的金額無效 (必須大於最低轉發手續費 %s 以避免交易無法確認)</translation>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <translation>-maxtxfee=&lt;amount&gt;: &apos;%s&apos; 的金額無效 (必須大於最低轉發手續費 %s 以避免交易無法確認)</translation>
     </message>
     <message>
         <source>Maximum size of data in data carrier transactions we relay and mine (default: %u)</source>
@@ -3465,20 +3491,20 @@
         <translation>資訊</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>設定 -paytxfee=&lt;金額&gt; 的金額無效: '%s' (至少要有 %s)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>設定 -paytxfee=&lt;金額&gt; 的金額無效: &apos;%s&apos; (至少要有 %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>指定在 -whitelist 的網段無效: '%s'</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>指定在 -whitelist 的網段無效: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Keep at most &lt;n&gt; unconnectable transactions in memory (default: %u)</source>
         <translation>保持最多 &lt;n&gt; 無法連結的交易在記憶體 (預設: %u)</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>指定 -whitebind 時必須包含通訊埠: '%s'</translation>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
+        <translation>指定 -whitebind 時必須包含通訊埠: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Node relay options:</source>
@@ -3645,7 +3671,7 @@
         <translation>試著保持輸出流量在目標值以下，單位是每 24 小時的百萬位元組(MiB)數，0 表示沒有限制(預設值: %d)</translation>
     </message>
     <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>找到不再支援的 -socks 參數。現在只支援 SOCKS5 協定的代理伺服器，因此不可以指定 SOCKS 協定版本了。</translation>
     </message>
     <message>
@@ -3661,7 +3687,7 @@
         <translation>JSON-RPC 連線要用的使用者名稱和雜湊密碼。&lt;userpw&gt; 的格式是：&lt;使用者名稱&gt;:&lt;調味值&gt;$&lt;雜湊值&gt;。在 share/rpcuser 目錄下有一個示範的 python 程式。這個選項可以給很多次。</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>警告: 有礦工正在開採不明版本的區塊！這表示有不明的交易規則正在作用中</translation>
     </message>
     <message>
@@ -3685,8 +3711,8 @@
         <translation>在除錯輸出內容中包含網際網路位址(預設值: %u)</translation>
     </message>
     <message>
-        <source>Invalid -proxy address: '%s'</source>
-        <translation>無效的 -proxy 位址: '%s'</translation>
+        <source>Invalid -proxy address: &apos;%s&apos;</source>
+        <translation>無效的 -proxy 位址: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Listen for JSON-RPC connections on &lt;port&gt; (default: %u or testnet: %u)</source>
@@ -3753,8 +3779,8 @@
         <translation>與亂搞的節點斷線的臨界值 (預設: %u)</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>在 -onlynet 指定了不明的網路別: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>在 -onlynet 指定了不明的網路別: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
