@@ -1,4 +1,6 @@
-<TS language="zh_CN" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_CN">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -63,11 +65,11 @@
     </message>
     <message>
         <source>These are your AIB addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>这些是你要付款过去的莱特币地址。在付钱之前，务必要检查金额和收款地址是否正确。</translation>
+        <translation type="unfinished">这些是你要付款过去的AIB地址。在付钱之前，务必要检查金额和收款地址是否正确。</translation>
     </message>
     <message>
         <source>These are your AIB addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>这些是你用来收款的莱特币地址。建议在每次交易时，都使用一个新的收款地址。</translation>
+        <translation type="unfinished">这些是你用来收款的AIB地址。建议在每次交易时，都使用一个新的收款地址。</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -169,7 +171,7 @@
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR AIBCOINS&lt;/b&gt;!</source>
-        <translation>警告: 如果把钱包加密后又忘记密码，你就会从此&lt;b&gt;失去其中所有的莱特币了&lt;/b&gt;！</translation>
+        <translation type="unfinished">警告: 如果把钱包加密后又忘记密码，你就会从此&lt;b&gt;失去其中所有的AIB了&lt;/b&gt;！</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -197,7 +199,7 @@
     </message>
     <message>
         <source>The supplied passphrases do not match.</source>
-        <translation>提供的密码不yi'zhi。</translation>
+        <translation>提供的密码不yi&apos;zhi。</translation>
     </message>
     <message>
         <source>Wallet unlock failed</source>
@@ -323,7 +325,7 @@
     </message>
     <message>
         <source>Send coins to a AIB address</source>
-        <translation>向一个莱特币地址发送莱特币</translation>
+        <translation type="unfinished">向一个AIB地址发送莱特币</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -347,7 +349,7 @@
     </message>
     <message>
         <source>AIB</source>
-        <translation>莱特币</translation>
+        <translation type="unfinished">AIB</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -375,11 +377,11 @@
     </message>
     <message>
         <source>Sign messages with your AIB addresses to prove you own them</source>
-        <translation>用莱特币地址关联的私钥为消息签名，以证明您拥有这个莱特币地址</translation>
+        <translation type="unfinished">用AIB地址关联的私钥为消息签名，以证明您拥有这个莱特币地址</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified AIB addresses</source>
-        <translation>校验消息，确保该消息是由指定的莱特币地址所有者签名的</translation>
+        <translation type="unfinished">校验消息，确保该消息是由指定的AIB地址所有者签名的</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -419,7 +421,9 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to AIB network</source>
-        <translation><numerusform>%n 个到莱特币网络的活动连接</numerusform></translation>
+        <translation type="unfinished">
+            <numerusform>%n 个到AIB网络的活动连接</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -435,19 +439,27 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>已处理 %n 个交易历史数据块。</numerusform></translation>
+        <translation>
+            <numerusform>已处理 %n 个交易历史数据块。</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n 小时</numerusform></translation>
+        <translation>
+            <numerusform>%n 小时</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>%n 天</numerusform></translation>
+        <translation>
+            <numerusform>%n 天</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n 周</numerusform></translation>
+        <translation>
+            <numerusform>%n 周</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -455,7 +467,9 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n 年</numerusform></translation>
+        <translation>
+            <numerusform>%n 年</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -739,7 +753,7 @@
         <translation>优先度较高的交易比较有可能被接受放进区块中。</translation>
     </message>
     <message>
-        <source>This label turns red if the priority is smaller than "medium".</source>
+        <source>This label turns red if the priority is smaller than &quot;medium&quot;.</source>
         <translation>当优先度低于“中等”时，文字会变红色。</translation>
     </message>
     <message>
@@ -802,11 +816,11 @@
         <translation>编辑付款地址</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid AIB address.</source>
-        <translation>输入的地址 %1 并不是有效的莱特币地址。</translation>
+        <source>The entered address &quot;%1&quot; is not a valid AIB address.</source>
+        <translation type="unfinished">输入的地址 %1 并不是有效的AIB地址。</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book.</source>
+        <source>The entered address &quot;%1&quot; is already in the address book.</source>
         <translation>输入的地址 %1 已经存在地址簿。</translation>
     </message>
     <message>
@@ -876,7 +890,7 @@
         <translation>在启动时选择目录（默认%u）</translation>
     </message>
     <message>
-        <source>Set language, for example "de_DE" (default: system locale)</source>
+        <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
         <translation>设置语言, 例如“zh-CN”（默认：系统语言）</translation>
     </message>
     <message>
@@ -924,8 +938,8 @@
         <translation>使用自定义的数据目录：</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>错误：无法创建 指定的数据目录 "%1" </translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>错误：无法创建 指定的数据目录 &quot;%1&quot; </translation>
     </message>
     <message>
         <source>Error</source>
@@ -933,11 +947,15 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>有 %n GB 空闲空间</numerusform></translation>
+        <translation>
+            <numerusform>有 %n GB 空闲空间</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(需要%n GB空间)</numerusform></translation>
+        <translation>
+            <numerusform>(需要%n GB空间)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -1059,7 +1077,7 @@
     </message>
     <message>
         <source>Automatically open the AIB client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自动在路由器中打开莱特币端口。只有当您的路由器开启了 UPnP 选项时此功能才有效。</translation>
+        <translation type="unfinished">自动在路由器中打开AIB端口。只有当您的路由器开启了 UPnP 选项时此功能才有效。</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1067,7 +1085,7 @@
     </message>
     <message>
         <source>Connect to the AIB network through a SOCKS5 proxy.</source>
-        <translation>通过 SOCKS5 代理连接莱特币网络。</translation>
+        <translation type="unfinished">通过 SOCKS5 代理连接AIB网络。</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1107,7 +1125,7 @@
     </message>
     <message>
         <source>Connect to the AIB network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>在 Tor 匿名网络下通过不同的 SOCKS5 代理连接莱特币网络</translation>
+        <translation type="unfinished">在 Tor 匿名网络下通过不同的 SOCKS5 代理连接AIB网络</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers aib Tor hidden services:</source>
@@ -1151,11 +1169,11 @@
     </message>
     <message>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>莱特币金额单位(&amp;U)：</translation>
+        <translation type="unfinished">AIB金额单位(&amp;U)：</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>选择莱特币单位。</translation>
+        <translation type="unfinished">选择AIB单位。</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1206,7 +1224,7 @@
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the AIB network after a connection is established, but this process has not completed yet.</source>
-        <translation>现在显示的消息可能是过期的。在连接上莱特币网络节点后，您的钱包将自动与网络同步，但是这个过程还没有完成。</translation>
+        <translation type="unfinished">现在显示的消息可能是过期的。在连接上AIB网络节点后，您的钱包将自动与网络同步，但是这个过程还没有完成。</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1298,7 +1316,7 @@
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid AIB address or malformed URI parameters.</source>
-        <translation>无法解析 URI 地址！可能是因为莱特币地址无效，或是 URI 参数格式错误。</translation>
+        <translation type="unfinished">无法解析 URI 地址！可能是因为AIB地址无效，或是 URI 参数格式错误。</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1313,7 +1331,7 @@
         <translation>付款请求已被拒绝</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>付款请求的网络类型跟客户端不符。</translation>
     </message>
     <message>
@@ -1833,7 +1851,7 @@
         <source>(no message)</source>
         <translation>(无消息)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1909,8 +1927,8 @@
         <translation>每kb</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then "per kilobyte" only pays 250 satoshis in fee, while "total at least" pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>如果自定义交易费设置为 1000聪而交易大小只有250字节，则“每千字节" 模式只支付250聪交易费， 而"最少"模式则支付1000聪。 大于1000字节的交易按每千字节付费。</translation>
+        <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 satoshis in fee, while &quot;total at least&quot; pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>如果自定义交易费设置为 1000聪而交易大小只有250字节，则“每千字节&quot; 模式只支付250聪交易费， 而&quot;最少&quot;模式则支付1000聪。 大于1000字节的交易按每千字节付费。</translation>
     </message>
     <message>
         <source>Hide</source>
@@ -2115,7 +2133,7 @@
         <source>Memo:</source>
         <translation>便条：</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendConfirmationDialog</name>
     <message>
@@ -2201,7 +2219,7 @@
         <translation>验证消息(&amp;V)</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>请在下面输入接收者地址、消息（确保换行符、空格符、制表符等完全相同）和签名以验证消息。请仔细核对签名信息，以提防中间人攻击。请注意，这只是证明接收方签名的地址，它不能证明任何交易！</translation>
     </message>
     <message>
@@ -2220,7 +2238,7 @@
         <source>Reset all verify message fields</source>
         <translation>清空所有验证消息栏</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -2280,7 +2298,7 @@
         <source>This pane shows a detailed description of the transaction</source>
         <translation>当前面板显示了交易的详细信息</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -2311,7 +2329,7 @@
         <source>(no label)</source>
         <translation>(无标签)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -2415,12 +2433,6 @@
     </message>
 </context>
 <context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
-<context>
     <name>WalletView</name>
     <message>
         <source>Backup Wallet</source>
@@ -2434,7 +2446,7 @@
         <source>Backup Successful</source>
         <translation>备份成功</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -2547,7 +2559,7 @@
         <translation>设置脚本验证的程序 (%u 到 %d, 0 = 自动, &lt;0 = 保留自由的核心, 默认值: %d)</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>区块数据库包含未来的交易，这可能是由本机错误的日期时间引起。若确认本机日期时间正确，请重新建立区块数据库。</translation>
     </message>
     <message>
@@ -2671,12 +2683,12 @@
         <translation>不正确或没有找到起源区块。网络错误？</translation>
     </message>
     <message>
-        <source>Invalid -onion address: '%s'</source>
+        <source>Invalid -onion address: &apos;%s&apos;</source>
         <translation>无效的 -onion 地址：“%s”</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>-fallbackfee 的无效数额=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>-fallbackfee 的无效数额=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Keep the transaction memory pool below &lt;n&gt; megabytes (default: %u)</source>
@@ -2799,8 +2811,8 @@
         <translation>如果未设置交易费用，自动添加足够的交易费以确保交易在平均n个数据块内被确认 (默认: %u) </translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>-maxtxfee=&lt;amount&gt;: '%s' 的金额无效（交易费至少为 %s，以免交易滞留过久）</translation>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <translation>-maxtxfee=&lt;amount&gt;: &apos;%s&apos; 的金额无效（交易费至少为 %s，以免交易滞留过久）</translation>
     </message>
     <message>
         <source>Maximum size of data in data carrier transactions we relay and mine (default: %u)</source>
@@ -2863,20 +2875,20 @@
         <translation>信息</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>无效的金额 -paytxfee=&lt;amount&gt;: '%s' (必须至少为 %s)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>无效的金额 -paytxfee=&lt;amount&gt;: &apos;%s&apos; (必须至少为 %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>-whitelist: '%s' 指定的网络掩码无效</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>-whitelist: &apos;%s&apos; 指定的网络掩码无效</translation>
     </message>
     <message>
         <source>Keep at most &lt;n&gt; unconnectable transactions in memory (default: %u)</source>
         <translation>内存中最多保留 &lt;n&gt; 笔孤立的交易 (默认: %u) </translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>-whitebind: '%s' 需要指定一个端口</translation>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
+        <translation>-whitebind: &apos;%s&apos; 需要指定一个端口</translation>
     </message>
     <message>
         <source>Node relay options:</source>
@@ -3044,7 +3056,7 @@
         <translation>尝试保持上传带宽低于（MiB/24h），0=无限制（默认：%d）</translation>
     </message>
     <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>找到不再支持的 -socks 参数。现在只支持 SOCKS5 协议的代理服务器，因此不可以指定 SOCKS 协议版本。</translation>
     </message>
     <message>
@@ -3060,7 +3072,7 @@
         <translation>JSON-RPC 连接要使用的用户名和散列密码。&lt;userpw&gt; 的格式是：&lt;用户名&gt;:&lt;盐&gt;$&lt;散列值&gt;。在 share/rpcuser 目录下有一个示范的 python 脚本。这个选项可以被多次指定。</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>警告: 未知的区块版本被挖掘！未知规则可能已生效</translation>
     </message>
     <message>
@@ -3080,7 +3092,7 @@
         <translation>在调试输出中包含IP地址 (默认: %u)</translation>
     </message>
     <message>
-        <source>Invalid -proxy address: '%s'</source>
+        <source>Invalid -proxy address: &apos;%s&apos;</source>
         <translation>无效的代理地址：%s</translation>
     </message>
     <message>
@@ -3148,7 +3160,7 @@
         <translation>断开 非礼节点的阀值 (默认: %u) </translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
         <translation>-onlynet 指定的是未知网络：%s</translation>
     </message>
     <message>
