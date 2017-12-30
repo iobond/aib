@@ -10,8 +10,8 @@
 
 #include <assert.h>
 
-const int WTMINT_RPC_PORT = 51413;
-const int WTMINT_TESTNET_RPC_PORT = 41413;
+const int WTMINT_RPC_PORT = 31413;
+const int WTMINT_TESTNET_RPC_PORT = 30413;
 const int WTMINT_REGTEST_RPC_PORT = 20413;
 
 const std::string CBaseChainParams::MAIN = "main";
