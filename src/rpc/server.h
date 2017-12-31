@@ -192,6 +192,17 @@ extern std::string HelpExampleRpc(const std::string& methodname, const std::stri
 
 extern void EnsureWalletIsUnlocked();
 
+//TODO: AIB MERGE for copay
+extern UniValue getaddressmempool(const UniValue& params, bool fHelp);
+extern UniValue getaddressutxos(const UniValue& params, bool fHelp);
+extern UniValue getaddressdeltas(const UniValue& params, bool fHelp);
+extern UniValue getaddresstxids(const UniValue& params, bool fHelp);
+extern UniValue getaddressbalance(const UniValue& params, bool fHelp);
+extern UniValue getblockhashes(const UniValue& params, bool fHelp);
+extern UniValue getblockdeltas(const UniValue& params, bool fHelp);
+extern UniValue getspentinfo(const UniValue& params, bool fHelp);
+//////////////////////////////////////////////////////////////////////
+
 bool StartRPC();
 void InterruptRPC();
 void StopRPC();
