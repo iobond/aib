@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="0.9">
+<dict>
+  <key>LSMinimumSystemVersion</key>
+  <string>10.8.0</string>
+
+  <key>LSArchitecturePriority</key>
+  <array>
+    <string>x86_64</string>
+  </array>
+
+  <key>CFBundleIconFile</key>
+  <string>bitcoin.icns</string>
+
+  <key>CFBundlePackageType</key>
+  <string>APPL</string>
+
+  <key>CFBundleGetInfoString</key>
+  <string>5.13.3, Copyright © 2009-2018 The Bitcoin Core Developers 2011-2018 The AIB Core developers</string>
+
+  <key>CFBundleShortVersionString</key>
+  <string>5.13.3</string>
+
+  <key>CFBundleVersion</key>
+  <string>5.13.3</string>
+
+  <key>CFBundleSignature</key>
+  <string>????</string>
+
+  <key>CFBundleExecutable</key>
+  <string>Aib-Qt</string>
+
+  <key>CFBundleName</key>
+  <string>Aib-Qt</string>
+
+  <key>LSHasLocalizedDisplayName</key>
+  <true/>
+
+  <key>CFBundleIdentifier</key>
+  <string>org.aibcoin.Aibcoin-Qt</string>
+
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+      <key>CFBundleURLName</key>
+      <string>org.viacoin.AibcoinPayment</string>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>viacoin</string>
+      </array>
+    </dict>
+  </array>
+
+  <key>UTExportedTypeDeclarations</key>
+  <array>
+    <dict>
+      <key>UTTypeIdentifier</key>
+      <string>org.viacoin.paymentrequest</string>
+      <key>UTTypeDescription</key>
+      <string>Aibcoin payment request</string>
+      <key>UTTypeConformsTo</key>
+      <array>
+        <string>public.data</string>
+      </array>
+      <key>UTTypeTagSpecification</key>
+      <dict>
+        <key>public.mime-type</key>
+        <string>application/x-viacoin-payment-request</string>
+        <key>public.filename-extension</key>
+        <array>
+          <string>viacoinpaymentrequest</string>
+        </array>
+      </dict>
+    </dict>
+  </array>
+
+  <key>CFBundleDocumentTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+      <key>LSItemContentTypes</key>
+      <array>
+        <string>org.viacoin.paymentrequest</string>
+      </array>
+      <key>LSHandlerRank</key>
+      <string>Owner</string>
+    </dict>
+  </array>
+
+  <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+
+  <key>NSHighResolutionCapable</key>
+    <string>True</string>
+
+  <key>LSAppNapIsDisabled</key>
+    <string>True</string>
+
+  <key>LSApplicationCategoryType</key>
+    <string>public.app-category.finance</string>
+</dict>
+</plist>

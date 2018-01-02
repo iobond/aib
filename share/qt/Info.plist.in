@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Aibcoin-Qt</string>
+  <string>Aib-Qt</string>
 
   <key>CFBundleName</key>
-  <string>Aibcoin-Qt</string>
+  <string>Aib-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.viacoin.Aibcoin-Qt</string>
+  <string>org.aibcoin.Aibcoin-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>

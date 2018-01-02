@@ -3,14 +3,14 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #
-DATADIR="/root/.netbeans/remote/91.121.91.168/bot0-Windows-x86_64/C/aib/.aibcoin"
+DATADIR="/Users/dongchenzhang/Desktop/Project/9cat/aib-1/.aibcoin"
 rm -rf "$DATADIR"
 mkdir -p "$DATADIR"/regtest
 touch "$DATADIR/regtest/debug.log"
 tail -q -n 1 -F "$DATADIR/regtest/debug.log" | grep -m 1 -q "Done loading" &
 WAITER=$!
 PORT=`expr 10000 + $$ % 55536`
-"/root/.netbeans/remote/91.121.91.168/bot0-Windows-x86_64/C/aib/src/aibcoind" -connect=0.0.0.0 -datadir="$DATADIR" -rpcuser=user -rpcpassword=pass -listen -keypool=3 -debug -debug=net -logtimestamps -checkmempool=0 -relaypriority=0 -port=$PORT -whitelist=127.0.0.1 -regtest -rpcport=`expr $PORT + 1` &
+"/Users/dongchenzhang/Desktop/Project/9cat/aib-1/src/aibcoind" -connect=0.0.0.0 -datadir="$DATADIR" -rpcuser=user -rpcpassword=pass -listen -keypool=3 -debug -debug=net -logtimestamps -checkmempool=0 -relaypriority=0 -port=$PORT -whitelist=127.0.0.1 -regtest -rpcport=`expr $PORT + 1` &
 BITCOIND=$!
 
 #Install a watchdog.
