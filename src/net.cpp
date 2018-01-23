@@ -62,9 +62,7 @@
 
 
 namespace {
-    //TODO: AIB MERGE increasing max out bound connections to 1000
-    //const int MAX_OUTBOUND_CONNECTIONS = 8;
-    const int MAX_OUTBOUND_CONNECTIONS = 1000;
+    const int MAX_OUTBOUND_CONNECTIONS = 8;
     const int MAX_FEELER_CONNECTIONS = 1;
 
     struct ListenSocket {
