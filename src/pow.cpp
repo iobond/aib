@@ -211,8 +211,8 @@ const int WTMINT_BLOCK_nTargetTimespan = 14400; //4 * 60 * 60 //  : every 4 hour
 const int WTMINT_BLOCK_nTargetSpacing = 60; //  : 1 minutes
 const int WTMINT_KGW_StartBlock = 6000;
 
-/*static const int64 nTargetTimespan  =   WTMINT_BLOCK_nTargetTimespan;//4 * 60 * 60; // TempleCoin: every 4 hours
-static const int64 nTargetSpacing   =   WTMINT_BLOCK_nTargetSpacing;//60; // TempleCoin: 1 minutes
+/*static const int64 nTargetTimespan  =   WTMINT_BLOCK_nTargetTimespan;//4 * 60 * 60; // every 4 hours
+static const int64 nTargetSpacing   =   WTMINT_BLOCK_nTargetSpacing;//60; // 1 minutes
 static const int64 nInterval        =   nTargetTimespan / nTargetSpacing;*/
 unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBlockHeader *pblock,
         uint64 TargetBlocksSpacingSeconds, uint64 PastBlocksMin, uint64 PastBlocksMax,

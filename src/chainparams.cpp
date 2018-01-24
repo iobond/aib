@@ -80,6 +80,7 @@
 #define WTMINT_REGTEST_PUBKEY_ADDRESS 49 // Dec.
 #define WTMINT_REGTEST_SECRET_ADDRESS 239 // Dec.
 
+#define WTMINT_MINIMUM_CHAINWORK "00000000000000000000000000000000000000000000000020664ecd44b439d2" //height 1216821
 
 #define DEBUG(title,strout) std::cout<<title<<":    "<< strout<<"\n"
 
@@ -206,7 +207,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1530230400;   // June 28, 2018
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000318d732407b3fcacb");
+	consensus.nMinimumChainWork = uint256S(WTMINT_MINIMUM_CHAINWORK);
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.

@@ -3,12 +3,12 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-SRCDIR="/Users/dongchenzhang/Desktop/Project/9cat/aib-1"
-BUILDDIR="/Users/dongchenzhang/Desktop/Project/9cat/aib-1"
+SRCDIR="/root/tmp/aib"
+BUILDDIR="/root/tmp/aib"
 EXEEXT=""
 
 # These will turn into comments if they were disabled when configuring.
 ENABLE_WALLET=1
 ENABLE_UTILS=1
 ENABLE_BITCOIND=1
-#ENABLE_ZMQ=1
+ENABLE_ZMQ=1

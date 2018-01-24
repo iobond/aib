@@ -1771,8 +1771,7 @@ bool IsInitialBlockDownload() {
     if (chainActive.Tip() == NULL)
         return true;
     if (chainActive.Tip()->nChainWork < UintToArith256(chainParams.GetConsensus().nMinimumChainWork))
-        // AIB MERGE RECHECK disable for now to confirm a better nMinmumChainwork
-        return false;//true;
+        return true;
     if (chainActive.Tip()->GetBlockTime() < (GetTime() - nMaxTipAge))
         return true;
     latchToFalse.store(true, std::memory_order_relaxed);
