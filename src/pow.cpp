@@ -19,7 +19,6 @@ unsigned int static CalculateNextWorkRequired_V1(const CBlockIndex* pindexLast, 
 
     // Limit adjustment step
     int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
-    //if ( pindexLast->nVersion <= 70002 ) {
     if (fDebug)
         LogPrintf("  nActualTimespan = %d before bounds\n", nActualTimespan);
     if (pindexLast->nHeight + 1 > 10000) {
@@ -38,13 +37,7 @@ unsigned int static CalculateNextWorkRequired_V1(const CBlockIndex* pindexLast, 
         if (nActualTimespan > params.nPowTargetTimespan * 4)
             nActualTimespan = params.nPowTargetTimespan * 4;
     }
-    //} 
-    /*else {
-        if (nActualTimespan < params.nPowTargetTimespan/4)
-            nActualTimespan = params.nPowTargetTimespan/4;
-        if (nActualTimespan > params.nPowTargetTimespan*4)
-            nActualTimespan = params.nPowTargetTimespan*4;
-    }*/
+    
     // Retarget
     arith_uint256 bnNew;
     arith_uint256 bnOld;
@@ -323,26 +316,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         return GetNextWorkRequired_V2(pindexLast, pblock, params);
     }
     return GetNextWorkRequired_V1(pindexLast, pblock, params);
-
-    /*if ( ( isTestNetMode && pindexLast->nHeight+1 >= 50 ) ||
-         ( !isTestNetMode && pindexLast->nHeight+1 >= WTMINT_KGW_StartBlock )) {
-        if ( isTestNetMode )
-            printf("Running in TestNet mode");
-        else 
-            printf("Running in Normal mode");
-        return GetNextWorkRequired_V2(pindexLast, pblock);
-    }
-    if (fDebug)
-        LogPrintf("Running to V1 GWP\n");
-    /*if (pindexLast->nHeight+1 >= 4510000 || (params.fPowAllowMinDifficultyBlocks && pindexLast->nHeight+1 >= 300000)) {
-        return AntiGravityWave(2, pindexLast, pblock, params);
-    } else if (pindexLast->nHeight+1 >= 3600) {
-        return AntiGravityWave(1, pindexLast, pblock, params);
-    } else {
-        return GetNextWorkRequired_V1(pindexLast, pblock, params);
-    }
-    return GetNextWorkRequired_V1(pindexLast, pblock, params);
-     */
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params) {
