@@ -3,19 +3,21 @@ AIB Core integration/staging tree
 
 [![Build Status](https://travis-ci.org/aib/aib.svg?branch=0.13-dev)](https://travis-ci.org/aib/aib)
 
-
-http://aib.iobond.com/
-
 https://www.aib.one
 
 What is AIB?
 ----------------
 
 AIB is an experimental digital asset that enables instant payments to
-anyone, anywhere in the world. Aib uses peer-to-peer technology to operate
+anyone, anywhere in the world. AIB uses peer-to-peer technology to operate
 with no central authority: managing transactions and issuing money are carried
 out collectively by the network. AIB Core is the name of open source
 software which enables the use of this asset.
+
+AIB is also the dual value system to enable the special token econimic system for small projects
+It ensure the small , spreaded investment could less risky toward certain projects
+It will also enhanced by smart contract on the road.
+
 
 For more information, as well as an immediately useable, binary version of
 the AIB Core software, see [https://www.aib.one](https://www.aib.one).
