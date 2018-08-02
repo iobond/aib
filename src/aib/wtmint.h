@@ -1,5 +1,5 @@
-// Copyright (c) 2015-2015 The IOBond developers
-// Copyright (c) 2014-2015 The WTMint developers
+
+// Copyright (c) 2014-2018 The AIB developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
