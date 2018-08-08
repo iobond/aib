@@ -226,6 +226,19 @@ def getFrameworks(binaryPath, verbose):
                 print(info)
             libraries.append(info)
 
+        #Also copy libboost_system-mt when libboost_system exists (9Cat by bigmouse)
+        if line.find("libboost_system") > 0:
+            boost_system_line = line
+            boost_system_line = boost_system_line.replace("libboost_system", "libboost_system-mt")
+            print("boost_system_line:" + boost_system_line)
+            boost_system_line = boost_system_line.replace("@loader_path", os.path.dirname(binaryPath))
+            info = FrameworkInfo.fromOtoolLibraryLine(boost_system_line.strip())
+            if info is not None:
+                if verbose >= 3:
+                    print("Found framework:")
+                    print(info)
+                libraries.append(info)
+
     return libraries
 
 def runInstallNameTool(action, *args):
@@ -796,7 +809,7 @@ if config.dmg is not None:
         except subprocess.CalledProcessError as e:
             sys.exit(e.returncode)
 
-        m = re.search("/Volumes/(.+$)", output)
+        m = re.search("/Volumes/(.+$)", output.decode())
         disk_root = m.group(0)
         disk_name = m.group(1)
 
@@ -873,7 +886,7 @@ if config.dmg is not None:
             print(s)
 
         p = subprocess.Popen(['osascript', '-'], stdin=subprocess.PIPE)
-        p.communicate(input=s)
+        p.communicate(input=s.encode('utf-8'))
         if p.returncode:
             print("Error running osascript.")
 
