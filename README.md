@@ -1,7 +1,7 @@
 AIB Core integration/staging tree
 =====================================
 
-[![Build Status](https://travis-ci.org/aib/aib.svg?branch=0.13-dev)](https://travis-ci.org/aib/aib)
+[![Build Status](https://travis-ci.org/iobond/aib.svg?branch=master)](https://travis-ci.org/iobond/aib)
 
 https://www.aib.one
 
