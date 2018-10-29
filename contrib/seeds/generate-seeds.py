@@ -1,5 +1,5 @@
-#!/usr/bin/python
-# Copyright (c) 2014 Wladimir J. van der Laan
+#!/usr/bin/env python3
+# Copyright (c) 2014-2017 Wladimir J. van der Laan
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 '''
@@ -11,7 +11,7 @@ argument:
     nodes_main.txt
     nodes_test.txt
 
-These files must consist of lines in the format
+These files must consist of lines in the format 
 
     <ip>
     <ip>:<port>
@@ -31,7 +31,7 @@ The output will be two data structures with the peers in binary format:
 
 These should be pasted into `src/chainparamsseeds.h`.
 '''
-from __future__ import print_function, division
+
 from base64 import b32decode
 from binascii import a2b_hex
 import sys, os
@@ -127,12 +127,12 @@ def main():
     g.write(' * IPv4 as well as onion addresses are wrapped inside a IPv6 address accordingly.\n')
     g.write(' */\n')
     with open(os.path.join(indir,'nodes_main.txt'),'r') as f:
-        process_nodes(g, f, 'pnSeed6_main', 5223)
+        process_nodes(g, f, 'pnSeed6_main', 8333)
     g.write('\n')
     with open(os.path.join(indir,'nodes_test.txt'),'r') as f:
-        process_nodes(g, f, 'pnSeed6_test', 25223)
+        process_nodes(g, f, 'pnSeed6_test', 18333)
     g.write('#endif // BITCOIN_CHAINPARAMSSEEDS_H\n')
-
+            
 if __name__ == '__main__':
     main()
 

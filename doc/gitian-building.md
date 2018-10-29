@@ -1,9 +1,9 @@
 Gitian building
 ================
 
-*Setup instructions for a Gitian build of Aibcoin Core using a Debian VM or physical system.*
+*Setup instructions for a Gitian build of Bitcoin Core using a Debian VM or physical system.*
 
-Gitian is the deterministic build process that is used to build the Aibcoin
+Gitian is the deterministic build process that is used to build the Bitcoin
 Core executables. It provides a way to be reasonably sure that the
 executables are really built from the source on GitHub. It also makes sure that
 the same, tested dependencies are used and statically built into the executable.
@@ -11,7 +11,7 @@ the same, tested dependencies are used and statically built into the executable.
 Multiple developers build the source code by following a specific descriptor
 ("recipe"), cryptographically sign the result, and upload the resulting signature.
 These results are compared and only if they match, the build is accepted and uploaded
-to aibcoin.org.
+to aib.org.
 
 More independent Gitian builders are needed, which is why this guide exists.
 It is preferred you follow these steps yourself instead of using someone else's
@@ -26,7 +26,7 @@ Table of Contents
 - [Installing Gitian](#installing-gitian)
 - [Setting up the Gitian image](#setting-up-the-gitian-image)
 - [Getting and building the inputs](#getting-and-building-the-inputs)
-- [Building Aibcoin Core](#building-aibcoin-core)
+- [Building Bitcoin Core](#building-aib-core)
 - [Building an alternative repository](#building-an-alternative-repository)
 - [Signing externally](#signing-externally)
 - [Uploading signatures](#uploading-signatures)
@@ -41,7 +41,7 @@ Debian Linux was chosen as the host distribution because it has a lightweight in
 Any kind of virtualization can be used, for example:
 - [VirtualBox](https://www.virtualbox.org/) (covered by this guide)
 - [KVM](http://www.linux-kvm.org/page/Main_Page)
-- [LXC](https://linuxcontainers.org/), see also [Gitian host docker container](https://github.com/gdm85/tenku/tree/master/docker/gitian-bitcoin-host/README.md).
+- [LXC](https://linuxcontainers.org/), see also [Gitian host docker container](https://github.com/gdm85/tenku/tree/master/docker/gitian-aib-host/README.md).
 
 You can also install Gitian on actual hardware instead of using virtualization.
 
@@ -76,7 +76,11 @@ In the VirtualBox GUI click "New" and choose the following parameters in the wiz
 
 After creating the VM, we need to configure it.
 
-- Click the `Settings` button, then go to the `Network` tab. Adapter 1 should be attached to `NAT`.
+- Click the `Settings` button, then go to `System` tab and `Processor` sub-tab. Increase the number of processors to the number of cores on your machine if you want builds to be faster.
+
+![](gitian-building/system_settings.png)
+
+- Go to the `Network` tab. Adapter 1 should be attached to `NAT`.
 
 ![](gitian-building/network_settings.png)
 
@@ -95,14 +99,14 @@ After creating the VM, we need to configure it.
 
 - Click `Ok` twice to save.
 
-Get the [Debian 8.x net installer](http://cdimage.debian.org/debian-cd/8.5.0/amd64/iso-cd/debian-8.5.0-amd64-netinst.iso) (a more recent minor version should also work, see also [Debian Network installation](https://www.debian.org/CD/netinst/)).
-This DVD image can be validated using a SHA256 hashing tool, for example on
+Get the [Debian 8.x net installer](http://cdimage.debian.org/mirror/cdimage/archive/8.5.0/amd64/iso-cd/debian-8.5.0-amd64-netinst.iso) (a more recent minor version should also work, see also [Debian Network installation](https://www.debian.org/CD/netinst/)).
+This DVD image can be [validated](https://www.debian.org/CD/verify) using a SHA256 hashing tool, for example on
 Unixy OSes by entering the following in a terminal:
 
     echo "ad4e8c27c561ad8248d5ebc1d36eb172f884057bfeb2c22ead823f59fa8c3dff  debian-8.5.0-amd64-netinst.iso" | sha256sum -c
     # (must return OK)
 
-Then start the VM. On the first launch you will be asked for a CD or DVD image. Choose the downloaded iso.
+Then start the VM. On the first launch you will be asked for a CD or DVD image. Choose the downloaded ISO.
 
 ![](gitian-building/select_startup_disk.png)
 
@@ -131,6 +135,7 @@ To select a different button, press `Tab`.
   - Leave domain name empty.
 
 ![](gitian-building/debian_install_5_configure_the_network.png)
+![](gitian-building/debian_install_6_domain_name.png)
 
 - Choose a root password and enter it twice (remember it for later)
 
@@ -202,7 +207,7 @@ To select a different button, press `Tab`.
 
 After Installation
 -------------------
-The next step in the guide involves logging in as root aib SSH.
+The next step in the guide involves logging in as root via SSH.
 SSH login for root users is disabled by default, so we'll enable that now.
 
 Login to the VM using username `root` and the root password you chose earlier.
@@ -305,12 +310,12 @@ cd ..
 
 **Note**: When sudo asks for a password, enter the password for the user *debian* not for *root*.
 
-Clone the git repositories for aibcoin and Gitian.
+Clone the git repositories for aib and Gitian.
 
 ```bash
 git clone https://github.com/devrandom/gitian-builder.git
-git clone https://github.com/aibcoin/aibcoin
-git clone https://github.com/aibcoin/gitian.sigs.aib.git
+git clone https://github.com/aib/aib
+git clone https://github.com/aib-core/gitian.sigs.git
 ```
 
 Setting up the Gitian image
@@ -336,17 +341,19 @@ There will be a lot of warnings printed during the build of the image. These can
 Getting and building the inputs
 --------------------------------
 
-Follow the instructions in [doc/release-process.md](release-process.md#fetch-and-build-inputs-first-time-or-when-dependency-versions-change)
-in the aibcoin repository under 'Fetch and create inputs' to install sources which require
+At this point you have two options, you can either use the automated script (found in [contrib/gitian-build.sh](/contrib/gitian-build.sh)) or you could manually do everything by following this guide. If you're using the automated script, then run it with the "--setup" command. Afterwards, run it with the "--build" command (example: "contrib/gitian-build.sh -b signer 0.13.0"). Otherwise ignore this.
+
+Follow the instructions in [doc/release-process.md](release-process.md#fetch-and-create-inputs-first-time-or-when-dependency-versions-change)
+in the aib repository under 'Fetch and create inputs' to install sources which require
 manual intervention. Also optionally follow the next step: 'Seed the Gitian sources cache
 and offline git repositories' which will fetch the remaining files required for building
 offline.
 
-Building Aibcoin Core
+Building Bitcoin Core
 ----------------
 
-To build Aibcoin Core (for Linux, OS X and Windows) just follow the steps under 'perform
-Gitian builds' in [doc/release-process.md](release-process.md#perform-gitian-builds) in the aibcoin repository.
+To build Bitcoin Core (for Linux, OS X and Windows) just follow the steps under 'perform
+Gitian builds' in [doc/release-process.md](release-process.md#perform-gitian-builds) in the aib repository.
 
 This may take some time as it will build all the dependencies needed for each descriptor.
 These dependencies will be cached after a successful build to avoid rebuilding them when possible.
@@ -360,12 +367,12 @@ tail -f var/build.log
 
 Output from `gbuild` will look something like
 
-    Initialized empty Git repository in /home/debian/gitian-builder/inputs/aibcoin/.git/
+    Initialized empty Git repository in /home/debian/gitian-builder/inputs/aib/.git/
     remote: Counting objects: 57959, done.
     remote: Total 57959 (delta 0), reused 0 (delta 0), pack-reused 57958
     Receiving objects: 100% (57959/57959), 53.76 MiB | 484.00 KiB/s, done.
     Resolving deltas: 100% (41590/41590), done.
-    From https://github.com/aibcoin/aibcoin
+    From https://github.com/aib/aib
     ... (new tags, new branch etc)
     --- Building for trusty amd64 ---
     Stopping target if it is up
@@ -391,18 +398,18 @@ and inputs.
 
 For example:
 ```bash
-URL=https://github.com/thrasher-/aibcoin.git
+URL=https://github.com/laanwj/aib.git
 COMMIT=2014_03_windows_unicode_path
-./bin/gbuild --commit aibcoin=${COMMIT} --url aibcoin=${URL} ../aibcoin/contrib/gitian-descriptors/gitian-linux.yml
-./bin/gbuild --commit aibcoin=${COMMIT} --url aibcoin=${URL} ../aibcoin/contrib/gitian-descriptors/gitian-win.yml
-./bin/gbuild --commit aibcoin=${COMMIT} --url aibcoin=${URL} ../aibcoin/contrib/gitian-descriptors/gitian-osx.yml
+./bin/gbuild --commit aib=${COMMIT} --url aib=${URL} ../aib/contrib/gitian-descriptors/gitian-linux.yml
+./bin/gbuild --commit aib=${COMMIT} --url aib=${URL} ../aib/contrib/gitian-descriptors/gitian-win.yml
+./bin/gbuild --commit aib=${COMMIT} --url aib=${URL} ../aib/contrib/gitian-descriptors/gitian-osx.yml
 ```
 
 Building fully offline
 -----------------------
 
 For building fully offline including attaching signatures to unsigned builds, the detached-sigs repository
-and the aibcoin git repository with the desired tag must both be available locally, and then gbuild must be
+and the aib git repository with the desired tag must both be available locally, and then gbuild must be
 told where to find them. It also requires an apt-cacher-ng which is fully-populated but set to offline mode, or
 manually disabling gitian-builder's use of apt-get to update the VM build environment.
 
@@ -421,7 +428,7 @@ cd /path/to/gitian-builder
 LXC_ARCH=amd64 LXC_SUITE=trusty on-target -u root apt-get update
 LXC_ARCH=amd64 LXC_SUITE=trusty on-target -u root \
   -e DEBIAN_FRONTEND=noninteractive apt-get --no-install-recommends -y install \
-  $( sed -ne '/^packages:/,/[^-] .*/ {/^- .*/{s/"//g;s/- //;p}}' ../aibcoin/contrib/gitian-descriptors/*|sort|uniq )
+  $( sed -ne '/^packages:/,/[^-] .*/ {/^- .*/{s/"//g;s/- //;p}}' ../aib/contrib/gitian-descriptors/*|sort|uniq )
 LXC_ARCH=amd64 LXC_SUITE=trusty on-target -u root apt-get -q -y purge grub
 LXC_ARCH=amd64 LXC_SUITE=trusty on-target -u root -e DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
 ```
@@ -441,12 +448,12 @@ Then when building, override the remote URLs that gbuild would otherwise pull fr
 ```bash
 
 cd /some/root/path/
-git clone https://github.com/aibcoin/aibcoin-detached-sigs.git
+git clone https://github.com/aib-core/aib-detached-sigs.git
 
-BTCPATH=/some/root/path/aibcoin
-SIGPATH=/some/root/path/aibcoin-detached-sigs
+BTCPATH=/some/root/path/aib
+SIGPATH=/some/root/path/aib-detached-sigs
 
-./bin/gbuild --url aibcoin=${BTCPATH},signature=${SIGPATH} ../aibcoin/contrib/gitian-descriptors/gitian-win-signer.yml
+./bin/gbuild --url aib=${BTCPATH},signature=${SIGPATH} ../aib/contrib/gitian-descriptors/gitian-win-signer.yml
 ```
 
 Signing externally
@@ -458,12 +465,12 @@ and follow the steps in the build process as normal.
     gpg: skipped "laanwj": secret key not available
 
 When you execute `gsign` you will get an error from GPG, which can be ignored. Copy the resulting `.assert` files
-in `gitian.sigs.aib` to your signing machine and do
+in `gitian.sigs` to your signing machine and do
 
 ```bash
-    gpg --detach-sign ${VERSION}-linux/${SIGNER}/aibcoin-linux-build.assert
-    gpg --detach-sign ${VERSION}-win/${SIGNER}/aibcoin-win-build.assert
-    gpg --detach-sign ${VERSION}-osx-unsigned/${SIGNER}/aibcoin-osx-build.assert
+    gpg --detach-sign ${VERSION}-linux/${SIGNER}/aib-linux-build.assert
+    gpg --detach-sign ${VERSION}-win/${SIGNER}/aib-win-build.assert
+    gpg --detach-sign ${VERSION}-osx-unsigned/${SIGNER}/aib-osx-build.assert
 ```
 
 This will create the `.sig` files that can be committed together with the `.assert` files to assert your
@@ -473,5 +480,5 @@ Uploading signatures
 ---------------------
 
 After building and signing you can push your signatures (both the `.assert` and `.assert.sig` files) to the
-[gitian.sigs.aib](https://github.com/aibcoin/gitian.sigs.aib/) repository, or if that's not possible create a pull
-request. You can also mail the files to thrasher (thrasher@addictionsoftware.com) and he will commit them.
+[aib-core/gitian.sigs](https://github.com/aib-core/gitian.sigs/) repository, or if that's not possible create a pull
+request. You can also mail the files to Wladimir (laanwj@gmail.com) and he will commit them.

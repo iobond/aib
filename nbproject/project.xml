@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.cnd.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>aib</name>
+            <name>aib-core_0.17</name>
             <c-extensions>c</c-extensions>
             <cpp-extensions>cc,cpp,mm</cpp-extensions>
             <header-extensions>h</header-extensions>

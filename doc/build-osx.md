@@ -11,26 +11,30 @@ Install the OS X command line tools:
 
 When the popup appears, click `Install`.
 
-Then install [Homebrew](http://brew.sh).
+Then install [Homebrew](https://brew.sh).
 
 Dependencies
 ----------------------
 
-    brew install automake berkeley-db4 libtool boost --c++11 miniupnpc openssl pkg-config homebrew/versions/protobuf260 --c++11 qt5 libevent
+    brew install automake berkeley-db4 libtool boost --c++11 miniupnpc openssl pkg-config protobuf qt libevent
+
+If you want to build the disk image with `make deploy` (.dmg / optional), you need RSVG
+
+    brew install librsvg
 
 NOTE: Building with Qt4 is still supported, however, could result in a broken UI. Building with Qt5 is recommended.
 
-Build Aibcoin Core
+Build Bitcoin Core
 ------------------------
 
-1. Clone the aibcoin source code and cd into `aibcoin`
+1. Clone the aib source code and cd into `aib`
 
-        git clone https://github.com/aibcoin/aibcoin
-        cd aibcoin
+        git clone https://github.com/aib/aib
+        cd aib
 
-2.  Build aibcoin-core:
+2.  Build aib-core:
 
-    Configure and build the headless aibcoin binaries as well as the GUI (if Qt is found).
+    Configure and build the headless aib binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
 
@@ -49,37 +53,37 @@ Build Aibcoin Core
 Running
 -------
 
-Aibcoin Core is now available at `./src/aibcoind`
+Bitcoin Core is now available at `./src/aibd`
 
 Before running, it's recommended you create an RPC configuration file.
 
-    echo -e "rpcuser=aibcoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Aibcoin/aibcoin.conf"
+    echo -e "rpcuser=aibrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Bitcoin/aib.conf"
 
-    chmod 600 "/Users/${USER}/Library/Application Support/Aibcoin/aibcoin.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/Bitcoin/aib.conf"
 
-The first time you run aibcoind, it will start downloading the blockchain. This process could take several hours.
+The first time you run aibd, it will start downloading the blockchain. This process could take several hours.
 
 You can monitor the download process by looking at the debug.log file:
 
-    tail -f $HOME/Library/Application\ Support/Aibcoin/debug.log
+    tail -f $HOME/Library/Application\ Support/Bitcoin/debug.log
 
 Other commands:
 -------
 
-    ./src/aibcoind -daemon # Starts the aibcoin daemon.
-    ./src/aibcoin-cli --help # Outputs a list of command-line options.
-    ./src/aibcoin-cli help # Outputs a list of RPC commands when the daemon is running.
+    ./src/aibd -daemon # Starts the aib daemon.
+    ./src/aib-cli --help # Outputs a list of command-line options.
+    ./src/aib-cli help # Outputs a list of RPC commands when the daemon is running.
 
 Using Qt Creator as IDE
 ------------------------
-You can use Qt Creator as an IDE, for aibcoin development.
+You can use Qt Creator as an IDE, for aib development.
 Download and install the community edition of [Qt Creator](https://www.qt.io/download/).
 Uncheck everything except Qt Creator during the installation process.
 
 1. Make sure you installed everything through Homebrew mentioned above
 2. Do a proper ./configure --enable-debug
 3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "aibcoin-qt" as project name, enter src/qt as location
+4. Enter "aib-qt" as project name, enter src/qt as location
 5. Leave the file selection as it is
 6. Confirm the "summary page"
 7. In the "Projects" tab select "Manage Kits..."
@@ -92,4 +96,4 @@ Notes
 
 * Tested on OS X 10.8 through 10.12 on 64-bit Intel processors only.
 
-* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/bitcoin/bitcoin/issues/7714)
+* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/aib/aib/issues/7714)

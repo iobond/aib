@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
+// Copyright (c) 2011-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,8 +27,6 @@ static const bool DEFAULT_SPLASHSCREEN = true;
 #define COLOR_BAREADDRESS QColor(140, 140, 140)
 /* Transaction list -- TX status decoration - open until date */
 #define COLOR_TX_STATUS_OPENUNTILDATE QColor(64, 64, 255)
-/* Transaction list -- TX status decoration - offline */
-#define COLOR_TX_STATUS_OFFLINE QColor(192, 192, 192)
 /* Transaction list -- TX status decoration - danger, tx needs attention */
 #define COLOR_TX_STATUS_DANGER QColor(200, 100, 100)
 /* Transaction list -- TX status decoration - default color */
@@ -48,9 +46,9 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 36
 
-#define QAPP_ORG_NAME "Aib"
-#define QAPP_ORG_DOMAIN "aib.org"
-#define QAPP_APP_NAME_DEFAULT "Aib-Qt"
-#define QAPP_APP_NAME_TESTNET "Aib-Qt-testnet"
+#define QAPP_ORG_NAME "Bitcoin"
+#define QAPP_ORG_DOMAIN "bitcoin.org"
+#define QAPP_APP_NAME_DEFAULT "Bitcoin-Qt"
+#define QAPP_APP_NAME_TESTNET "Bitcoin-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

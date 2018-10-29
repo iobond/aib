@@ -1,12 +1,12 @@
-# Block and Transaction Broadcasting With ZeroMQ
+# Block and Transaction Broadcasting with ZeroMQ
 
 [ZeroMQ](http://zeromq.org/) is a lightweight wrapper around TCP
 connections, inter-process communication, and shared-memory,
 providing various message-oriented semantics such as publish/subscribe,
 request/reply, and push/pull.
 
-The Aibcoin Core daemon can be configured to act as a trusted "border
-router", implementing the aibcoin wire protocol and relay, making
+The Bitcoin Core daemon can be configured to act as a trusted "border
+router", implementing the aib wire protocol and relay, making
 consensus decisions, maintaining the local blockchain database,
 broadcasting locally generated transactions into the network, and
 providing a queryable RPC interface to interact on a polled basis for
@@ -33,7 +33,7 @@ buffering or reassembly.
 
 ## Prerequisites
 
-The ZeroMQ feature in Aibcoin Core requires ZeroMQ API version 4.x or
+The ZeroMQ feature in Bitcoin Core requires ZeroMQ API version 4.x or
 newer. Typically, it is packaged by distributions as something like
 *libzmq3-dev*. The C++ wrapper for ZeroMQ is *not* needed.
 
@@ -45,12 +45,12 @@ operation.
 
 By default, the ZeroMQ feature is automatically compiled in if the
 necessary prerequisites are found.  To disable, use --disable-zmq
-during the *configure* step of building aibcoind:
+during the *configure* step of building aibd:
 
     $ ./configure --disable-zmq (other options)
 
 To actually enable operation, one must set the appropriate options on
-the commandline or in the configuration file.
+the command line or in the configuration file.
 
 ## Usage
 
@@ -66,8 +66,8 @@ address. The same address can be used in more than one notification.
 
 For instance:
 
-    $ aibcoind -zmqpubhashtx=tcp://127.0.0.1:29332 \
-               -zmqpubrawtx=ipc:///tmp/aibcoind.tx.raw
+    $ aibd -zmqpubhashtx=tcp://127.0.0.1:28332 \
+               -zmqpubrawtx=ipc:///tmp/aibd.tx.raw
 
 Each PUB notification has a topic and body, where the header
 corresponds to the notification type. For instance, for the
@@ -75,7 +75,7 @@ notification `-zmqpubhashtx` the topic is `hashtx` (no null
 terminator) and the body is the hexadecimal transaction hash (32
 bytes).
 
-These options can also be provided in aibcoin.conf.
+These options can also be provided in aib.conf.
 
 ZeroMQ endpoint specifiers for TCP (and others) are documented in the
 [ZeroMQ API](http://api.zeromq.org/4-0:_start).
@@ -87,9 +87,9 @@ arriving. Please see `contrib/zmq/zmq_sub.py` for a working example.
 
 ## Remarks
 
-From the perspective of aibcoind, the ZeroMQ socket is write-only; PUB
+From the perspective of aibd, the ZeroMQ socket is write-only; PUB
 sockets don't even have a read function. Thus, there is no state
-introduced into aibcoind directly. Furthermore, no information is
+introduced into aibd directly. Furthermore, no information is
 broadcast that wasn't already received from the public P2P network.
 
 No authentication or authorization is done on connecting clients; it
@@ -102,5 +102,5 @@ retrieve the chain from the last known block to the new tip.
 
 There are several possibilities that ZMQ notification can get lost
 during transmission depending on the communication type your are
-using. Aibcoind appends an up-counting sequence number to each
+using. Bitcoind appends an up-counting sequence number to each
 notification which allows listeners to detect lost notifications.
