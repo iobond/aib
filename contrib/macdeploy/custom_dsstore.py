@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (c) 2013-2015 The Bitcoin Core developers
+# Copyright (c) 2013-2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 from __future__ import division,print_function,unicode_literals
@@ -54,7 +54,7 @@ ds['.']['icvp'] = icvp
 ds['.']['vSrn'] = ('long', 1)
 
 ds['Applications']['Iloc'] = (370, 156)
-ds['AIBCore.app']['Iloc'] = (128, 156)
+ds['Bitcoin-Qt.app']['Iloc'] = (128, 156)
 
 ds.flush()
 ds.close()

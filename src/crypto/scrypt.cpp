@@ -320,7 +320,7 @@ std::string scrypt_detect_sse2()
         ret = "scrypt: using scrypt-generic, SSE2 unavailable";
     }
 #endif // USE_SSE2_ALWAYS
-   return ret;
+    return ret;
 }
 #endif
 

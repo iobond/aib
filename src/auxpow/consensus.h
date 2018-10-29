@@ -8,17 +8,14 @@
 
 namespace AuxPow {
 
-// TODO: AIB MERGE REMOVE
 // old 0.10 code used the the testnet height for regtest too
-//const int START_MAINNET = 498725;
 const int START_MAINNET = WTMINT_AUX_StartBlock;
 const int START_TESTNET = 452608;
 const int START_REGTEST = 452608;
 
-// TODO: AIB MERGE remove
-//const int CHAIN_ID = 0x56;
+// TODO: AIB Merge Recheck Minor 
+// const int CHAIN_ID = 0x56;
 const int CHAIN_ID = 0x25;
-
 enum
 {
     // primary version
