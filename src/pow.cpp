@@ -93,10 +93,12 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBloc
         bnNew = bnProofOfWorkLimit;
 
     /// debug print
-    /*LogPrint(BCLog::REINDEX,"Difficulty Retarget - Kimoto Gravity Well\n");
+    LogPrint(BCLog::REINDEX,"Difficulty Retarget - Kimoto Gravity Well\n");
+    LogPrint(BCLog::REINDEX,"height = %lld block time = %lld TargetBlocksSpacingSeconds = %lld \n", pindexLast->nHeight,pindexLast->GetBlockTime(),TargetBlocksSpacingSeconds);
+    LogPrint(BCLog::REINDEX,"past min block = %lld past max block = %lld \n", PastBlocksMin,PastBlocksMax);
     LogPrint(BCLog::REINDEX,"PastRateAdjustmentRatio = %g\n", PastRateAdjustmentRatio);
     LogPrint(BCLog::REINDEX,"Before: %08x  %s\n", BlockLastSolved->nBits, CBigNum().SetCompact(BlockLastSolved->nBits).GetHex().c_str());
-    LogPrint(BCLog::REINDEX,"After:  %08x  %s\n", bnNew.GetCompact(), bnNew.GetHex().c_str());*/
+    LogPrint(BCLog::REINDEX,"After:  %08x  %s\n", bnNew.GetCompact(), bnNew.GetHex().c_str());
 
     return bnNew.GetCompact();
 }
@@ -119,10 +121,10 @@ unsigned int CalculateNextWorkRequired_V1(const CBlockIndex* pindexLast, int64_t
 
     // Limit adjustment step
     int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
-    char timeStr[20];
-    char blockTimeStr[20];
-    sprintf(timeStr,"%lld", pindexLast->GetBlockTime());
-    sprintf(blockTimeStr,"%lld", nFirstBlockTime);
+    char typeStr[30];
+    memset(typeStr, '\0', sizeof(typeStr));
+    //sprintf(timeStr,"%lld", pindexLast->GetBlockTime());
+    //sprintf(blockTimeStr,"%lld", nFirstBlockTime);
     //LogPrint(BCLog::REINDEX, "nActualTimespan = %s - %s = %d before bounds\n", timeStr, blockTimeStr, nActualTimespan);
     //if ( pindexLast->nVersion <= 70002 ) {
     
@@ -132,20 +134,33 @@ unsigned int CalculateNextWorkRequired_V1(const CBlockIndex* pindexLast, int64_t
     */
     
     if (pindexLast->nHeight + 1 > 10000) {
-    	if (nActualTimespan < params.nPowTargetTimespan/4)
+    	if (nActualTimespan < params.nPowTargetTimespan/4) {
         	nActualTimespan = params.nPowTargetTimespan/4;
-    	if (nActualTimespan > params.nPowTargetTimespan*4)
+                strcpy(typeStr,"> 10000 < nA / nP / 4");
+        }
+                
+    	if (nActualTimespan > params.nPowTargetTimespan*4) {
         	nActualTimespan = params.nPowTargetTimespan*4;
+                strcpy(typeStr,"> 10000 nA > nP * 4");
+        }        
     } else if (pindexLast->nHeight + 1 > 5000) {
-        if (nActualTimespan < params.nPowTargetTimespan / 8)
+        if (nActualTimespan < params.nPowTargetTimespan / 8) {
             nActualTimespan = params.nPowTargetTimespan / 8;
-        if (nActualTimespan > params.nPowTargetTimespan * 4)
+            strcpy(typeStr,"> 5000 < nA < nP / 8");
+        }    
+        if (nActualTimespan > params.nPowTargetTimespan * 4) {
             nActualTimespan = params.nPowTargetTimespan * 4;
+            strcpy(typeStr,"5000 > nA > nP * 4");
+        }    
     } else {
-        if (nActualTimespan < params.nPowTargetTimespan / 16)
+        if (nActualTimespan < params.nPowTargetTimespan / 16) {
             nActualTimespan = params.nPowTargetTimespan / 16;
-        if (nActualTimespan > params.nPowTargetTimespan * 4)
+            strcpy(typeStr," nA < nP / 16");
+        }    
+        if (nActualTimespan > params.nPowTargetTimespan * 4) {
             nActualTimespan = params.nPowTargetTimespan * 4;
+            strcpy(typeStr," nA > nP * 4");
+        }    
     }
     //} 
     /*else {
@@ -173,10 +188,11 @@ unsigned int CalculateNextWorkRequired_V1(const CBlockIndex* pindexLast, int64_t
         bnNew = bnPowLimit;
 
     /// debug print
-    /*LogPrintf("CalculateNextWorkRequired_V1 RETARGET\n");
-    LogPrintf("params.nPowTargetTimespan = %d    nActualTimespan = %d\n", params.nPowTargetTimespan, nActualTimespan);
-    LogPrintf("Before: %08x  %s\n", pindexLast->nBits, bnOld.ToString());
-    LogPrintf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.ToString());*/
+    LogPrint(BCLog::REINDEX,"CalculateNextWorkRequired_V1 RETARGET\n");
+    LogPrint(BCLog::REINDEX,"height = %lld block time = %lld nLastRetargetTime = %lld  TYPE = %s\n", pindexLast->nHeight,pindexLast->GetBlockTime(), nFirstBlockTime, typeStr);
+    LogPrint(BCLog::REINDEX,"params.nPowTargetTimespan = %d    nActualTimespan = %d\n", params.nPowTargetTimespan, nActualTimespan);
+    LogPrint(BCLog::REINDEX,"Before: %08x  %s\n", pindexLast->nBits, bnOld.ToString());
+    LogPrint(BCLog::REINDEX,"After:  %08x  %s\n", bnNew.GetCompact(), bnNew.ToString());
     return bnNew.GetCompact();
 }
 
