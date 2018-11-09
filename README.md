@@ -72,7 +72,7 @@ not straightforward.
 Translations
 ------------
 
-We only accept translation fixes that are submitted through [AIB Core's Transifex page](https://www.transifex.com/projects/p/aib/).
+We only accept translation fixes that are submitted through [AIB Core's Transifex page](https://www.transifex.com/aib-core).
 Translations are converted to Aib coin periodically.
 
 Translations are periodically pulled from Transifex and merged into the git repository. See the
