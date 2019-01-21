@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: aibd.service
-Upstart: aibd.conf
-OpenRC:  aibd.openrc
-         aibd.openrcconf
-CentOS:  aibd.init
-OS X:    org.aib.aibd.plist
+SystemD: bitcoind.service
+Upstart: bitcoind.conf
+OpenRC:  bitcoind.openrc
+         bitcoind.openrcconf
+CentOS:  bitcoind.init
+macOS:    org.bitcoin.bitcoind.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

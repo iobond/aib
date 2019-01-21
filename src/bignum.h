@@ -106,14 +106,22 @@ public:
     CBigNum(short n)            { init(); if (n >= 0) setulong(n); else setint64(n); }
     CBigNum(int n)              { init(); if (n >= 0) setulong(n); else setint64(n); }
 //    CBigNum(long n)             { init(); if (n >= 0) setulong(n); else setint64(n); }
-    CBigNum(int64_t n)            { init(); setint64(n); }
-    CBigNum(int64 n)            { init(); setint64(n); }
+//
+    CBigNum(long int n)            { init(); setint64(n); }
+    //CBigNum(int64_t n)            { init(); setint64(n); }
+    
+    CBigNum(long long n)            { init(); setint64(n); }
+    //CBigNum(int64 n)            { init(); setint64(n); }
     CBigNum(unsigned char n)    { init(); setulong(n); }
     CBigNum(unsigned short n)   { init(); setulong(n); }
     CBigNum(unsigned int n)     { init(); setulong(n); }
 //    CBigNum(unsigned long n)    { init(); setulong(n); }
-    CBigNum(uint64_t n)           { init(); setuint64(n); }
-    CBigNum(uint64 n)           { init(); setuint64(n); }
+    
+    CBigNum(unsigned long int n)           { init(); setuint64(n); }
+    CBigNum(unsigned long long n)           { init(); setuint64(n); }
+    //CBigNum(uint64_t n)           { init(); setuint64(n); }
+    //CBigNum(uint64 n)           { init(); setuint64(n); }
+    
     explicit CBigNum(arith_uint256 n) { init(); setuint256(n); }
     explicit CBigNum(uint256 n) { arith_uint256 m = UintToArith256(n); init(); setuint256(m); }
 

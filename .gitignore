@@ -1,4 +1,4 @@
-nbproject/
+/nbproject
 .tx/
 *.tar.gz
 
@@ -111,3 +111,4 @@ test/cache/*
 
 libbitcoinconsensus.pc
 contrib/devtools/split-debug.sh
+.vscode/ftp-sync.json
