@@ -1524,7 +1524,7 @@ static void ThreadMapPort()
             }
         }
 
-        std::string strDesc = "AIB " + FormatFullVersion();
+        std::string strDesc = "Bitcoin " + FormatFullVersion();
 
         do {
 #ifndef UPNPDISCOVER_SUCCESS
