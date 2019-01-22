@@ -2,7 +2,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-bin_PROGRAMS += qt/aib-qt
+bin_PROGRAMS += qt/bitcoin-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
 # bin_PROGRAMS += qt/bitcoin-qt
