@@ -1,9 +1,9 @@
-Bitcoin Core integration/staging tree
+AIB Core integration/staging tree
 =====================================
 
 [![Build Status](https://travis-ci.org/aib/aib.svg?branch=master)](https://travis-ci.org/aib/aib)
 
-https://aibcore.org
+https://aib.one
 
 What is Bitcoin?
 ----------------
