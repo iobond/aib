@@ -2,9 +2,13 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-bin_PROGRAMS += bench/bench_bitcoin
+bin_PROGRAMS += bench/bench_aib
 BENCH_SRCDIR = bench
-BENCH_BINARY = bench/bench_bitcoin$(EXEEXT)
+BENCH_BINARY = bench/bench_aib$(EXEEXT)
+
+# bin_PROGRAMS += bench/bench_bitcoin
+# BENCH_SRCDIR = bench
+# BENCH_BINARY = bench/bench_bitcoin$(EXEEXT)
 
 RAW_BENCH_FILES = \
   bench/data/block413567.raw
