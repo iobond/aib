@@ -246,6 +246,8 @@ RES_ICONS = \
   qt/res/icons/about.png \
   qt/res/icons/about_qt.png \
   qt/res/icons/aib.ico \
+  qt/res/icons/aib.png \
+  qt/res/icons/aib_testnet.ico \
   qt/res/icons/bitcoin.ico \
   qt/res/icons/bitcoin_testnet.ico \
   qt/res/icons/bitcoin.png \
