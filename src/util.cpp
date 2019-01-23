@@ -710,7 +710,7 @@ fs::path GetDefaultDataDir()
     // Unix: ~/.aib
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Aib";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "AIB";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
