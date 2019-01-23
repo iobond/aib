@@ -710,7 +710,7 @@ fs::path GetDefaultDataDir()
     // Unix: ~/.aib
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Aib";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "AIB";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -1222,8 +1222,8 @@ std::string CopyrightHolders(const std::string& strPrefix)
     std::string strCopyrightHolders = strPrefix + strprintf(_(COPYRIGHT_HOLDERS), _(COPYRIGHT_HOLDERS_SUBSTITUTION));
 
     // Check for untranslated substitution to make sure Bitcoin Core copyright is not removed by accident
-    if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("Bitcoin Core") == std::string::npos) {
-        strCopyrightHolders += "\n" + strPrefix + "The Bitcoin Core developers";
+    if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("AIB Community") == std::string::npos) {
+        strCopyrightHolders += "\n" + strPrefix + "The AIB Community developers";
     }
     return strCopyrightHolders;
 }
