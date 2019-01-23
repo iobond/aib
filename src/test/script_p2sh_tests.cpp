@@ -12,7 +12,6 @@
 #include "script/script_error.h"
 #include "script/sign.h"
 #include "script/ismine.h"
-// #include "test/test_aib.h"
 #include "test/test_bitcoin.h"
 
 #include <vector>

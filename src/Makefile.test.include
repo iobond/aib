@@ -72,7 +72,6 @@ BITCOIN_TESTS =\
   test/rpc_tests.cpp \
   test/sanity_tests.cpp \
   test/scheduler_tests.cpp \
-#  test/script_P2SH_tests.cpp \
   test/script_tests.cpp \
   test/script_standard_tests.cpp \
   test/scriptnum_tests.cpp \
@@ -91,6 +90,8 @@ BITCOIN_TESTS =\
   test/util_tests.cpp \
   test/validation_block_tests.cpp \
   test/versionbits_tests.cpp
+
+#  test/script_P2SH_tests.cpp \
 
 if ENABLE_WALLET
 BITCOIN_TESTS += \
