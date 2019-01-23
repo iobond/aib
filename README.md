@@ -5,23 +5,26 @@ AIB Core integration/staging tree
 
 https://aib.one
 
-What is Bitcoin?
+What is AIB?
 ----------------
 
-Bitcoin is an experimental digital currency that enables instant payments to
-anyone, anywhere in the world. Bitcoin uses peer-to-peer technology to operate
+AIB is an experimental digital asset that enables instant payments to
+anyone, anywhere in the world. AIB uses peer-to-peer technology to operate
 with no central authority: managing transactions and issuing money are carried
-out collectively by the network. Bitcoin Core is the name of open source
-software which enables the use of this currency.
+out collectively by the network. AIB Core is the name of open source
+software which enables the use of this asset.
+
+AIB is also the dual value system to enable the special token econimic system for small projects
+It ensure the small , spreaded investment could less risky toward certain projects
+It will also enhanced by smart contract on the road.
 
 For more information, as well as an immediately useable, binary version of
-the Bitcoin Core software, see https://aibcore.org/en/download/, or read the
-[original whitepaper](https://aibcore.org/aib.pdf).
+the AIB Core software, see [https://www.aib.one](https://www.aib.one).
 
 License
 -------
 
-Bitcoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+AIB Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
