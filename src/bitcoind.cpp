@@ -141,7 +141,11 @@ static bool AppInit(int argc, char* argv[])
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #endif
+<<<<<<< HEAD
             fprintf(stdout, "AIB SuperNode server starting\n");
+=======
+            fprintf(stdout, "AIB SuperNode starting\n");
+>>>>>>> 83beaf18dd970ac02b670124d6d96b42be5995ec
 
             // Daemonize
             if (daemon(1, 0)) { // don't chdir (1), do close FDs (0)

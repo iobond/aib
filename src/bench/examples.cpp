@@ -31,4 +31,4 @@ static void Trig(benchmark::State& state)
     }
 }
 
-BENCHMARK(Trig);
+BENCHMARK(Trig, 12 * 1000 * 1000);
