@@ -4,6 +4,15 @@
 *.tar.gz
 
 *.exe
+
+src/aibd
+src/aib-cli
+src/aib-tx
+src/bench/bench_aib
+src/test/test_aib
+src/test/test_aib_fuzzy
+src/test/test_bitcoin-qt
+
 src/bitcoin
 src/bitcoind
 src/bitcoin-cli
