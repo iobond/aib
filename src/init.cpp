@@ -107,7 +107,7 @@ const WalletInitInterface& g_wallet_init_interface = DummyWalletInit();
 // anyway.
 #define MIN_CORE_FILEDESCRIPTORS 0
 #else
-#define MIN_CORE_FILEDESCRIPTORS 150
+#define MIN_CORE_FILEDESCRIPTORS 65536
 #endif
 
 static const char* FEE_ESTIMATES_FILENAME="fee_estimates.dat";
