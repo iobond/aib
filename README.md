@@ -5,6 +5,10 @@ AIB Core integration/staging tree
 
 https://aib.one
 
+
+THIS VERSION HAS THE SEND OUT PROBLEM, NEED TO FIX!
+
+
 What is AIB?
 ----------------
 
