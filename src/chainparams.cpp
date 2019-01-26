@@ -1,5 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2014-2019 The AIB Core developers
+
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -69,8 +71,8 @@
 #define WTMINT_ENFORCE_BIP66_HEIGHT 2400000 // TODO: AIB MERGE RECEHCK change to actual number after release 
 
 //Wallet starting letter
-#define WTMINT_PUBKEY_ADDRESS 23 // Dec.
-#define WTMINT_SCRPIT_ADDRESS 5 // Dec.
+#define WTMINT_PUBKEY_ADDRESS 23 // Dec.  Start with Capital A
+#define WTMINT_SCRPIT_ADDRESS 83 // Dec.  Start with Smallcase a
 #define WTMINT_SECRET_ADDRESS 151 // Dec.
 
 #define WTMINT_TESTNET_PUBKEY_ADDRESS 65 // Dec.
@@ -251,10 +253,10 @@ public:
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        
-	vSeeds.emplace_back("seed.wtmint.com");
-        vSeeds.emplace_back("seed.iobond.com");
-        vSeeds.emplace_back("seed.aib.one");
+         vSeeds.emplace_back("seed.aib.one");
+         vSeeds.emplace_back("seed.aib.cash");
+         vSeeds.emplace_back("seed.iobond.com");
+       
 			
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,WTMINT_PUBKEY_ADDRESS);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,WTMINT_SCRPIT_ADDRESS);

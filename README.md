@@ -1,5 +1,8 @@
-AIB Core integration/staging tree
+AIB Core integration/staging tree 
 =====================================
+[Master Branch is our working , it is not stable , and has many bugs]
+[Use stable release with Tag Version]
+
 
 [![Build Status](https://travis-ci.org/aib/aib.svg?branch=master)](https://travis-ci.org/aib/aib)
 

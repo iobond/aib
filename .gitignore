@@ -1,3 +1,6 @@
+.vscode/
+release/
+
 src/aib-cli
 src/aib-tx
 src/aibd
