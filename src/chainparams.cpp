@@ -71,9 +71,9 @@
 #define WTMINT_ENFORCE_BIP66_HEIGHT 2400000 // TODO: AIB MERGE RECEHCK change to actual number after release 
 
 //Wallet starting letter
-#define WTMINT_PUBKEY_ADDRESS 23 // Dec.  Start with Capital A
-#define WTMINT_SCRPIT_ADDRESS 5 // Dec.  Start with Smallcase a // 83
-#define WTMINT_SECRET_ADDRESS 151 // Dec.
+#define WTMINT_PUBKEY_ADDRESS 23    // Dec.  Start with Capital A
+#define WTMINT_SCRPIT_ADDRESS 23    // Dec.  Start with Smallcase a: 83
+#define WTMINT_SECRET_ADDRESS 151   // Dec.
 
 #define WTMINT_TESTNET_PUBKEY_ADDRESS 65 // Dec.
 #define WTMINT_TESTNET_SECRET_ADDRESS 255 // Dec.
