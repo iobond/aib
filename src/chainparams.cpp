@@ -24,28 +24,28 @@
 #define WTMINT_BLOCK_nTime			1428195753
 #define WTMINT_BLOCK_nNonce			433798
 #define WTMINT_BLOCK_nBits			0x1e0ffff0
-#define WTMINT_POWLMT_nBits     "00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+#define WTMINT_POWLMT_nBits         "00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
 #define WTMINT_BLOCK_hashMerkleRoot	"0x85f6c5fd0e39b5aa8688a844b283accef86973fcfdb7deac12ab2d4bebdc7c82"
 
-#define WTMINT_TESTNET_GENESIS_BLOCK	"e5d9b5c45d7b5a5c27c6033ee1aa1583827cab50ebed951153d12777e432d10b"
+#define WTMINT_TESTNET_GENESIS_BLOCK        "e5d9b5c45d7b5a5c27c6033ee1aa1583827cab50ebed951153d12777e432d10b"
 #define WTMINT_TESTNET_BLOCK_hashMerkleRoot "85f6c5fd0e39b5aa8688a844b283accef86973fcfdb7deac12ab2d4bebdc7c82"
         
-#define WTMINT_TESTNET_BLOCK_nTime			1540597459 //2018-10-26 4:44
-#define WTMINT_TESTNET_BLOCK_nNonce			262929
+#define WTMINT_TESTNET_BLOCK_nTime  1540597459 //2018-10-26 4:44
+#define WTMINT_TESTNET_BLOCK_nNonce 262929
 // TestNet uses same nBits as main net - WTMINT_BLOCK_nBits
 
 #define WTMINT_REGTEST_GENESIS_BLOCK	"ee03549187be5e68bc87256637458db42de8463bc05c7d8c659e728939da2e64"
-#define WTMINT_REGTEST_BLOCK_nTime			1405166035
-#define WTMINT_REGTEST_BLOCK_nNonce			0
-#define WTMINT_REGTEST_POWLMT_nBits   "7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-#define WTMINT_REGTEST_BLOCK_nBits                      0x207fffff
+#define WTMINT_REGTEST_BLOCK_nTime      1405166035
+#define WTMINT_REGTEST_BLOCK_nNonce	    0
+#define WTMINT_REGTEST_POWLMT_nBits     "7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+#define WTMINT_REGTEST_BLOCK_nBits      0x207fffff
 
-#define WTMINT_RPC_PORT 51413
+#define WTMINT_RPC_PORT         51413
 #define WTMINT_TESTNET_RPC_PORT 51423
 #define WTMINT_REGTEST_RPC_PORT 51433
 
-#define WTMINT_TESTNET_SERVER_PORT 31425
-#define WTMINT_SERVER_PORT 31415
+#define WTMINT_TESTNET_SERVER_PORT  31425
+#define WTMINT_SERVER_PORT          31415
 
 //Magic Header
 #define WTMINT_MAGIC_1	0xa3
@@ -63,16 +63,16 @@
 #define WTMINT_REGTEST_MAGIC_3	0xc6
 #define WTMINT_REGTEST_MAGIC_4	0xd3
 
-#define WTMINT_BLOCK_nTargetTimespan 14400  //4 * 60 * 60 //  : every 4 hours
-#define WTMINT_BLOCK_TESTNET_nTargetTimespan 3600  //1 * 60 * 60 //  : every 1 hours
-#define WTMINT_BLOCK_nTargetSpacing 60 //  : 1 minutes
+#define WTMINT_BLOCK_nTargetTimespan            14400  //4 * 60 * 60 //  : every 4 hours
+#define WTMINT_BLOCK_TESTNET_nTargetTimespan    3600  //1 * 60 * 60 //  : every 1 hours
+#define WTMINT_BLOCK_nTargetSpacing             60 //  : 1 minutes
 
 #define WTMINT_ENFORCE_BIP34_HEIGHT 2400000 // TODO: AIB MERGE RECEHCK change to actual number after release 
 #define WTMINT_ENFORCE_BIP66_HEIGHT 2400000 // TODO: AIB MERGE RECEHCK change to actual number after release 
 
 //Wallet starting letter
 #define WTMINT_PUBKEY_ADDRESS 23 // Dec.  Start with Capital A
-#define WTMINT_SCRPIT_ADDRESS 83 // Dec.  Start with Smallcase a
+#define WTMINT_SCRPIT_ADDRESS 5 // Dec.  Start with Smallcase a // 83
 #define WTMINT_SECRET_ADDRESS 151 // Dec.
 
 #define WTMINT_TESTNET_PUBKEY_ADDRESS 65 // Dec.
@@ -82,8 +82,8 @@
 #define WTMINT_REGTEST_SECRET_ADDRESS 239 // Dec.
                                   
 #define WTMINT_TESTNET_MINIMUM_CHAINWORK "000000000000000000000000000000000000000000000000f0d281707ee29c85"
-#define WTMINT_MINIMUM_CHAINWORK "00000000000000000000000000000000000000000000000020664ecd44b439d2" //height 1216821
-#define WTMINT_DEFAULT_ASSUMVALID "0x61b6d34447bdea6a9a17ccddf2a38130114a4db584ecf7439aa7ad6d901003e4"
+#define WTMINT_MINIMUM_CHAINWORK         "00000000000000000000000000000000000000000000000020664ecd44b439d2" //height 1216821
+#define WTMINT_DEFAULT_ASSUMVALID        "0x61b6d34447bdea6a9a17ccddf2a38130114a4db584ecf7439aa7ad6d901003e4"
 
 #define DEBUG(title,strout) std::cout<<title<<":    "<< strout<<"\n"
 
@@ -195,12 +195,12 @@ public:
         consensus.nPowTargetSpacing = WTMINT_BLOCK_nTargetSpacing;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
-	consensus.nRuleChangeActivationThreshold = 8100; // 75% of nMinerConfirmationWindow
+	    consensus.nRuleChangeActivationThreshold = 8100; // 75% of nMinerConfirmationWindow
         //consensus.nRuleChangeActivationThreshold = 1916; // 95% of 2016
         consensus.nMinerConfirmationWindow = 10800; // 3 days BIP 9 soft fork related
          
-	/* TODO: AIB Merge Recheck Aux support
-	consensus.nCLTVStartBlock = 598725;
+	    /* TODO: AIB Merge Recheck Aux support
+	    consensus.nCLTVStartBlock = 598725;
         consensus.nBIP66MinStartBlock = WTMINT_ENFORCE_BIP66_HEIGHT;
         */
         consensus.nAuxPowStartHeight = AuxPow::START_MAINNET;
@@ -223,7 +223,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1530230400;   // June 28, 2018
 
         // The best chain should have at least this much work.
-	consensus.nMinimumChainWork = uint256S(WTMINT_MINIMUM_CHAINWORK);
+	    consensus.nMinimumChainWork = uint256S(WTMINT_MINIMUM_CHAINWORK);
         	
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S(WTMINT_DEFAULT_ASSUMVALID); //1144053
@@ -241,7 +241,7 @@ public:
 		
         nPruneAfterHeight = 100000;
 
-	genesis = CreateGenesisBlock(WTMINT_BLOCK_nTime, WTMINT_BLOCK_nNonce, WTMINT_BLOCK_nBits, 1, 0 * COIN);
+	    genesis = CreateGenesisBlock(WTMINT_BLOCK_nTime, WTMINT_BLOCK_nNonce, WTMINT_BLOCK_nBits, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         
         // TODO: AIB MERGE RECHECK mainnet suppose to generate following genesisblock from CreateGenesisBlock function so assert to validate.
@@ -261,20 +261,20 @@ public:
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,WTMINT_PUBKEY_ADDRESS);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,WTMINT_SCRPIT_ADDRESS);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,WTMINT_SECRET_ADDRESS);
-	base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
+	    base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 				
-	bech32_hrp = "aib";
+	    bech32_hrp = "aib";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-	//fMiningRequiresPeers = true;
+	    //fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
         
-	//TODO: AIB Merge Recheck AIB specific code
-	//fSkipProofOfWorkCheck = false;
+	    //TODO: AIB Merge Recheck AIB specific code
+	    //fSkipProofOfWorkCheck = false;
 	
         //fTestnetToBeDeprecatedFieldRPC = false;
 
@@ -290,10 +290,10 @@ public:
                 { 1100000, uint256S("0x71e7d2d8f748e0123d22d3c525bb8f5534a0903ea733dd219ad3ee3fa48b585f")},    
                 { 1144053, uint256S("0x61b6d34447bdea6a9a17ccddf2a38130114a4db584ecf7439aa7ad6d901003e4")},
             }            
-	};
+	    };
 	
- 	chainTxData = ChainTxData{
-        // Data from rpc: getchaintxstats 4096 0000000000000000002e63058c023a9a1de233554f28c7b21380b6c9003f36a8
+ 	    chainTxData = ChainTxData{
+            // Data from rpc: getchaintxstats 4096 0000000000000000002e63058c023a9a1de233554f28c7b21380b6c9003f36a8
             /* nTime    */ 1414056601,
             /* nTxCount */ 154911,
             /* dTxRate  */ 1500.0
@@ -383,10 +383,10 @@ public:
 
         checkpointData = {
             {
-	    }
-	};
+	        }
+	    };
 	
-	chainTxData = ChainTxData{
+	    chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats 4096 0000000000000037a8cd3e06cd5edbfe9dd1dbcc5dacab279376ef7cfc2b4c75
             /* nTime    */ 1531929919,
             /* nTxCount */ 1,
