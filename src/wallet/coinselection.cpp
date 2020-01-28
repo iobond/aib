@@ -1,10 +1,12 @@
-// Copyright (c) 2017-2018 The Bitcoin Core developers
+// Copyright (c) 2017-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <wallet/coinselection.h>
-#include <util.h>
-#include <utilmoneystr.h>
+
+#include <optional.h>
+#include <util/system.h>
+#include <util/moneystr.h>
 
 // Descending order comparator
 struct {
@@ -216,11 +218,11 @@ bool KnapsackSolver(const CAmount& nTargetValue, std::vector<OutputGroup>& group
     nValueRet = 0;
 
     // List of values less than target
-    boost::optional<OutputGroup> lowest_larger;
+    Optional<OutputGroup> lowest_larger;
     std::vector<OutputGroup> applicable_groups;
     CAmount nTotalLower = 0;
 
-    random_shuffle(groups.begin(), groups.end(), GetRandInt);
+    Shuffle(groups.begin(), groups.end(), FastRandomContext());
 
     for (const OutputGroup& group : groups) {
         if (group.m_value == nTargetValue) {

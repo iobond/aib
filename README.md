@@ -1,43 +1,36 @@
-AIB Core integration/staging tree 
+Bitcoin Core integration/staging tree
 =====================================
-[Master Branch is our working , it is not stable , and has many bugs]
-[Use stable release with Tag Version]
 
+https://bitcoincore.org
 
-[![Build Status](https://travis-ci.org/aib/aib.svg?branch=master)](https://travis-ci.org/aib/aib)
-
-https://aib.one
-
-What is AIB?
+What is Bitcoin?
 ----------------
 
-AIB is an experimental digital asset that enables instant payments to
-anyone, anywhere in the world. AIB uses peer-to-peer technology to operate
+Bitcoin is an experimental digital currency that enables instant payments to
+anyone, anywhere in the world. Bitcoin uses peer-to-peer technology to operate
 with no central authority: managing transactions and issuing money are carried
-out collectively by the network. AIB Core is the name of open source
-software which enables the use of this asset.
+out collectively by the network. Bitcoin Core is the name of open source
+software which enables the use of this currency.
 
-AIB is also the dual value system to enable the special token econimic system for small projects
-It ensure the small , spreaded investment could less risky toward certain projects
-It will also enhanced by smart contract on the road.
-
-For more information, as well as an immediately useable, binary version of
-the AIB Core software, see [https://www.aib.one](https://www.aib.one).
+For more information, as well as an immediately usable, binary version of
+the Bitcoin Core software, see https://bitcoincore.org/en/download/, or read the
+[original whitepaper](https://bitcoincore.org/bitcoin.pdf).
 
 License
 -------
 
-AIB Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Bitcoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/aib/aib/tags) are created
+completely stable. [Tags](https://github.com/bitcoin/bitcoin/tags) are created
 regularly to indicate new official, stable release versions of Bitcoin Core.
 
-The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
+The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md)
+and useful hints for developers can be found in [doc/developer-notes.md](doc/developer-notes.md).
 
 Testing
 -------
@@ -71,7 +64,7 @@ Translations
 ------------
 
 Changes to translations as well as new translations can be submitted to
-[Bitcoin Core's Transifex page](https://www.transifex.com/projects/p/aib/).
+[Bitcoin Core's Transifex page](https://www.transifex.com/bitcoin/bitcoin/).
 
 Translations are periodically pulled from Transifex and merged into the git repository. See the
 [translation process](doc/translation_process.md) for details on how this works.
@@ -79,9 +72,4 @@ Translations are periodically pulled from Transifex and merged into the git repo
 **Important**: We do not accept translation changes as GitHub pull requests because the next
 pull from Transifex would automatically overwrite them again.
 
-Translators should also subscribe to the [mailing list](https://groups.google.com/forum/#!forum/aib-translators).
-
-
-
-Offical AIB development email:
-DEV@AIB.one
+Translators should also subscribe to the [mailing list](https://groups.google.com/forum/#!forum/bitcoin-translators).

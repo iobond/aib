@@ -1,12 +1,20 @@
 <TS language="en_AU" version="2.1">
 <context>
     <name>AddressBookPage</name>
+    <message>
+        <source>Enter address or label to search</source>
+        <translation>Enter address or label to search</translation>
+    </message>
     </context>
 <context>
     <name>AddressTableModel</name>
     </context>
 <context>
     <name>AskPassphraseDialog</name>
+    <message>
+        <source>Passphrase Dialog</source>
+        <translation>Passphrase Dialogue</translation>
+    </message>
     </context>
 <context>
     <name>BanTableModel</name>
@@ -29,10 +37,6 @@
     </context>
 <context>
     <name>HelpMessageDialog</name>
-    <message>
-        <source>Start minimized</source>
-        <translation>Start minimised</translation>
-    </message>
     </context>
 <context>
     <name>Intro</name>
@@ -100,6 +104,10 @@
     </context>
 <context>
     <name>ReceiveRequestDialog</name>
+    <message>
+        <source>Wallet</source>
+        <translation>Wallet</translation>
+    </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
@@ -109,6 +117,10 @@
     <message>
         <source>(Smart fee not initialized yet. This usually takes a few blocks...)</source>
         <translation>(Smart fee not initialised yet. This usually takes a few blocks...)</translation>
+    </message>
+    <message>
+        <source>Transaction fee</source>
+        <translation>Transaction fee</translation>
     </message>
     </context>
 <context>
@@ -164,12 +176,12 @@
         <translation>Error initialising wallet database environment %s!</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. %s is shutting down.</source>
-        <translation>Initialisation sanity check failed. %s is shutting down.</translation>
+        <source>Failed to rescan the wallet during initialization</source>
+        <translation>Failed to rescan the wallet during initialisation</translation>
     </message>
     <message>
-        <source>Randomize credentials for every proxy connection. This enables Tor stream isolation (default: %u)</source>
-        <translation>Randomise credentials for every proxy connection. This enables Tor stream isolation (default: %u)</translation>
+        <source>Initialization sanity check failed. %s is shutting down.</source>
+        <translation>Initialisation sanity check failed. %s is shutting down.</translation>
     </message>
     </context>
 </TS>

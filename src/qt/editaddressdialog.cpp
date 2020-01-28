@@ -15,9 +15,9 @@
 EditAddressDialog::EditAddressDialog(Mode _mode, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EditAddressDialog),
-    mapper(0),
+    mapper(nullptr),
     mode(_mode),
-    model(0)
+    model(nullptr)
 {
     ui->setupUi(this);
 
@@ -108,7 +108,7 @@ void EditAddressDialog::accept()
             break;
         case AddressTableModel::INVALID_ADDRESS:
             QMessageBox::warning(this, windowTitle(),
-                tr("The entered address \"%1\" is not a valid AIB address.").arg(ui->addressEdit->text()),
+                tr("The entered address \"%1\" is not a valid Bitcoin address.").arg(ui->addressEdit->text()),
                 QMessageBox::Ok, QMessageBox::Ok);
             break;
         case AddressTableModel::DUPLICATE_ADDRESS:

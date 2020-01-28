@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <chain.h>
-#include <txdb.h>
+
 /**
  * CChain implementation
  */
@@ -18,35 +18,6 @@ void CChain::SetTip(CBlockIndex *pindex) {
         vChain[pindex->nHeight] = pindex;
         pindex = pindex->pprev;
     }
-}
-
-CBlockHeader CBlockIndex::GetBlockHeader(const std::map<uint256, std::shared_ptr<CAuxPow> >& mapDirtyAuxPow) const
-{
-    extern CBlockTreeDB *pblocktree;
-    CBlockHeader block;
-
-    if (nVersion & AuxPow::BLOCK_VERSION_AUXPOW) {
-        std::map<uint256, std::shared_ptr<CAuxPow> >::const_iterator it = mapDirtyAuxPow.find(*phashBlock);
-        if (it != mapDirtyAuxPow.end()) {
-            block.auxpow = it->second;
-        } else {
-            CDiskBlockIndex diskblockindex;
-            // auxpow is not in memory, load CDiskBlockHeader
-            // from database to get it
-
-            assert(pblocktree->ReadDiskBlockIndex(*phashBlock, diskblockindex));
-            block.auxpow = diskblockindex.auxpow;
-        }
-    }
-
-    block.nVersion       = nVersion;
-    if (pprev)
-        block.hashPrevBlock = pprev->GetBlockHash();
-    block.hashMerkleRoot = hashMerkleRoot;
-    block.nTime          = nTime;
-    block.nBits          = nBits;
-    block.nNonce         = nNonce;
-    return block;
 }
 
 CBlockLocator CChain::GetLocator(const CBlockIndex *pindex) const {
@@ -88,10 +59,11 @@ const CBlockIndex *CChain::FindFork(const CBlockIndex *pindex) const {
     return pindex;
 }
 
-CBlockIndex* CChain::FindEarliestAtLeast(int64_t nTime) const
+CBlockIndex* CChain::FindEarliestAtLeast(int64_t nTime, int height) const
 {
-    std::vector<CBlockIndex*>::const_iterator lower = std::lower_bound(vChain.begin(), vChain.end(), nTime,
-        [](CBlockIndex* pBlock, const int64_t& time) -> bool { return pBlock->GetBlockTimeMax() < time; });
+    std::pair<int64_t, int> blockparams = std::make_pair(nTime, height);
+    std::vector<CBlockIndex*>::const_iterator lower = std::lower_bound(vChain.begin(), vChain.end(), blockparams,
+        [](CBlockIndex* pBlock, const std::pair<int64_t, int>& blockparams) -> bool { return pBlock->GetBlockTimeMax() < blockparams.first || pBlock->nHeight < blockparams.second; });
     return (lower == vChain.end() ? nullptr : *lower);
 }
 

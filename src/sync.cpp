@@ -1,16 +1,20 @@
-// Copyright (c) 2011-2018 The Bitcoin Core developers
+// Copyright (c) 2011-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#if defined(HAVE_CONFIG_H)
+#include <config/bitcoin-config.h>
+#endif
+
 #include <sync.h>
+#include <tinyformat.h>
 
 #include <logging.h>
-#include <utilstrencodings.h>
+#include <util/strencodings.h>
+#include <util/threadnames.h>
 
-#include <stdio.h>
 
 #include <map>
-#include <memory>
 #include <set>
 
 #ifdef DEBUG_LOCKCONTENTION
@@ -37,23 +41,30 @@ void PrintLockContention(const char* pszName, const char* pszFile, int nLine)
 //
 
 struct CLockLocation {
-    CLockLocation(const char* pszName, const char* pszFile, int nLine, bool fTryIn)
-    {
-        mutexName = pszName;
-        sourceFile = pszFile;
-        sourceLine = nLine;
-        fTry = fTryIn;
-    }
+    CLockLocation(
+        const char* pszName,
+        const char* pszFile,
+        int nLine,
+        bool fTryIn,
+        const std::string& thread_name)
+        : fTry(fTryIn),
+          mutexName(pszName),
+          sourceFile(pszFile),
+          m_thread_name(thread_name),
+          sourceLine(nLine) {}
 
     std::string ToString() const
     {
-        return mutexName + "  " + sourceFile + ":" + itostr(sourceLine) + (fTry ? " (TRY)" : "");
+        return strprintf(
+            "%s %s:%s%s (in thread %s)",
+            mutexName, sourceFile, itostr(sourceLine), (fTry ? " (TRY)" : ""), m_thread_name);
     }
 
 private:
     bool fTry;
     std::string mutexName;
     std::string sourceFile;
+    const std::string& m_thread_name;
     int sourceLine;
 };
 
@@ -64,7 +75,7 @@ typedef std::set<std::pair<void*, void*> > InvLockOrders;
 struct LockData {
     // Very ugly hack: as the global constructs and destructors run single
     // threaded, we use this boolean to know whether LockData still exists,
-    // as DeleteLock can get called by global CCriticalSection destructors
+    // as DeleteLock can get called by global RecursiveMutex destructors
     // after LockData disappears.
     bool available;
     LockData() : available(true) {}
@@ -73,7 +84,11 @@ struct LockData {
     LockOrders lockorders;
     InvLockOrders invlockorders;
     std::mutex dd_mutex;
-} static lockdata;
+};
+LockData& GetLockData() {
+    static LockData lockdata;
+    return lockdata;
+}
 
 static thread_local LockStack g_lockstack;
 
@@ -100,11 +115,16 @@ static void potential_deadlock_detected(const std::pair<void*, void*>& mismatch,
         }
         LogPrintf(" %s\n", i.second.ToString());
     }
-    assert(false);
+    if (g_debug_lockorder_abort) {
+        tfm::format(std::cerr, "Assertion failed: detected inconsistent lock order at %s:%i, details in debug log.\n", __FILE__, __LINE__);
+        abort();
+    }
+    throw std::logic_error("potential deadlock detected");
 }
 
 static void push_lock(void* c, const CLockLocation& locklocation)
 {
+    LockData& lockdata = GetLockData();
     std::lock_guard<std::mutex> lock(lockdata.dd_mutex);
 
     g_lockstack.push_back(std::make_pair(c, locklocation));
@@ -116,7 +136,7 @@ static void push_lock(void* c, const CLockLocation& locklocation)
         std::pair<void*, void*> p1 = std::make_pair(i.first, c);
         if (lockdata.lockorders.count(p1))
             continue;
-        lockdata.lockorders[p1] = g_lockstack;
+        lockdata.lockorders.emplace(p1, g_lockstack);
 
         std::pair<void*, void*> p2 = std::make_pair(c, i.first);
         lockdata.invlockorders.insert(p2);
@@ -132,7 +152,7 @@ static void pop_lock()
 
 void EnterCritical(const char* pszName, const char* pszFile, int nLine, void* cs, bool fTry)
 {
-    push_lock(cs, CLockLocation(pszName, pszFile, nLine, fTry));
+    push_lock(cs, CLockLocation(pszName, pszFile, nLine, fTry, util::ThreadGetInternalName()));
 }
 
 void LeaveCritical()
@@ -153,7 +173,7 @@ void AssertLockHeldInternal(const char* pszName, const char* pszFile, int nLine,
     for (const std::pair<void*, CLockLocation>& i : g_lockstack)
         if (i.first == cs)
             return;
-    fprintf(stderr, "Assertion failed: lock %s not held in %s:%i; locks held:\n%s", pszName, pszFile, nLine, LocksHeld().c_str());
+    tfm::format(std::cerr, "Assertion failed: lock %s not held in %s:%i; locks held:\n%s", pszName, pszFile, nLine, LocksHeld());
     abort();
 }
 
@@ -161,7 +181,7 @@ void AssertLockNotHeldInternal(const char* pszName, const char* pszFile, int nLi
 {
     for (const std::pair<void*, CLockLocation>& i : g_lockstack) {
         if (i.first == cs) {
-            fprintf(stderr, "Assertion failed: lock %s held in %s:%i; locks held:\n%s", pszName, pszFile, nLine, LocksHeld().c_str());
+            tfm::format(std::cerr, "Assertion failed: lock %s held in %s:%i; locks held:\n%s", pszName, pszFile, nLine, LocksHeld());
             abort();
         }
     }
@@ -169,6 +189,7 @@ void AssertLockNotHeldInternal(const char* pszName, const char* pszFile, int nLi
 
 void DeleteLock(void* cs)
 {
+    LockData& lockdata = GetLockData();
     if (!lockdata.available) {
         // We're already shutting down.
         return;
@@ -188,5 +209,7 @@ void DeleteLock(void* cs)
         lockdata.invlockorders.erase(invit++);
     }
 }
+
+bool g_debug_lockorder_abort = true;
 
 #endif /* DEBUG_LOCKORDER */
