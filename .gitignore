@@ -10,6 +10,14 @@ src/test/test_bitcoin
 src/test/test_bitcoin_fuzzy
 src/qt/test/test_bitcoin-qt
 
+src/aib
+src/aibd
+src/aib-cli
+src/aib-tx
+src/test/test_aib
+src/test/test_aib_fuzzy
+src/qt/test/test_aib-qt
+
 # autoreconf
 Makefile.in
 aclocal.m4
