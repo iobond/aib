@@ -20,6 +20,8 @@ src/test/test_aib
 src/test/test_aib_fuzzy
 src/qt/test/test_aib-qt
 
+release/*
+
 # autoreconf
 Makefile.in
 aclocal.m4
