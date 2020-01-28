@@ -10,6 +10,8 @@ src/test/test_bitcoin
 src/test/test_bitcoin_fuzzy
 src/qt/test/test_bitcoin-qt
 
+qa/*
+
 src/aib
 src/aibd
 src/aib-cli
