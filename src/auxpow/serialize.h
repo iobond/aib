@@ -6,12 +6,17 @@
 #ifndef BITCOIN_AUXPOW_SERIALIZE_H
 #define BITCOIN_AUXPOW_SERIALIZE_H
 
+#include <memory.h>
+#include "versionbits.h"
+
 class CAuxPow;
 
+
 template<typename S>
-void SerReadWrite(S& s, std::shared_ptr<CAuxPow>& pobj, CSerActionSerialize ser_action);
+void SerReadWrite(S& s, std::shared_ptr<CAuxPow>& pobj, int nType, int nVersion, CSerActionSerialize ser_action);
 template<typename S>
-void SerReadWrite(S& s, std::shared_ptr<CAuxPow>& pobj, CSerActionUnserialize ser_action);
+void SerReadWrite(S& s, std::shared_ptr<CAuxPow>& pobj, int nType, int nVersion, CSerActionUnserialize ser_action);
+
 
 /** Global dirty block merged mining entries. */
 extern std::map<uint256, std::shared_ptr<CAuxPow> > mapDirtyAuxPow;
