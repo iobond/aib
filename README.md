@@ -1,4 +1,4 @@
-AIB Core integration/staging tree 
+AIB Core integration/staging tree  [NOT WORKING VER 0.17  MERGE THE SYNCING PART, BUT NOT THE ADDRESS RECEIVING OR SENDING]
 =====================================
 [Master Branch is our working , it is not stable , and has many bugs]
 [Use stable release with Tag Version]
