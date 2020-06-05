@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library version="3.0" xmlns="http://www.netbeans.org/ns/library-declaration/3">
+<name>JAVADB_DRIVER_LABEL</name>
+<type>j2se</type>
+<localizing-bundle>org.netbeans.modules.derby.Bundle</localizing-bundle>
+<volume>
+<type>classpath</type>
+<resource>jar:file:/C:/Program%20Files/Java/jdk1.8.0_144/db/lib/derby.jar!/</resource>
+<resource>jar:file:/C:/Program%20Files/Java/jdk1.8.0_144/db/lib/derbyclient.jar!/</resource>
+<resource>jar:file:/C:/Program%20Files/Java/jdk1.8.0_144/db/lib/derbynet.jar!/</resource>
+</volume>
+<volume>
+<type>src</type>
+</volume>
+<volume>
+<type>javadoc</type>
+</volume>
+<properties>
+<property>
+<name>maven-dependencies</name>
+<value>
+org.apache.derby:derby:10.11.1.1:jar
+org.apache.derby:derbyclient:10.11.1.1:jar
+org.apache.derby:derbynet:10.11.1.1:jar
+</value>
+</property>
+</properties>
+</library>

@@ -6,16 +6,13 @@ AlignTrailingComments: true
 AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortBlocksOnASingleLine: false
 AllowShortFunctionsOnASingleLine: All
-AllowShortIfStatementsOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakBeforeMultilineStrings: false
 AlwaysBreakTemplateDeclarations: true
 BinPackParameters: false
 BreakBeforeBinaryOperators: false
-BreakBeforeBraces: Custom
-BraceWrapping:
-  AfterClass: true
-  AfterFunction: true
+BreakBeforeBraces: Linux
 BreakBeforeTernaryOperators: false
 BreakConstructorInitializersBeforeComma: false
 ColumnLimit:     0
@@ -26,6 +23,7 @@ ContinuationIndentWidth: 4
 Cpp11BracedListStyle: true
 DerivePointerAlignment: false
 DisableFormat:   false
+ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH, BOOST_REVERSE_FOREACH ]
 IndentCaseLabels: false
 IndentFunctionDeclarationAfterType: false
 IndentWidth:     4
@@ -49,6 +47,6 @@ SpacesInAngles:  false
 SpacesInContainerLiterals: true
 SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false
-Standard:        Cpp11
+Standard:        Cpp03
 TabWidth:        8
 UseTab:          Never

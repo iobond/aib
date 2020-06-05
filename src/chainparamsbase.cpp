@@ -1,49 +1,114 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2015 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <chainparamsbase.h>
+#include "chainparamsbase.h"
 
-#include <tinyformat.h>
-#include <util.h>
-#include <utilmemory.h>
+#include "tinyformat.h"
+#include "util.h"
 
 #include <assert.h>
+
+const int WTMINT_RPC_PORT = 51413;
+const int WTMINT_TESTNET_RPC_PORT = 41413;
+const int WTMINT_REGTEST_RPC_PORT = 20413;
 
 const std::string CBaseChainParams::MAIN = "main";
 const std::string CBaseChainParams::TESTNET = "test";
 const std::string CBaseChainParams::REGTEST = "regtest";
 
-void SetupChainParamsBaseOptions()
+void AppendParamsHelpMessages(std::string& strUsage, bool debugHelp)
 {
-    gArgs.AddArg("-regtest", "Enter regression test mode, which uses a special chain in which blocks can be solved instantly. "
-                                   "This is intended for regression testing tools and app development.", true, OptionsCategory::CHAINPARAMS);
-    gArgs.AddArg("-testnet", "Use the test chain", false, OptionsCategory::CHAINPARAMS);
+    strUsage += HelpMessageGroup(_("Chain selection options:"));
+    strUsage += HelpMessageOpt("-testnet", _("Use the test chain"));
+    if (debugHelp) {
+        strUsage += HelpMessageOpt("-regtest", "Enter regression test mode, which uses a special chain in which blocks can be solved instantly. "
+                                   "This is intended for regression testing tools and app development.");
+    }
 }
 
-static std::unique_ptr<CBaseChainParams> globalChainBaseParams;
+/**
+ * Main network
+ */
+class CBaseMainParams : public CBaseChainParams
+{
+public:
+    CBaseMainParams()
+    {
+        nRPCPort = WTMINT_RPC_PORT;
+    }
+};
+static CBaseMainParams mainParams;
+
+/**
+ * Testnet (v3)
+ */
+class CBaseTestNetParams : public CBaseChainParams
+{
+public:
+    CBaseTestNetParams()
+    {
+        nRPCPort = WTMINT_TESTNET_RPC_PORT;
+        strDataDir = "testnet3";
+    }
+};
+static CBaseTestNetParams testNetParams;
+
+/*
+ * Regression test
+ */
+class CBaseRegTestParams : public CBaseChainParams
+{
+public:
+    CBaseRegTestParams()
+    {
+        nRPCPort = WTMINT_REGTEST_RPC_PORT;
+        strDataDir = "regtest";
+    }
+};
+static CBaseRegTestParams regTestParams;
+
+static CBaseChainParams* pCurrentBaseParams = 0;
 
 const CBaseChainParams& BaseParams()
 {
-    assert(globalChainBaseParams);
-    return *globalChainBaseParams;
+    assert(pCurrentBaseParams);
+    return *pCurrentBaseParams;
 }
 
-std::unique_ptr<CBaseChainParams> CreateBaseChainParams(const std::string& chain)
+CBaseChainParams& BaseParams(const std::string& chain)
 {
     if (chain == CBaseChainParams::MAIN)
-        return MakeUnique<CBaseChainParams>("", 8332);
+        return mainParams;
     else if (chain == CBaseChainParams::TESTNET)
-        return MakeUnique<CBaseChainParams>("testnet3", 18332);
+        return testNetParams;
     else if (chain == CBaseChainParams::REGTEST)
-        return MakeUnique<CBaseChainParams>("regtest", 18443);
+        return regTestParams;
     else
         throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, chain));
 }
 
 void SelectBaseParams(const std::string& chain)
 {
-    globalChainBaseParams = CreateBaseChainParams(chain);
-    gArgs.SelectConfigNetwork(chain);
+    pCurrentBaseParams = &BaseParams(chain);
+}
+
+std::string ChainNameFromCommandLine()
+{
+    bool fRegTest = GetBoolArg("-regtest", false);
+    bool fTestNet = GetBoolArg("-testnet", false);
+
+    if (fTestNet && fRegTest)
+        throw std::runtime_error("Invalid combination of -regtest and -testnet.");
+    if (fRegTest)
+        return CBaseChainParams::REGTEST;
+    if (fTestNet)
+        return CBaseChainParams::TESTNET;
+    return CBaseChainParams::MAIN;
+}
+
+bool AreBaseParamsConfigured()
+{
+    return pCurrentBaseParams != NULL;
 }
