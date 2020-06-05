@@ -1,14 +1,3 @@
-.vscode/
-release/
-
-qa/
-
-src/aib-cli
-src/aib-tx
-src/aibd
-src/bench/bench_aib
-src/test/test_aib
-src/test/test_aib_fuzzy
 /nbproject
 .tx/
 *.tar.gz

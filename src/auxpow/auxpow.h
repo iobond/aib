@@ -2,25 +2,19 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_AUXPOW_H
-#define BITCOIN_AUXPOW_H
+#ifndef BITCOIN_AUXPOW_AUXPOW_H
+#define BITCOIN_AUXPOW_AUXPOW_H
 
-#include <memory.h>
-#include "versionbits.h"
-#include "consensus/params.h"
-#include "wallet/wallet.h"
-#include "primitives/blockheader.h"
-#include "auxpow/consensus.h"
-#include "serialize.h"
+#include <versionbits.h>
+#include <consensus/params.h>
+#include <wallet/wallet.h>
+#include <primitives/blockheader.h>
+#include <auxpow/consensus.h>
 
 
 class CAuxPow : public CMerkleTx
 {
 public:
-    CAuxPow(const CTransaction& txIn) : CMerkleTx(txIn)
-    {
-    }
-
     CAuxPow() :CMerkleTx()
     {
     }
@@ -36,7 +30,7 @@ public:
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
+    inline void SerializationOp(Stream& s, Operation ser_action) {
         READWRITE(*(CMerkleTx*)this);
         READWRITE(vChainMerkleBranch);
         READWRITE(nChainIndex);
@@ -46,34 +40,22 @@ public:
     }
 
     uint256 CheckMerkleBranch(const uint256& hash, const std::vector<uint256>& vMerkleBranch, int nIndex) const;
-    bool Check(const uint256& hashAuxBlock, int nChainID, const Consensus::Params& params) const;
 
     inline uint256 GetParentBlockHash()
     {
-            return parentBlockHeader.GetPoWHash();
-//            return uint256();
-    }
+        return parentBlockHeader.GetPoWHash();
+    }  
 };
 
-template<typename Stream> void SerReadWrite(Stream& s, std::shared_ptr<CAuxPow>& pobj, int nType, int nVersion, CSerActionSerialize ser_action)
+template<typename Stream> void SerReadWrite(Stream& s, std::shared_ptr<CAuxPow>& pobj, CSerActionSerialize _)
 {
-    if (nVersion & AuxPow::BLOCK_VERSION_AUXPOW){
-        ::Serialize(s, *pobj, nType, nVersion);
-    }
+    ::Serialize(s, *pobj);
 }
 
-template<typename Stream> void SerReadWrite(Stream& s, std::shared_ptr<CAuxPow>& pobj, int nType, int nVersion, CSerActionUnserialize ser_action)
+template<typename Stream> void SerReadWrite(Stream& s, std::shared_ptr<CAuxPow>& pobj, CSerActionUnserialize _)
 {
-    if (nVersion & AuxPow::BLOCK_VERSION_AUXPOW){
-        pobj.reset(new CAuxPow());
-        ::Unserialize(s, *pobj, nType, nVersion);
-    } else
-        pobj.reset();
+    pobj.reset(new CAuxPow());
+    ::Unserialize(s, *pobj);
 }
 
-
-extern void RemoveMergedMiningHeader(std::vector<unsigned char>& vchAux);
-extern int GetAuxPowStartBlock(const Consensus::Params& params);
-extern CKeyID GetAuxpowMiningKey(void);
-
-#endif
+#endif // BITCOIN_AUXPOW_AUXPOW_H
