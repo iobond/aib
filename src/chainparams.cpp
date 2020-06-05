@@ -35,7 +35,7 @@
 
 #define WTMINT_REGTEST_GENESIS_BLOCK	"ee03549187be5e68bc87256637458db42de8463bc05c7d8c659e728939da2e64"
 #define WTMINT_REGTEST_BLOCK_nTime		1405166035
-#define WTMINT_REGTEST_BLOCK_nNonce		0
+#define WTMINT_REGTEST_BLOCK_nNonce	    0
 #define WTMINT_REGTEST_POWLMT_nBits     "7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
 #define WTMINT_REGTEST_BLOCK_nBits      0x207fffff
 
@@ -253,10 +253,10 @@ public:
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
         
-	    vSeeds.emplace_back("seed.aib.one");
-        vSeeds.emplace_back("seed.aib.cash");
-        vSeeds.emplace_back("seed.iobond.com");
-			
+         vSeeds.emplace_back("seed.aib.one");
+         vSeeds.emplace_back("seed.aib.cash");
+         vSeeds.emplace_back("seed.iobond.com");
+       
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,WTMINT_PUBKEY_ADDRESS);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,WTMINT_SCRPIT_ADDRESS);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,WTMINT_SECRET_ADDRESS);
@@ -267,7 +267,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-	//fMiningRequiresPeers = true;
+	    //fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;

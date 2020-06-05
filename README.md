@@ -1,9 +1,12 @@
-AIB Core integration/staging tree
+AIB Core integration/staging tree 
 =====================================
+[Master Branch is our working , it is not stable , and has many bugs]
+[Use stable release with Tag Version]
+
 
 [![Build Status](https://travis-ci.org/aib/aib.svg?branch=master)](https://travis-ci.org/aib/aib)
 
-https://aibcore.org
+https://aib.one
 
 What is AIB?
 ----------------
@@ -77,6 +80,3 @@ Translations are periodically pulled from Transifex and merged into the git repo
 pull from Transifex would automatically overwrite them again.
 
 Translators should also subscribe to the [mailing list](https://groups.google.com/forum/#!forum/aib-translators).
-
-Offical AIB development email:
-DEV@AIB.one

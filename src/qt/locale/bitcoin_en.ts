@@ -309,7 +309,7 @@
 <context>
     <name>AIBGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+307"/>
+        <location filename="../AIBgui.cpp" line="+307"/>
         <source>Sign &amp;message...</source>
         <translation>Sign &amp;message...</translation>
     </message>
