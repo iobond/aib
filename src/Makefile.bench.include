@@ -22,7 +22,6 @@ bench_bench_aib_SOURCES = \
   bench/block_assemble.cpp \
   bench/checkblock.cpp \
   bench/checkqueue.cpp \
-  bench/examples.cpp \
   bench/rollingbloom.cpp \
   bench/crypto_hash.cpp \
   bench/ccoins_caching.cpp \
