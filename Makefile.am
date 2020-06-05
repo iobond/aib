@@ -1,3 +1,4 @@
+# Copyright (c) 2013-2020 The Bitcoin Core developers
 # Copyright (c) 2015-2020 The AIB Community developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -50,10 +51,15 @@ DIST_SHARE = \
 BIN_CHECKS=$(top_srcdir)/contrib/devtools/symbol-check.py \
            $(top_srcdir)/contrib/devtools/security-check.py
 
-WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/bitcoin.ico \
+WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/aib.ico \
   $(top_srcdir)/share/pixmaps/nsis-header.bmp \
   $(top_srcdir)/share/pixmaps/nsis-wizard.bmp \
   $(top_srcdir)/doc/README_windows.txt
+
+#WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/bitcoin.ico \
+#  $(top_srcdir)/share/pixmaps/nsis-header.bmp \
+#  $(top_srcdir)/share/pixmaps/nsis-wizard.bmp \
+#  $(top_srcdir)/doc/README_windows.txt
 
 OSX_PACKAGING = $(OSX_DEPLOY_SCRIPT) $(OSX_FANCY_PLIST) $(OSX_INSTALLER_ICONS) \
   $(top_srcdir)/contrib/macdeploy/$(OSX_BACKGROUND_SVG) \
@@ -61,10 +67,10 @@ OSX_PACKAGING = $(OSX_DEPLOY_SCRIPT) $(OSX_FANCY_PLIST) $(OSX_INSTALLER_ICONS) \
   $(top_srcdir)/contrib/macdeploy/detached-sig-apply.sh \
   $(top_srcdir)/contrib/macdeploy/detached-sig-create.sh
 
-# COVERAGE_INFO = baseline.info \
-#   test_bitcoin_filtered.info total_coverage.info \
-#   baseline_filtered.info functional_test.info functional_test_filtered.info \
-#   test_bitcoin_coverage.info test_bitcoin.info
+COVERAGE_INFO = baseline.info \
+  test_bitcoin_filtered.info total_coverage.info \
+  baseline_filtered.info functional_test.info functional_test_filtered.info \
+  test_bitcoin_coverage.info test_bitcoin.info
 
 dist-hook:
 	-$(GIT) archive --format=tar HEAD -- src/clientversion.cpp | $(AMTAR) -C $(top_distdir) -xf -
@@ -177,14 +183,14 @@ baseline_filtered.info: baseline.info
 	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
 	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-# test_bitcoin.info: baseline_filtered.info
-# 	$(MAKE) -C src/ check
-# 	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src -t test_bitcoin -o $@
-# 	$(LCOV) -z $(LCOV_OPTS) -d $(abs_builddir)/src
+test_bitcoin.info: baseline_filtered.info
+	$(MAKE) -C src/ check
+	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src -t test_bitcoin -o $@
+	$(LCOV) -z $(LCOV_OPTS) -d $(abs_builddir)/src
 
-# test_bitcoin_filtered.info: test_bitcoin.info
-# 	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
-# 	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
+test_bitcoin_filtered.info: test_bitcoin.info
+	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
+	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
 functional_test.info: test_bitcoin_filtered.info
 	-@TIMEOUT=15 test/functional/test_runner.py $(EXTENDED_FUNCTIONAL_TESTS)
@@ -198,8 +204,8 @@ functional_test_filtered.info: functional_test.info
 test_bitcoin_coverage.info: baseline_filtered.info test_bitcoin_filtered.info
 	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_bitcoin_filtered.info -o $@
 
-# total_coverage.info: test_bitcoin_filtered.info functional_test_filtered.info
-# 	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_bitcoin_filtered.info -a functional_test_filtered.info -o $@ | $(GREP) "\%" | $(AWK) '{ print substr($$3,2,50) "/" $$5 }' > coverage_percent.txt
+total_coverage.info: test_bitcoin_filtered.info functional_test_filtered.info
+	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_bitcoin_filtered.info -a functional_test_filtered.info -o $@ | $(GREP) "\%" | $(AWK) '{ print substr($$3,2,50) "/" $$5 }' > coverage_percent.txt
 
 test_bitcoin.coverage/.dirstamp:  test_bitcoin_coverage.info
 	$(GENHTML) -s $(LCOV_OPTS) $< -o $(@D)
