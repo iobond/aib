@@ -1108,10 +1108,7 @@ AC_SUBST(ZMQ_LIBS)
 AC_SUBST(PROTOBUF_LIBS)
 AC_SUBST(QR_LIBS)
 AC_CONFIG_FILES([Makefile src/Makefile share/setup.nsi share/qt/Info.plist src/test/buildenv.py])
-AC_CONFIG_FILES([qa/pull-tester/run-bitcoind-for-test.sh],[chmod +x qa/pull-tester/run-bitcoind-for-test.sh])
-AC_CONFIG_FILES([qa/pull-tester/tests_config.py],[chmod +x qa/pull-tester/tests_config.py])
 AC_CONFIG_FILES([contrib/devtools/split-debug.sh],[chmod +x contrib/devtools/split-debug.sh])
-AC_CONFIG_LINKS([qa/pull-tester/rpc-tests.py:qa/pull-tester/rpc-tests.py])
 
 dnl boost's m4 checks do something really nasty: they export these vars. As a
 dnl result, they leak into secp256k1's configure and crazy things happen.
@@ -1163,32 +1160,3 @@ case ${OS} in
      mv qa/pull-tester/tests_config-2.py qa/pull-tester/tests_config.py
    ;;
 esac
-
-echo
-echo "Options used to compile and link:"
-echo "  with wallet   = $enable_wallet"
-echo "  with gui / qt = $bitcoin_enable_qt"
-if test x$bitcoin_enable_qt != xno; then
-    echo "    with qr     = $use_qr"
-fi
-echo "  with zmq      = $use_zmq"
-echo "  with test     = $use_tests"
-echo "  with bench    = $use_bench"
-echo "  with upnp     = $use_upnp"
-echo "  use asm       = $use_asm"
-echo "  sanitizers    = $use_sanitizers"
-echo "  debug enabled = $enable_debug"
-echo "  gprof enabled = $enable_gprof"
-echo "  werror        = $enable_werror"
-echo
-echo "  target os     = $TARGET_OS"
-echo "  build os      = $BUILD_OS"
-echo
-echo "  CC            = $CC"
-echo "  CFLAGS        = $CFLAGS"
-echo "  CPPFLAGS      = $DEBUG_CPPFLAGS $HARDENED_CPPFLAGS $CPPFLAGS"
-echo "  CXX           = $CXX"
-echo "  CXXFLAGS      = $DEBUG_CXXFLAGS $HARDENED_CXXFLAGS $WARN_CXXFLAGS $NOWARN_CXXFLAGS $ERROR_CXXFLAGS $GPROF_CXXFLAGS $CXXFLAGS"
-echo "  LDFLAGS       = $PTHREAD_CFLAGS $HARDENED_LDFLAGS $GPROF_LDFLAGS $LDFLAGS"
-echo "  ARFLAGS       = $ARFLAGS"
-echo
