@@ -1,10 +1,9 @@
-// Copyright (c) 2014 The Bitcoin Core developers
+// Copyright (c) 2014-2016 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "random.h"
-#include "utilstrencodings.h"
 #include "test/test_bitcoin.h"
+#include "utilstrencodings.h"
 #include "wallet/crypter.h"
 
 #include <vector>
@@ -27,8 +26,8 @@ bool OldSetKeyFromPassphrase(const SecureString& strKeyData, const std::vector<u
 
     if (i != (int)WALLET_CRYPTO_KEY_SIZE)
     {
-        memory_cleanse(chKey, sizeof(chKey));
-        memory_cleanse(chIV, sizeof(chIV));
+        memory_cleanse(chKey, WALLET_CRYPTO_KEY_SIZE);
+        memory_cleanse(chIV, WALLET_CRYPTO_IV_SIZE);
         return false;
     }
     return true;
@@ -49,7 +48,7 @@ bool OldEncrypt(const CKeyingMaterial& vchPlaintext, std::vector<unsigned char> 
     bool fOk = true;
 
     EVP_CIPHER_CTX_init(ctx);
-    if (fOk) fOk = EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, chKey, chIV) != 0;
+    if (fOk) fOk = EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr, chKey, chIV) != 0;
     if (fOk) fOk = EVP_EncryptUpdate(ctx, &vchCiphertext[0], &nCLen, &vchPlaintext[0], nLen) != 0;
     if (fOk) fOk = EVP_EncryptFinal_ex(ctx, (&vchCiphertext[0]) + nCLen, &nFLen) != 0;
     EVP_CIPHER_CTX_cleanup(ctx);
@@ -77,7 +76,7 @@ bool OldDecrypt(const std::vector<unsigned char>& vchCiphertext, CKeyingMaterial
     bool fOk = true;
 
     EVP_CIPHER_CTX_init(ctx);
-    if (fOk) fOk = EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, chKey, chIV) != 0;
+    if (fOk) fOk = EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr, chKey, chIV) != 0;
     if (fOk) fOk = EVP_DecryptUpdate(ctx, &vchPlaintext[0], &nPLen, &vchCiphertext[0], nLen) != 0;
     if (fOk) fOk = EVP_DecryptFinal_ex(ctx, (&vchPlaintext[0]) + nPLen, &nFLen) != 0;
     EVP_CIPHER_CTX_cleanup(ctx);
@@ -105,10 +104,10 @@ static void TestPassphraseSingle(const std::vector<unsigned char>& vchSalt, cons
 
     OldSetKeyFromPassphrase(passphrase, vchSalt, rounds, 0, chKey, chIV);
 
-    BOOST_CHECK_MESSAGE(memcmp(chKey, crypt.chKey, sizeof(chKey)) == 0, \
-        HexStr(chKey, chKey+sizeof(chKey)) + std::string(" != ") + HexStr(crypt.chKey, crypt.chKey + (sizeof crypt.chKey)));
-    BOOST_CHECK_MESSAGE(memcmp(chIV, crypt.chIV, sizeof(chIV)) == 0, \
-        HexStr(chIV, chIV+sizeof(chIV)) + std::string(" != ") + HexStr(crypt.chIV, crypt.chIV + (sizeof crypt.chIV)));
+    BOOST_CHECK_MESSAGE(memcmp(chKey, crypt.vchKey.data(), crypt.vchKey.size()) == 0, \
+        HexStr(chKey, chKey+sizeof(chKey)) + std::string(" != ") + HexStr(crypt.vchKey));
+    BOOST_CHECK_MESSAGE(memcmp(chIV, crypt.vchIV.data(), crypt.vchIV.size()) == 0, \
+        HexStr(chIV, chIV+sizeof(chIV)) + std::string(" != ") + HexStr(crypt.vchIV));
 
     if(!correctKey.empty())
         BOOST_CHECK_MESSAGE(memcmp(chKey, &correctKey[0], sizeof(chKey)) == 0, \
@@ -135,7 +134,7 @@ static void TestDecrypt(const CCrypter& crypt, const std::vector<unsigned char>&
     CKeyingMaterial vchDecrypted2;
     int result1, result2;
     result1 = crypt.Decrypt(vchCiphertext, vchDecrypted1);
-    result2 = OldDecrypt(vchCiphertext, vchDecrypted2, crypt.chKey, crypt.chIV);
+    result2 = OldDecrypt(vchCiphertext, vchDecrypted2, crypt.vchKey.data(), crypt.vchIV.data());
     BOOST_CHECK(result1 == result2);
 
     // These two should be equal. However, OpenSSL 1.0.1j introduced a change
@@ -160,7 +159,7 @@ static void TestEncryptSingle(const CCrypter& crypt, const CKeyingMaterial& vchP
     std::vector<unsigned char> vchCiphertext2;
     int result1 = crypt.Encrypt(vchPlaintext, vchCiphertext1);
 
-    int result2 = OldEncrypt(vchPlaintext, vchCiphertext2, crypt.chKey, crypt.chIV);
+    int result2 = OldEncrypt(vchPlaintext, vchCiphertext2, crypt.vchKey.data(), crypt.vchIV.data());
     BOOST_CHECK(result1 == result2);
     BOOST_CHECK(vchCiphertext1 == vchCiphertext2);
 
@@ -193,7 +192,7 @@ BOOST_AUTO_TEST_CASE(passphrase) {
     std::string hash(GetRandHash().ToString());
     std::vector<unsigned char> vchSalt(8);
     GetRandBytes(&vchSalt[0], vchSalt.size());
-    uint32_t rounds = insecure_rand();
+    uint32_t rounds = InsecureRand32();
     if (rounds > 30000)
         rounds = 30000;
     TestCrypter::TestPassphrase(vchSalt, SecureString(hash.begin(), hash.end()), rounds);

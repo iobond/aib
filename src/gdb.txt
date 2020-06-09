@@ -1,0 +1,292 @@
+Reading symbols from ./aibd...done.
+Breakpoint 1 at 0x7955a0: file pow.cpp, line 385.
+Starting program: /root/tmp/aib-core_0.17/src/aibd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff28dc700 (LWP 17528)]
+[New Thread 0x7ffff20db700 (LWP 17529)]
+[New Thread 0x7ffff18da700 (LWP 17530)]
+[New Thread 0x7ffff10d9700 (LWP 17531)]
+[New Thread 0x7ffff08d8700 (LWP 17532)]
+[New Thread 0x7fffe3fff700 (LWP 17533)]
+[New Thread 0x7fffe37fe700 (LWP 17534)]
+[New Thread 0x7fffe2ffd700 (LWP 17535)]
+[New Thread 0x7fffe27fc700 (LWP 17536)]
+[New Thread 0x7fffe1ffb700 (LWP 17537)]
+[New Thread 0x7fffe17fa700 (LWP 17538)]
+[New Thread 0x7fffe0ff9700 (LWP 17539)]
+[New Thread 0x7fffcffff700 (LWP 17540)]
+
+Thread 1 "aib-loadblk" hit Breakpoint 1, CheckBlockProofOfWork (pblock=0x12e69d0, params=...) at pow.cpp:385
+385	    if (pblock->auxpow && (pblock->auxpow.get() != nullptr))
+396	        if (!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, params))
+Couldn't find method CBlockHeader::GetPowWHash
+$1 = (const CBlockHeader *) 0x12e69d0
+$2 = 504365040
+$3 = (const Consensus::Params &) @0x10f3dc0: {hashGenesisBlock = {<base_blob<256u>> = {static WIDTH = 32, data = "\314K\325\177\313\365\301\354\231g\201\354\244\323gKϢ\270\033\331\\\252\372\207\303qxSP%\006"}, <No data fields>}, 
+  nSubsidyHalvingInterval = 210000, BIP16Exception = {<base_blob<256u>> = {static WIDTH = 32, data = "\"\234O\254\210\272\261\224\353\b\361\245(\314\060\215\355#\227\364\364\353nu\334\002\000\000\000\000\000"}, <No data fields>}, 
+  BIP34Height = 2400000, BIP34Hash = {<base_blob<256u>> = {static WIDTH = 32, data = "\314K\325\177\313\365\301\354\231g\201\354\244\323gKϢ\270\033\331\\\252\372\207\303qxSP%\006"}, <No data fields>}, BIP65Height = 1, 
+  BIP66Height = 0, BlockVer5Height = 17760305, nAuxPowStartHeight = 0, nWitnessStartHeight = 7, nRuleChangeActivationThreshold = 8100, nMinerConfirmationWindow = 10800, vDeployments = {{bit = 28, nStartTime = 1199145601, 
+      nTimeout = 1230767999, static NO_TIMEOUT = 9223372036854775807, static ALWAYS_ACTIVE = -1}, {bit = 0, nStartTime = 1462060800, nTimeout = 1493596800, static NO_TIMEOUT = 9223372036854775807, static ALWAYS_ACTIVE = -1}, {
+      bit = 1, nStartTime = 1479168000, nTimeout = 1510704000, static NO_TIMEOUT = 9223372036854775807, static ALWAYS_ACTIVE = -1}}, powLimit = {<base_blob<256u>> = {static WIDTH = 32, 
+      data = '\377' <repeats 29 times>, "\017\000"}, <No data fields>}, fPowAllowMinDifficultyBlocks = false, fPowNoRetargeting = false, nPowTargetSpacing = 60, nPowTargetTimespan = 14400, nMinimumChainWork = {<base_blob<256u>> = {
+      static WIDTH = 32, data = "\313\312?{@2\327\030\003", '\000' <repeats 22 times>}, <No data fields>}, defaultAssumeValid = {<base_blob<256u>> = {static WIDTH = 32, 
+      data = "\250\066?\000ɶ\200\023\262\307(OU3\342\035\232:\002\214\005c.\000\000\000\000\000\000\000\000"}, <No data fields>}}
+399	    return true;
+400	}
+CheckBlockHeader (block=..., state=..., consensusParams=..., fCheckPOW=true) at validation.cpp:3148
+3148	    return true;
+3149	}
+CheckBlock (block=..., state=..., consensusParams=..., fCheckPOW=true, fCheckMerkleRoot=true) at validation.cpp:3164
+3164	    if (fCheckMerkleRoot) {
+3166	        uint256 hashMerkleRoot2 = BlockMerkleRoot(block, &mutated);
+3167	        if (block.hashMerkleRoot != hashMerkleRoot2)
+3173	        if (mutated)
+3184	    if (block.vtx.empty() || block.vtx.size() * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT || ::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS) * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT)
+3188	    if (block.vtx.empty() || !block.vtx[0]->IsCoinBase())
+3190	    for (unsigned int i = 1; i < block.vtx.size(); i++)
+3195	    for (const auto& tx : block.vtx)
+3196	        if (!CheckTransaction(*tx, state, true))
+3195	    for (const auto& tx : block.vtx)
+3200	    unsigned int nSigOps = 0;
+3201	    for (const auto& tx : block.vtx)
+3203	        nSigOps += GetLegacySigOpCount(*tx);
+3201	    for (const auto& tx : block.vtx)
+3205	    if (nSigOps * WITNESS_SCALE_FACTOR > MAX_BLOCK_SIGOPS_COST)
+3208	    if (fCheckPOW && fCheckMerkleRoot)
+3209	        block.fChecked = true;
+3211	    return true;
+3212	}
+CChainState::AcceptBlock (this=0xfc08c0 <g_chainstate>, pblock=std::shared_ptr (count 2, weak 0) 0x12e69d0, state=..., chainparams=..., ppindex=0x0, fRequested=true, dbp=0x7fffffffbc10, fNewBlock=0x0) at validation.cpp:3595
+3595	        !ContextualCheckBlock(block, state, chainparams.GetConsensus(), pindex->pprev)) {
+3594	    if (!CheckBlock(block, state, chainparams.GetConsensus()) ||
+3605	    if (!IsInitialBlockDownload() && chainActive.Tip() == pindex->pprev)
+3609	    if (fNewBlock) *fNewBlock = true;
+3611	        CDiskBlockPos blockPos = SaveBlockToDisk(block, pindex->nHeight, chainparams, dbp);
+3612	        if (blockPos.IsNull()) {
+3616	        ReceivedBlockTransactions(block, pindex, blockPos, chainparams.GetConsensus());
+3621	    FlushStateToDisk(chainparams, state, FlushStateMode::NONE);
+3623	    CheckBlockIndex(chainparams.GetConsensus());
+3625	    return true;
+Continuing.
+
+Thread 1 "aib-loadblk" hit Breakpoint 1, CheckBlockProofOfWork (pblock=0xfdf450, params=...) at pow.cpp:385
+385	    if (pblock->auxpow && (pblock->auxpow.get() != nullptr))
+396	        if (!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, params))
+399	    return true;
+400	}
+Continuing.
+
+Thread 1 "aib-loadblk" hit Breakpoint 1, CheckBlockProofOfWork (pblock=0xfdf450, params=...) at pow.cpp:385
+385	    if (pblock->auxpow && (pblock->auxpow.get() != nullptr))
+396	        if (!CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, params))
+399	    return true;
+400	}
+Continuing.
+[New Thread 0x7fffcf7fe700 (LWP 17795)]
+[New Thread 0x7fffceffd700 (LWP 17796)]
+[New Thread 0x7fffce7fc700 (LWP 17797)]
+[New Thread 0x7fffcdffb700 (LWP 17798)]
+[New Thread 0x7fffcd7fa700 (LWP 17799)]
+[New Thread 0x7fffccff9700 (LWP 17800)]
+[Thread 0x7fffce7fc700 (LWP 17797) exited]
+
+Thread 1 "aib-loadblk" received signal SIGINT, Interrupt.
+0x00007ffff5a3bc1d in nanosleep () at ../sysdeps/unix/syscall-template.S:84
+84	../sysdeps/unix/syscall-template.S: No such file or directory.
+Reading symbols from ./aibd...done.
+Breakpoint 1 at 0x793292: file ./auxpow/check.h, line 30.
+Starting program: /root/tmp/aib-core_0.17/src/aibd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff28dc700 (LWP 11663)]
+[New Thread 0x7ffff20db700 (LWP 11664)]
+[New Thread 0x7ffff18da700 (LWP 11665)]
+[New Thread 0x7ffff10d9700 (LWP 11666)]
+[New Thread 0x7ffff08d8700 (LWP 11667)]
+[New Thread 0x7fffe3fff700 (LWP 11668)]
+[New Thread 0x7fffe37fe700 (LWP 11669)]
+[New Thread 0x7fffe2ffd700 (LWP 11670)]
+[New Thread 0x7fffe27fc700 (LWP 11671)]
+[New Thread 0x7fffe1ffb700 (LWP 11672)]
+[New Thread 0x7fffe17fa700 (LWP 11673)]
+[New Thread 0x7fffe0ff9700 (LWP 11674)]
+[New Thread 0x7fffcffff700 (LWP 11675)]
+
+Thread 1 "aib-loadblk" hit Breakpoint 1, CheckAuxpow (auxPow=std::shared_ptr (count 2, weak 0) 0xfdfaf0, hashAuxBlock=..., nChainID=37, params=...) at ./auxpow/check.h:30
+30	    if (auxPow->CheckMerkleBranch(auxPow->GetHash(), auxPow->vMerkleBranch, auxPow->nIndex) != auxPow->parentBlockHeader.hashMerkleRoot)
+$1 = std::shared_ptr (count 2, weak 0) 0xfdfaf0
+$2 = (CAuxPow &) @0xfdfaf0: {<CMerkleTx> = {static ABANDON_HASH = {<base_blob<256u>> = {static WIDTH = 32, data = "\001", '\000' <repeats 30 times>}, <No data fields>}, 
+    tx = std::shared_ptr (count 1, weak 0) 0xfdf500, hashBlock = {<base_blob<256u>> = {static WIDTH = 32, 
+        data = "\001\232\274\365A$\342Q\264\025(e\332ci\aR'\345\037\342\070\066J\300\037xx\361\276@>"}, <No data fields>}, vMerkleBranch = std::vector of length 0, capacity 0, nIndex = 0}, 
+  vChainMerkleBranch = std::vector of length 3, capacity 3 = {{<base_blob<256u>> = {static WIDTH = 32, 
+        data = "\254H\a\224\276\204.\rNދ\326\005\363\b<\302\a\224\266`03\276\212&v\037\303\031\320("}, <No data fields>}, {<base_blob<256u>> = {static WIDTH = 32, 
+        data = "\342\366\034?q\321\336\375?\251\231ߣiSu\\i\006\211y\231b\264\213\353\330\066\227N\214", <incomplete sequence \371>}, <No data fields>}, {<base_blob<256u>> = {static WIDTH = 32, 
+        data = "~\276\rQ\027\022Gu\251\022^\030\312\305\311\b\021\277\342#&v*G\257ܐ\323\027\301x"}, <No data fields>}}, nChainIndex = 7, parentBlockHeader = {nVersion = 2, hashPrevBlock = {<base_blob<256u>> = {
+        static WIDTH = 32, data = "\224\377\026\373W]\277\370\n\314\331\300\245\030\337\020F+\216\065\177\257b%\f\265f|w\353", <incomplete sequence \347>}, <No data fields>}, 
+    hashMerkleRoot = {<base_blob<256u>> = {static WIDTH = 32, data = "\335,8\030\237\377\245\342\066%\005\227\201|\335\001u\337<\374&\324\021\230\360;+\037\345\001p\016"}, <No data fields>}, nTime = 1428384277, 
+    nBits = 453087370, nNonce = 1332478164, auxpow = std::shared_ptr (empty) 0x0}}
+$3 = {<base_blob<256u>> = {static WIDTH = 32, data = "\335,8\030\237\377\245\342\066%\005\227\201|\335\001u\337<\374&\324\021\230\360;+\037\345\001p\016"}, <No data fields>}
+std::__shared_ptr<CAuxPow, (__gnu_cxx::_Lock_policy)2>::operator-> (this=0x7fffffffad20) at /usr/include/c++/5/bits/shared_ptr_base.h:1055
+1055		return _M_ptr;
+1056	      }
+std::__shared_ptr<CAuxPow, (__gnu_cxx::_Lock_policy)2>::operator-> (this=0x7fffffffad20) at /usr/include/c++/5/bits/shared_ptr_base.h:1055
+1055		return _M_ptr;
+1056	      }
+std::__shared_ptr<CAuxPow, (__gnu_cxx::_Lock_policy)2>::operator-> (this=0x7fffffffad20) at /usr/include/c++/5/bits/shared_ptr_base.h:1055
+1055		return _M_ptr;
+1056	      }
+std::__shared_ptr<CAuxPow, (__gnu_cxx::_Lock_policy)2>::operator-> (this=0x7fffffffad20) at /usr/include/c++/5/bits/shared_ptr_base.h:1055
+1055		return _M_ptr;
+1056	      }
+CMerkleTx::GetHash (this=0xfdfaf0) at ./wallet/wallet.h:279
+279	    const uint256& GetHash() const { return tx->GetHash(); }
+std::__shared_ptr<CTransaction const, (__gnu_cxx::_Lock_policy)2>::operator-> (this=0xfdfaf0) at /usr/include/c++/5/bits/shared_ptr_base.h:1055
+1055		return _M_ptr;
+1056	      }
+CheckAuxpow (auxPow=std::shared_ptr (count 2, weak 0) 0xfdfaf0, hashAuxBlock=..., nChainID=37, params=...) at ./auxpow/check.h:32
+32	        return error("Aux POW merkle root incorrect");
+26	    std::vector<unsigned char> vchRootHash(nRootHash.begin(), nRootHash.end());
+98	}
+CheckBlockProofOfWork (pblock=0x12e6870, params=...) at pow.cpp:388
+388	            return error("CheckBlockProofOfWork() : AUX POW is not valid");
+Reading symbols from ./aibd...done.
+Function "auxpow.cpp 16" not defined.
+Breakpoint 1 (auxpow.cpp 16) pending.
+Starting program: /root/tmp/aib-core_0.17/src/aibd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff28dc700 (LWP 12329)]
+[New Thread 0x7ffff20db700 (LWP 12330)]
+[New Thread 0x7ffff18da700 (LWP 12331)]
+[New Thread 0x7ffff10d9700 (LWP 12332)]
+[New Thread 0x7ffff08d8700 (LWP 12333)]
+[New Thread 0x7fffe3fff700 (LWP 12334)]
+[New Thread 0x7fffe37fe700 (LWP 12335)]
+[New Thread 0x7fffe2ffd700 (LWP 12336)]
+[New Thread 0x7fffe27fc700 (LWP 12337)]
+[New Thread 0x7fffe1ffb700 (LWP 12338)]
+[New Thread 0x7fffe17fa700 (LWP 12339)]
+[New Thread 0x7fffe0ff9700 (LWP 12340)]
+[New Thread 0x7fffcffff700 (LWP 12341)]
+
+Thread 1 "aib-loadblk" received signal SIGINT, Interrupt.
+0x00007ffff57582dd in write () at ../sysdeps/unix/syscall-template.S:84
+84	../sysdeps/unix/syscall-template.S: No such file or directory.
+Quit
+Quit
+Breakpoint 2 at 0x750ce9: file auxpow/auxpow.cpp, line 16.
+Starting program: /root/tmp/aib-core_0.17/src/aibd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff28dc700 (LWP 12354)]
+[New Thread 0x7ffff20db700 (LWP 12355)]
+[New Thread 0x7ffff18da700 (LWP 12356)]
+[New Thread 0x7ffff10d9700 (LWP 12357)]
+[New Thread 0x7ffff08d8700 (LWP 12358)]
+[New Thread 0x7fffdbfff700 (LWP 12359)]
+[New Thread 0x7fffd3fff700 (LWP 12360)]
+[New Thread 0x7fffdb7fe700 (LWP 12361)]
+[New Thread 0x7fffdaffd700 (LWP 12362)]
+[New Thread 0x7fffda7fc700 (LWP 12363)]
+[New Thread 0x7fffd9ffb700 (LWP 12364)]
+[New Thread 0x7fffd97fa700 (LWP 12365)]
+[New Thread 0x7fffd8ff9700 (LWP 12366)]
+
+Thread 1 "aib-loadblk" hit Breakpoint 2, CAuxPow::CheckMerkleBranch (this=0xfdfaf0, hash=..., vMerkleBranch=std::vector of length 3, capacity 3 = {...}, nIndex=7) at auxpow/auxpow.cpp:16
+16	  if (nIndex == -1)
+$1 = 7
+18	  for (std::vector<uint256>::const_iterator it(vMerkleBranch.begin()); it != vMerkleBranch.end(); ++it)
+20	    if (nIndex & 1)
+$2 = 7
+21	      thash = Hash(BEGIN(*it), END(*it), BEGIN(thash), END(thash));
+24	    nIndex >>= 1;
+18	  for (std::vector<uint256>::const_iterator it(vMerkleBranch.begin()); it != vMerkleBranch.end(); ++it)
+20	    if (nIndex & 1)
+21	      thash = Hash(BEGIN(*it), END(*it), BEGIN(thash), END(thash));
+24	    nIndex >>= 1;
+18	  for (std::vector<uint256>::const_iterator it(vMerkleBranch.begin()); it != vMerkleBranch.end(); ++it)
+20	    if (nIndex & 1)
+21	      thash = Hash(BEGIN(*it), END(*it), BEGIN(thash), END(thash));
+24	    nIndex >>= 1;
+18	  for (std::vector<uint256>::const_iterator it(vMerkleBranch.begin()); it != vMerkleBranch.end(); ++it)
+26	  return thash;
+27	}
+CheckAuxpow (auxPow=std::shared_ptr (count 2, weak 0) 0xfdfaf0, hashAuxBlock=..., nChainID=37, params=...) at ./auxpow/check.h:26
+26	    std::vector<unsigned char> vchRootHash(nRootHash.begin(), nRootHash.end());
+No symbol "thash" in current context.
+27	    std::reverse(vchRootHash.begin(), vchRootHash.end()); // correct endian
+30	    if (auxPow->CheckMerkleBranch(auxPow->GetHash(), auxPow->vMerkleBranch, auxPow->nIndex) != auxPow->parentBlockHeader.hashMerkleRoot)
+$3 = {<base_blob<256u>> = {static WIDTH = 32, data = "\335,8\030\237\377\245\342\066%\005\227\201|\335\001u\337<\374&\324\021\230\360;+\037\345\001p\016"}, <No data fields>}
+$4 = (const uint256 &) @0xfdf538: {<base_blob<256u>> = {static WIDTH = 32, data = "\322n\267\223\271\326ْѕ\311U\036\276f\236!\035e\025:\fX\371\345\207:\375ܜ%d"}, <No data fields>}
+
+Thread 1 "aib-loadblk" hit Breakpoint 2, CAuxPow::CheckMerkleBranch (this=0xfdfaf0, hash=..., vMerkleBranch=std::vector of length 0, capacity 0, nIndex=0) at auxpow/auxpow.cpp:16
+16	  if (nIndex == -1)
+18	  for (std::vector<uint256>::const_iterator it(vMerkleBranch.begin()); it != vMerkleBranch.end(); ++it)
+26	  return thash;
+$5 = {<base_blob<256u>> = {static WIDTH = 32, data = "\322n\267\223\271\326ْѕ\311U\036\276f\236!\035e\025:\fX\371\345\207:\375ܜ%d"}, <No data fields>}
+27	}
+CheckAuxpow (auxPow=std::shared_ptr (count 2, weak 0) 0xfdfaf0, hashAuxBlock=..., nChainID=37, params=...) at ./auxpow/check.h:32
+32	        return error("Aux POW merkle root incorrect");
+$6 = {<base_blob<256u>> = {static WIDTH = 32, data = "\335,8\030\237\377\245\342\066%\005\227\201|\335\001u\337<\374&\324\021\230\360;+\037\345\001p\016"}, <No data fields>}
+$7 = 37
+$8 = (const uint256 &) @0x7fffffffae50: {<base_blob<256u>> = {static WIDTH = 32, data = "\001\033\035\032\310PY+\354\022{\321\367\352\n_\375\237'`\311\376\356\337R\202\314K+\376Z*"}, <No data fields>}
+$9 = "2a5afe2b4bcc8252dfeefec960279ffd5f0aeaf7d17b12ec2b5950c81a1d1b01"
+$10 = "c81e4492524981cd76942e248b3d4e9eb4138f833ea749066c8b9eca75c0c973"
+$11 = (const uint256 &) @0xfdf538: {<base_blob<256u>> = {static WIDTH = 32, data = "\322n\267\223\271\326ْѕ\311U\036\276f\236!\035e\025:\fX\371\345\207:\375ܜ%d"}, <No data fields>}
+$12 = "64259cdcfd3a87e5f9580c3a15651d219e66be1e55c995d192d9d6b993b76ed2"
+$13 = {<base_blob<256u>> = {static WIDTH = 32, data = "\335,8\030\237\377\245\342\066%\005\227\201|\335\001u\337<\374&\324\021\230\360;+\037\345\001p\016"}, <No data fields>}
+$14 = "0e7001e51f2b3bf09811d426fc3cdf7501dd7c8197052536e2a5ff9f18382cdd"
+Starting program: /root/tmp/aib-core_0.17/src/aibd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff28dc700 (LWP 18389)]
+[New Thread 0x7ffff20db700 (LWP 18390)]
+[New Thread 0x7ffff18da700 (LWP 18391)]
+[New Thread 0x7ffff10d9700 (LWP 18392)]
+[New Thread 0x7ffff08d8700 (LWP 18393)]
+[New Thread 0x7fffdbfff700 (LWP 18394)]
+[New Thread 0x7fffd3fff700 (LWP 18395)]
+[New Thread 0x7fffdb7fe700 (LWP 18396)]
+[New Thread 0x7fffdaffd700 (LWP 18397)]
+[New Thread 0x7fffda7fc700 (LWP 18398)]
+[New Thread 0x7fffd9ffb700 (LWP 18399)]
+[New Thread 0x7fffd97fa700 (LWP 18400)]
+[New Thread 0x7fffd8ff9700 (LWP 18401)]
+
+Thread 1 "aib-loadblk" hit Breakpoint 2, CAuxPow::CheckMerkleBranch (this=0xfdfaf0, hash=..., vMerkleBranch=std::vector of length 3, capacity 3 = {...}, nIndex=7) at auxpow/auxpow.cpp:16
+16	  if (nIndex == -1)
+18	  for (std::vector<uint256>::const_iterator it(vMerkleBranch.begin()); it != vMerkleBranch.end(); ++it)
+20	    if (nIndex & 1)
+21	      thash = Hash(BEGIN(*it), END(*it), BEGIN(thash), END(thash));
+24	    nIndex >>= 1;
+18	  for (std::vector<uint256>::const_iterator it(vMerkleBranch.begin()); it != vMerkleBranch.end(); ++it)
+20	    if (nIndex & 1)
+21	      thash = Hash(BEGIN(*it), END(*it), BEGIN(thash), END(thash));
+24	    nIndex >>= 1;
+18	  for (std::vector<uint256>::const_iterator it(vMerkleBranch.begin()); it != vMerkleBranch.end(); ++it)
+20	    if (nIndex & 1)
+21	      thash = Hash(BEGIN(*it), END(*it), BEGIN(thash), END(thash));
+24	    nIndex >>= 1;
+18	  for (std::vector<uint256>::const_iterator it(vMerkleBranch.begin()); it != vMerkleBranch.end(); ++it)
+26	  return thash;
+$15 = "c81e4492524981cd76942e248b3d4e9eb4138f833ea749066c8b9eca75c0c973"
+27	}
+CheckAuxpow (auxPow=std::shared_ptr (count 2, weak 0) 0xfdfaf0, hashAuxBlock=..., nChainID=37, params=...) at ./auxpow/check.h:26
+26	    std::vector<unsigned char> vchRootHash(nRootHash.begin(), nRootHash.end());
+27	    std::reverse(vchRootHash.begin(), vchRootHash.end()); // correct endian
+30	    if (auxPow->CheckMerkleBranch(auxPow->GetHash(), auxPow->vMerkleBranch, auxPow->nIndex) != auxPow->parentBlockHeader.hashMerkleRoot)
+std::__shared_ptr<CAuxPow, (__gnu_cxx::_Lock_policy)2>::operator-> (this=0x7fffffffad20) at /usr/include/c++/5/bits/shared_ptr_base.h:1055
+1055		return _M_ptr;
+1056	      }
+
+Thread 1 "aib-loadblk" hit Breakpoint 2, CAuxPow::CheckMerkleBranch (this=0xfdfaf0, hash=..., vMerkleBranch=std::vector of length 0, capacity 0, nIndex=0) at auxpow/auxpow.cpp:16
+16	  if (nIndex == -1)
+18	  for (std::vector<uint256>::const_iterator it(vMerkleBranch.begin()); it != vMerkleBranch.end(); ++it)
+26	  return thash;
+27	}
+$16 = {<base_blob<256u>> = {static WIDTH = 32, data = "\322n\267\223\271\326ْѕ\311U\036\276f\236!\035e\025:\fX\371\345\207:\375ܜ%d"}, <No data fields>}
+$17 = "64259cdcfd3a87e5f9580c3a15651d219e66be1e55c995d192d9d6b993b76ed2"
+CheckAuxpow (auxPow=std::shared_ptr (count 2, weak 0) 0xfdfaf0, hashAuxBlock=..., nChainID=37, params=...) at ./auxpow/check.h:32
+32	        return error("Aux POW merkle root incorrect");
+$18 = "0e7001e51f2b3bf09811d426fc3cdf7501dd7c8197052536e2a5ff9f18382cdd"
