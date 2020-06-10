@@ -174,7 +174,7 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
         choke
         #endif
       ]])],
-      [ AC_MSG_RESULT(yes); QT_PIE_FLAGS=$PIC_FLAGS],
+      [ AC_MSG_RESULT(yes); QT_PIE_FLAGS=$PIE_FLAGS],
       [ AC_MSG_RESULT(no); QT_PIE_FLAGS=$PIC_FLAGS]
     )
     CPPFLAGS=$TEMP_CPPFLAGS
