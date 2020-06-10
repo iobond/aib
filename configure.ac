@@ -691,8 +691,7 @@ if test x$use_hardening != xno; then
   AX_CHECK_LINK_FLAG([[-Wl,--high-entropy-va]], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,--high-entropy-va"])
   AX_CHECK_LINK_FLAG([[-Wl,-z,relro]], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-z,relro"])
   AX_CHECK_LINK_FLAG([[-Wl,-z,now]], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-z,now"])
-  AX_CHECK_LINK_FLAG([[-fPIC -pie]], [PIE_FLAGS="-fPIC"; HARDENED_LDFLAGS="$HARDENED_LDFLAGS -pie"],, [[$CXXFLAG_WERROR]])
-#  AX_CHECK_LINK_FLAG([[-fPIE -pie]], [PIE_FLAGS="-fPIE"; HARDENED_LDFLAGS="$HARDENED_LDFLAGS -pie"],, [[$CXXFLAG_WERROR]])
+  AX_CHECK_LINK_FLAG([[-fPIC -pic]], [PIC_FLAGS="-fPIC"; HARDENED_LDFLAGS="$HARDENED_LDFLAGS -pic"],, [[$CXXFLAG_WERROR]])
 
   case $host in
     *mingw*)
