@@ -358,7 +358,7 @@
         <translation>Il Proxy è &lt;b&gt;enabled&lt;/b&gt;:%1</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Invia fondi ad un indirizzo Bitcoin</translation>
     </message>
     <message>

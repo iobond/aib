@@ -350,7 +350,7 @@
         <translation>Reindicizzazione dei blocchi sul disco...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Invia monete ad un indirizzo Bitcoin...</translation>
     </message>
     <message>

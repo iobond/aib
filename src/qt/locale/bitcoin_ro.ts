@@ -314,7 +314,7 @@
         <translation>Click pentru a permite, din nou, activitate rețelei.</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Trimite monedele către o adresă Bitcoin</translation>
     </message>
     <message>

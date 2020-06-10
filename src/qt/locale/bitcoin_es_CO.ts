@@ -319,7 +319,7 @@ Exportar los datos en la pestaña actual a un archivo</translation>
         <translation>Reindexando bloques en el disco ...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Enviando monedas a una dirección de Bitcoin</translation>
     </message>
     <message>

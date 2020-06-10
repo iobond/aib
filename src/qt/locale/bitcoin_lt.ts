@@ -170,7 +170,7 @@
         <translation>Blokai iš naujo indeksuojami...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Siųsti monetas Bitcoin adresui</translation>
     </message>
     <message>

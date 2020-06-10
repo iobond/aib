@@ -346,7 +346,7 @@
         <translation>Reindekserer blokker på harddisk...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Send til en Bitcoin-adresse</translation>
     </message>
     <message>

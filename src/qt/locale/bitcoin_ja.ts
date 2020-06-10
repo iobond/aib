@@ -358,7 +358,7 @@
         <translation>プロキシは &lt;b&gt;有効&lt;/b&gt;です: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Bitcoin アドレスにコインを送る</translation>
     </message>
     <message>

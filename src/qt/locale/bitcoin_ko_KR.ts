@@ -358,7 +358,7 @@
         <translation>프록시가 &lt;b&gt;활성화&lt;/b&gt; 되었습니다: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>비트코인 주소로 코인 전송</translation>
     </message>
     <message>

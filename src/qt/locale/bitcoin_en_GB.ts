@@ -350,8 +350,8 @@
         <translation>Reindexing blocks on disk...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
-        <translation>Send coins to a Bitcoin address</translation>
+        <source>send coins to a AIB address</source>
+        <translation>send coins to a AIB address</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>

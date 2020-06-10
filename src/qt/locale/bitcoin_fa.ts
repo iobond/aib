@@ -318,7 +318,7 @@
         <translation>بازنشانی بلوک‌ها روی دیسک...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>ارسال وجه به نشانی بیت‌کوین</translation>
     </message>
     <message>

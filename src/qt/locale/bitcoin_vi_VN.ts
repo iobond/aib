@@ -331,7 +331,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Đánh chỉ số (indexing) lại các khối (blocks) trên ổ đĩa ...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Gửi coins đến tài khoản Bitcoin</translation>
     </message>
     <message>

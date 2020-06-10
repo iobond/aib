@@ -338,7 +338,7 @@
         <translation>Khôi phục các khối trên ổ đĩa...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Gửi coin đến một địa chỉ Bitcoin</translation>
     </message>
     <message>

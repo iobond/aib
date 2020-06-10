@@ -302,7 +302,7 @@
         <translation>Пераіндэксацыя блокаў на дыску...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Даслаць манеты на Біткойн-адрас</translation>
     </message>
     <message>

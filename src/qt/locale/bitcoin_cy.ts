@@ -334,7 +334,7 @@
         <translation>Ailfynegi y blociau ar ddisg...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Anfon arian i gyfeiriad Bitcoin</translation>
     </message>
     <message>

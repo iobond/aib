@@ -118,7 +118,7 @@
         <translation>Recreans indicem frustorum in disco...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Mitte nummos ad inscriptionem Bitcoin</translation>
     </message>
     <message>

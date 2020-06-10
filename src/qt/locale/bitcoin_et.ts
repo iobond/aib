@@ -294,7 +294,7 @@
         <translation>Kettal olevate blokkide re-indekseerimine...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Saada münte Bitcoini aadressile</translation>
     </message>
     <message>

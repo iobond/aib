@@ -346,7 +346,7 @@
         <translation>فهرست‌بندی نمایه بلاک‌ها…</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>ارسال کوین به آدرس بیت کوین</translation>
     </message>
     <message>

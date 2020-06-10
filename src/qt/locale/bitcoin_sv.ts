@@ -347,7 +347,7 @@ Var vänlig och försök igen.</translation>
         <translation>Återindexerar block på disken...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Skicka bitcoin till en Bitcoin-adress</translation>
     </message>
     <message>

@@ -346,7 +346,7 @@
         <translation>Cargando el index de bloques...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Enviar monedas a una dirección bitcoin</translation>
     </message>
     <message>

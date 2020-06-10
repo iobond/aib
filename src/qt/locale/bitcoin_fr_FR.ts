@@ -346,7 +346,7 @@
         <translation>Réindexer les blocs sur le disque...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Envoyer des pièces à une adresse Bitcoin</translation>
     </message>
     <message>

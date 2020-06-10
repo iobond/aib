@@ -334,7 +334,7 @@
         <translation>Повторно индексиране на блоковете на диска...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Изпращане към Биткоин адрес</translation>
     </message>
     <message>

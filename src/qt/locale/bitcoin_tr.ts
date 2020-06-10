@@ -346,7 +346,7 @@
         <translation>Diskteki bloklar yeniden indeksleniyor...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Bir bitcoin adresine bitcoin gönder</translation>
     </message>
     <message>

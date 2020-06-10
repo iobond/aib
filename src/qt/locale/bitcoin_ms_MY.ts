@@ -358,7 +358,7 @@ Alihkan fail data ke dalam tab semasa</translation>
         <translation>Reindexi blok pada cakera...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Menghantar koin kepada alamat Bitcoin</translation>
     </message>
     <message>

@@ -358,7 +358,7 @@
         <translation>Le serveur mandataire est &lt;b&gt;activé&lt;/b&gt; : %1</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Envoyer des pièces à une adresse Bitcoin</translation>
     </message>
     <message>

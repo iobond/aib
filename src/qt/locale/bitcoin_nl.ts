@@ -358,7 +358,7 @@
         <translation>Proxy is &lt;b&gt;ingeschakeld&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Verstuur munten naar een Bitcoinadres</translation>
     </message>
     <message>

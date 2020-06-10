@@ -338,7 +338,7 @@
         <translation>Ponovo obeležavam blokove na disku...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Pošalji novčiće na Bitcoin adresu</translation>
     </message>
     <message>

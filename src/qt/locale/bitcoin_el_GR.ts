@@ -342,7 +342,7 @@
         <translation>Φόρτωση ευρετηρίου μπλοκ στον σκληρό δίσκο...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Στείλε νομίσματα σε μια διεύθυνση bitcoin</translation>
     </message>
     <message>

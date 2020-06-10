@@ -358,7 +358,7 @@
         <translation>Välipalvelin on &lt;b&gt;käytössä&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>send coins to a AIB address</source>
         <translation>Lähetä kolikoita Bitcoin-osoitteeseen</translation>
     </message>
     <message>
