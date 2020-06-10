@@ -158,7 +158,7 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
 
   if test "x$use_hardening" != xno; then
     BITCOIN_QT_CHECK([
-    AC_MSG_CHECKING(whether -fPIE can be used with this Qt config)
+    AC_MSG_CHECKING(whether -fPIC can be used with this Qt config)
     TEMP_CPPFLAGS=$CPPFLAGS
     TEMP_CXXFLAGS=$CXXFLAGS
     CPPFLAGS="$QT_INCLUDES $CPPFLAGS"
