@@ -71,7 +71,7 @@
 
 //Wallet starting letter
 #define WTMINT_PUBKEY_ADDRESS 23    // Dec.  Start with Capital A
-#define WTMINT_SCRPIT_ADDRESS 5     // Dec.  Start with Smallcase a
+#define WTMINT_SCRPIT_ADDRESS 23    // Dec.  Start with Capital A
 #define WTMINT_SECRET_ADDRESS 151   // Dec.
 
 #define WTMINT_TESTNET_PUBKEY_ADDRESS 65 // Dec.
