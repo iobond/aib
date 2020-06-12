@@ -1,15 +1,18 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2014 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <chain.h>
-#include <txdb.h>
+#include "chain.h"
+#include "txdb.h"
+
+using namespace std;
+
 /**
  * CChain implementation
  */
 void CChain::SetTip(CBlockIndex *pindex) {
-    if (pindex == nullptr) {
+    if (pindex == NULL) {
         vChain.clear();
         return;
     }
@@ -20,8 +23,17 @@ void CChain::SetTip(CBlockIndex *pindex) {
     }
 }
 
-CBlockHeader CBlockIndex::GetBlockHeader(const std::map<uint256, std::shared_ptr<CAuxPow> >& mapDirtyAuxPow) const
-{
+std::string CDiskBlockIndex::ToString() const {
+    std::string str = "CDiskBlockIndex(";
+    str += CBlockIndex::ToString();
+    str += strprintf("\n                hashBlock=%s, hashPrev=%s, hashParentBlock=%s)",
+            GetBlockHash().ToString(),
+            hashPrev.ToString(),
+            (auxpow.get() != NULL) ? auxpow->GetParentBlockHash().ToString() : "-");
+    return str;
+}
+
+CBlockHeader CBlockIndex::GetBlockHeader(const std::map<uint256, std::shared_ptr<CAuxPow> >& mapDirtyAuxPow) const {
     extern CBlockTreeDB *pblocktree;
     CBlockHeader block;
 
@@ -34,18 +46,18 @@ CBlockHeader CBlockIndex::GetBlockHeader(const std::map<uint256, std::shared_ptr
             // auxpow is not in memory, load CDiskBlockHeader
             // from database to get it
 
-            assert(pblocktree->ReadDiskBlockIndex(*phashBlock, diskblockindex));
+            pblocktree->ReadDiskBlockIndex(*phashBlock, diskblockindex);
             block.auxpow = diskblockindex.auxpow;
         }
     }
 
-    block.nVersion       = nVersion;
+    block.nVersion = nVersion;
     if (pprev)
         block.hashPrevBlock = pprev->GetBlockHash();
     block.hashMerkleRoot = hashMerkleRoot;
-    block.nTime          = nTime;
-    block.nBits          = nBits;
-    block.nNonce         = nNonce;
+    block.nTime = nTime;
+    block.nBits = nBits;
+    block.nNonce = nNonce;
     return block;
 }
 
@@ -73,13 +85,12 @@ CBlockLocator CChain::GetLocator(const CBlockIndex *pindex) const {
         if (vHave.size() > 10)
             nStep *= 2;
     }
-
     return CBlockLocator(vHave);
 }
 
 const CBlockIndex *CChain::FindFork(const CBlockIndex *pindex) const {
-    if (pindex == nullptr) {
-        return nullptr;
+    if (pindex == NULL) {
+        return NULL;
     }
     if (pindex->nHeight > Height())
         pindex = pindex->GetAncestor(Height());
@@ -88,15 +99,10 @@ const CBlockIndex *CChain::FindFork(const CBlockIndex *pindex) const {
     return pindex;
 }
 
-CBlockIndex* CChain::FindEarliestAtLeast(int64_t nTime) const
-{
-    std::vector<CBlockIndex*>::const_iterator lower = std::lower_bound(vChain.begin(), vChain.end(), nTime,
-        [](CBlockIndex* pBlock, const int64_t& time) -> bool { return pBlock->GetBlockTimeMax() < time; });
-    return (lower == vChain.end() ? nullptr : *lower);
-}
-
 /** Turn the lowest '1' bit in the binary representation of a number into a '0'. */
-int static inline InvertLowestOne(int n) { return n & (n - 1); }
+int static inline InvertLowestOne(int n) {
+    return n & (n - 1);
+}
 
 /** Compute what height to jump back to with the CBlockIndex::pskip pointer. */
 int static inline GetSkipHeight(int height) {
@@ -109,21 +115,19 @@ int static inline GetSkipHeight(int height) {
     return (height & 1) ? InvertLowestOne(InvertLowestOne(height - 1)) + 1 : InvertLowestOne(height);
 }
 
-const CBlockIndex* CBlockIndex::GetAncestor(int height) const
-{
-    if (height > nHeight || height < 0) {
-        return nullptr;
-    }
+CBlockIndex* CBlockIndex::GetAncestor(int height) {
+    if (height > nHeight || height < 0)
+        return NULL;
 
-    const CBlockIndex* pindexWalk = this;
+    CBlockIndex* pindexWalk = this;
     int heightWalk = nHeight;
     while (heightWalk > height) {
         int heightSkip = GetSkipHeight(heightWalk);
         int heightSkipPrev = GetSkipHeight(heightWalk - 1);
-        if (pindexWalk->pskip != nullptr &&
-            (heightSkip == height ||
-             (heightSkip > height && !(heightSkipPrev < heightSkip - 2 &&
-                                       heightSkipPrev >= height)))) {
+        if (pindexWalk->pskip != NULL &&
+                (heightSkip == height ||
+                (heightSkip > height && !(heightSkipPrev < heightSkip - 2 &&
+                heightSkipPrev >= height)))) {
             // Only follow pskip if pprev->pskip isn't better than pskip->pprev.
             pindexWalk = pindexWalk->pskip;
             heightWalk = heightSkip;
@@ -136,19 +140,16 @@ const CBlockIndex* CBlockIndex::GetAncestor(int height) const
     return pindexWalk;
 }
 
-CBlockIndex* CBlockIndex::GetAncestor(int height)
-{
-    return const_cast<CBlockIndex*>(static_cast<const CBlockIndex*>(this)->GetAncestor(height));
+const CBlockIndex* CBlockIndex::GetAncestor(int height) const {
+    return const_cast<CBlockIndex*> (this)->GetAncestor(height);
 }
 
-void CBlockIndex::BuildSkip()
-{
+void CBlockIndex::BuildSkip() {
     if (pprev)
         pskip = pprev->GetAncestor(GetSkipHeight(nHeight));
 }
 
-arith_uint256 GetBlockProof(const CBlockIndex& block)
-{
+arith_uint256 GetBlockProof(const CBlockIndex& block) {
     arith_uint256 bnTarget;
     bool fNegative;
     bool fOverflow;
@@ -156,14 +157,13 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
     if (fNegative || fOverflow || bnTarget == 0)
         return 0;
     // We need to compute 2**256 / (bnTarget+1), but we can't represent 2**256
-    // as it's too large for an arith_uint256. However, as 2**256 is at least as large
+    // as it's too large for a arith_uint256. However, as 2**256 is at least as large
     // as bnTarget+1, it is equal to ((2**256 - bnTarget - 1) / (bnTarget+1)) + 1,
-    // or ~bnTarget / (bnTarget+1) + 1.
+    // or ~bnTarget / (nTarget+1) + 1.
     return (~bnTarget / (bnTarget + 1)) + 1;
 }
 
-int64_t GetBlockProofEquivalentTime(const CBlockIndex& to, const CBlockIndex& from, const CBlockIndex& tip, const Consensus::Params& params)
-{
+int64_t GetBlockProofEquivalentTime(const CBlockIndex& to, const CBlockIndex& from, const CBlockIndex& tip, const Consensus::Params& params) {
     arith_uint256 r;
     int sign = 1;
     if (to.nChainWork > from.nChainWork) {
@@ -177,23 +177,4 @@ int64_t GetBlockProofEquivalentTime(const CBlockIndex& to, const CBlockIndex& fr
         return sign * std::numeric_limits<int64_t>::max();
     }
     return sign * r.GetLow64();
-}
-
-/** Find the last common ancestor two blocks have.
- *  Both pa and pb must be non-nullptr. */
-const CBlockIndex* LastCommonAncestor(const CBlockIndex* pa, const CBlockIndex* pb) {
-    if (pa->nHeight > pb->nHeight) {
-        pa = pa->GetAncestor(pb->nHeight);
-    } else if (pb->nHeight > pa->nHeight) {
-        pb = pb->GetAncestor(pa->nHeight);
-    }
-
-    while (pa != pb && pa && pb) {
-        pa = pa->pprev;
-        pb = pb->pprev;
-    }
-
-    // Eventually all chain branches meet at the genesis block.
-    assert(pa == pb);
-    return pa;
 }

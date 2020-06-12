@@ -1,4 +1,4 @@
-dnl Copyright (c) 2015-2019 The AIB Community developers
+dnl Copyright (c) 2015-2020 The AIB Core developers
 dnl Distributed under the MIT software license, see the accompanying
 dnl file COPYING or http://www.opensource.org/licenses/mit-license.php.
 

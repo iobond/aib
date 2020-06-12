@@ -1,17 +1,16 @@
 #!/bin/sh
-# Copyright (c) 2015-2019 The AIB Community developers
+# Copyright (c) 2015-2020 The AIB Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-export LC_ALL=C
 set -e
 
 ROOTDIR=dist
-BUNDLE="${ROOTDIR}/Bitcoin-Qt.app"
+BUNDLE="${ROOTDIR}/AIBCore.app"
 CODESIGN=codesign
 TEMPDIR=sign.temp
 TEMPLIST=${TEMPDIR}/signatures.txt
-OUT=signature-osx.tar.gz
+OUT=signature.tar.gz
 OUTROOT=osx
 
 if [ ! -n "$1" ]; then
@@ -41,7 +40,7 @@ grep CodeResources < "${TEMPLIST}" | while read i; do
   RESOURCE="${TEMPDIR}/${OUTROOT}/${TARGETFILE}"
   DIRNAME="`dirname "${RESOURCE}"`"
   mkdir -p "${DIRNAME}"
-  echo "Adding resource for: \"${TARGETFILE}\""
+  echo "Adding resource for: "${TARGETFILE}""
   cp "${i}" "${RESOURCE}"
 done
 

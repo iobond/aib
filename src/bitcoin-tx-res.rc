@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "AIB"
-            VALUE "FileDescription",    "aib-tx (CLI AIB transaction editor utility)"
+            VALUE "CompanyName",        "Aib"
+            VALUE "FileDescription",    "aib-tx (CLI Aib transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "aib-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR

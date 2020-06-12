@@ -26,10 +26,6 @@
         <translation>Одоо сонгогдсон байгаа хаягуудыг жагсаалтаас устгах</translation>
     </message>
     <message>
-        <source>Enter address or label to search</source>
-        <translation>Хайлт хийхийн тулд хаяг эсвэл шошгыг оруул</translation>
-    </message>
-    <message>
         <source>Export the data in the current tab to a file</source>
         <translation>Сонгогдсон таб дээрхи дата-г экспортлох</translation>
     </message>
@@ -181,7 +177,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Түрүйвч &lt;b&gt;цоожтой&lt;/b&gt; ба одоогоор цоож &lt;b&gt;хаалттай&lt;/b&gt; байна</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -229,23 +225,16 @@
         <source>version</source>
         <translation>хувилбар</translation>
     </message>
+    <message>
+        <source>Usage:</source>
+        <translation>Хэрэглээ:</translation>
+    </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>Bitcoin</source>
-        <translation>Биткойн</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Алдаа</translation>
-    </message>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    <message>
-        <source>Last block time</source>
-        <translation>Сүүлийн блокийн хугацаа</translation>
     </message>
     </context>
 <context>
@@ -278,10 +267,6 @@
         <translation>Ѳѳрчлѳлтүүдийг идэвхижүүлхийн тулд клиентийг ахин эхлүүлэх шаардлагтай</translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation>Алдаа</translation>
-    </message>
-    <message>
         <source>This change would require a client restart.</source>
         <translation>Энэ ѳѳрчлѳлтийг оруулахын тулд кли1нт програмыг ахин эхлүүлэх шаардлагтай</translation>
     </message>
@@ -309,13 +294,6 @@
         <source>N/A</source>
         <translation>Алга Байна</translation>
     </message>
-    <message>
-        <source>unknown</source>
-        <translation>үл мэдэгдэх</translation>
-    </message>
-</context>
-<context>
-    <name>QObject::QObject</name>
     </context>
 <context>
     <name>QRImageWidget</name>
@@ -407,10 +385,6 @@
     <message>
         <source>Copy &amp;Address</source>
         <translation>Хаягийг &amp;Хуулбарлах</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Түрүйвч</translation>
     </message>
     </context>
 <context>
@@ -564,8 +538,24 @@
 <context>
     <name>bitcoin-core</name>
     <message>
+        <source>Options:</source>
+        <translation>Сонголтууд:</translation>
+    </message>
+    <message>
+        <source>Wallet options:</source>
+        <translation>Түрүйвчийн сонголтууд:</translation>
+    </message>
+    <message>
         <source>Information</source>
         <translation>Мэдээллэл</translation>
+    </message>
+    <message>
+        <source>Loading addresses...</source>
+        <translation>Хаягуудыг ачааллаж байна...</translation>
+    </message>
+    <message>
+        <source>Invalid -proxy address: '%s'</source>
+        <translation>Эдгээр прокси хаягнууд буруу байна: '%s'</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -574,6 +564,10 @@
     <message>
         <source>Loading block index...</source>
         <translation>Блокийн индексүүдийг ачааллаж байна...</translation>
+    </message>
+    <message>
+        <source>Add a node to connect to and attempt to keep the connection open</source>
+        <translation>Холболт хийхийн тулд мѳн холболтой онгорхой хадгалхын тулд шинэ нод нэм</translation>
     </message>
     <message>
         <source>Loading wallet...</source>

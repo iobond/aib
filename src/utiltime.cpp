@@ -1,40 +1,33 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2015 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/bitcoin-config.h>
+#include "config/bitcoin-config.h"
 #endif
 
-#include <utiltime.h>
+#include "utiltime.h"
 
-#include <atomic>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread.hpp>
-#include <ctime>
-#include <tinyformat.h>
 
-static std::atomic<int64_t> nMockTime(0); //!< For unit testing
+using namespace std;
+
+static int64_t nMockTime = 0; //!< For unit testing
 
 int64_t GetTime()
 {
-    int64_t mocktime = nMockTime.load(std::memory_order_relaxed);
-    if (mocktime) return mocktime;
+    if (nMockTime) return nMockTime;
 
-    time_t now = time(nullptr);
+    time_t now = time(NULL);
     assert(now > 0);
     return now;
 }
 
 void SetMockTime(int64_t nMockTimeIn)
 {
-    nMockTime.store(nMockTimeIn, std::memory_order_relaxed);
-}
-
-int64_t GetMockTime()
-{
-    return nMockTime.load(std::memory_order_relaxed);
+    nMockTime = nMockTimeIn;
 }
 
 int64_t GetTimeMillis()
@@ -53,16 +46,19 @@ int64_t GetTimeMicros()
     return now;
 }
 
-int64_t GetSystemTimeInSeconds()
+/** Return a time useful for the debug log */
+int64_t GetLogTimeMicros()
 {
-    return GetTimeMicros()/1000000;
+    if (nMockTime) return nMockTime*1000000;
+
+    return GetTimeMicros();
 }
 
 void MilliSleep(int64_t n)
 {
 
 /**
- * Boost's sleep_for was uninterruptible when backed by nanosleep from 1.50
+ * Boost's sleep_for was uninterruptable when backed by nanosleep from 1.50
  * until fixed in 1.52. Use the deprecated sleep method for the broken case.
  * See: https://svn.boost.org/trac/boost/ticket/7238
  */
@@ -76,35 +72,12 @@ void MilliSleep(int64_t n)
 #endif
 }
 
-std::string FormatISO8601DateTime(int64_t nTime) {
-    struct tm ts;
-    time_t time_val = nTime;
-#ifdef _MSC_VER
-    gmtime_s(&ts, &time_val);
-#else
-    gmtime_r(&time_val, &ts);
-#endif
-    return strprintf("%04i-%02i-%02iT%02i:%02i:%02iZ", ts.tm_year + 1900, ts.tm_mon + 1, ts.tm_mday, ts.tm_hour, ts.tm_min, ts.tm_sec);
-}
-
-std::string FormatISO8601Date(int64_t nTime) {
-    struct tm ts;
-    time_t time_val = nTime;
-#ifdef _MSC_VER
-    gmtime_s(&ts, &time_val);
-#else
-    gmtime_r(&time_val, &ts);
-#endif
-    return strprintf("%04i-%02i-%02i", ts.tm_year + 1900, ts.tm_mon + 1, ts.tm_mday);
-}
-
-std::string FormatISO8601Time(int64_t nTime) {
-    struct tm ts;
-    time_t time_val = nTime;
-#ifdef _MSC_VER
-    gmtime_s(&ts, &time_val);
-#else
-    gmtime_r(&time_val, &ts);
-#endif
-    return strprintf("%02i:%02i:%02iZ", ts.tm_hour, ts.tm_min, ts.tm_sec);
+std::string DateTimeStrFormat(const char* pszFormat, int64_t nTime)
+{
+    // std::locale takes ownership of the pointer
+    std::locale loc(std::locale::classic(), new boost::posix_time::time_facet(pszFormat));
+    std::stringstream ss;
+    ss.imbue(loc);
+    ss << boost::posix_time::from_time_t(nTime);
+    return ss.str();
 }

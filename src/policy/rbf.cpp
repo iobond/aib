@@ -1,12 +1,12 @@
-// Copyright (c) 2016-2018 The Bitcoin Core developers
+// Copyright (c) 2016 The Bitcoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <policy/rbf.h>
+#include "policy/rbf.h"
 
 bool SignalsOptInRBF(const CTransaction &tx)
 {
-    for (const CTxIn &txin : tx.vin) {
+    BOOST_FOREACH(const CTxIn &txin, tx.vin) {
         if (txin.nSequence < std::numeric_limits<unsigned int>::max()-1) {
             return true;
         }
@@ -22,13 +22,13 @@ RBFTransactionState IsRBFOptIn(const CTransaction &tx, CTxMemPool &pool)
 
     // First check the transaction itself.
     if (SignalsOptInRBF(tx)) {
-        return RBFTransactionState::REPLACEABLE_BIP125;
+        return RBF_TRANSACTIONSTATE_REPLACEABLE_BIP125;
     }
 
     // If this transaction is not in our mempool, then we can't be sure
     // we will know about all its inputs.
     if (!pool.exists(tx.GetHash())) {
-        return RBFTransactionState::UNKNOWN;
+        return RBF_TRANSACTIONSTATE_UNKNOWN;
     }
 
     // If all the inputs have nSequence >= maxint-1, it still might be
@@ -38,10 +38,10 @@ RBFTransactionState IsRBFOptIn(const CTransaction &tx, CTxMemPool &pool)
     CTxMemPoolEntry entry = *pool.mapTx.find(tx.GetHash());
     pool.CalculateMemPoolAncestors(entry, setAncestors, noLimit, noLimit, noLimit, noLimit, dummy, false);
 
-    for (CTxMemPool::txiter it : setAncestors) {
+    BOOST_FOREACH(CTxMemPool::txiter it, setAncestors) {
         if (SignalsOptInRBF(it->GetTx())) {
-            return RBFTransactionState::REPLACEABLE_BIP125;
+            return RBF_TRANSACTIONSTATE_REPLACEABLE_BIP125;
         }
     }
-    return RBFTransactionState::FINAL;
+    return RBF_TRANSACTIONSTATE_FINAL;
 }

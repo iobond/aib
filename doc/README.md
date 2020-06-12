@@ -1,61 +1,58 @@
-AIB Core
-=============
+Aibcoin Core 0.13.2
+=====================
 
 Setup
 ---------------------
-AIB Core is the original AIB client and it builds the backbone of the network. It downloads and, by default, stores the entire history of AIB transactions (which is currently more than 100 GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
-
-To download AIB Core, visit [aib.one](https://aib.one).
+[Aibcoin Core](http://aibcoin.org/en/download) is the original Aibcoin client and it builds the backbone of the network. However, it downloads and stores the entire history of Aibcoin transactions (which is currently several GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
 Running
 ---------------------
-The following are some helpful notes on how to run AIB Core on your native platform.
+The following are some helpful notes on how to run Aibcoin on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/aib-qt` (GUI) or
-- `bin/aibd` (headless)
+- `bin/aibcoin-qt` (GUI) or
+- `bin/aibcoind` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run aib-qt.exe.
+Unpack the files into a directory, and then run aibcoin-qt.exe.
 
-### macOS
+### OS X
 
-Drag AIB Core to your applications folder, and then run AIB Core.
+Drag Aibcoin-Core to your applications folder, and then run Aibcoin-Core.
 
 ### Need Help?
 
-* See the documentation at the [AIB Wiki](https://en.bitcoin.it/wiki/Main_Page)
+* See the documentation at the [Aibcoin Wiki](https://aibcoin.info/)
 for help and more information.
-* Ask for help on [#AIB](http://webchat.freenode.net?channels=bitcoin) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=bitcoin).
-* Ask for help on the [AIB Talk](https://bitcointalk.org/) forums, in the [Technical Support board](https://bitcointalk.org/index.php?board=4.0).
+* Ask for help on [#aibcoin](http://webchat.freenode.net?channels=aibcoin) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=aibcoin).
+* Ask for help on the [AibcoinTalk](https://aibcointalk.io/) forums.
 
 Building
 ---------------------
-The following are developer notes on how to build AIB Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Aibcoin on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
-- [Dependencies](dependencies.md)
-- [macOS Build Notes](build-osx.md)
+- [OS X Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
 - [Windows Build Notes](build-windows.md)
 - [OpenBSD Build Notes](build-openbsd.md)
-- [NetBSD Build Notes](build-netbsd.md)
 - [Gitian Building Guide](gitian-building.md)
 
 Development
 ---------------------
-The AIB repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Aibcoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
+- [Multiwallet Qt Development](multiwallet-qt.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
 - [Source Code Documentation (External Link)](https://dev.visucore.com/bitcoin/doxygen/)
 - [Translation Process](translation_process.md)
 - [Translation Strings Policy](translation_strings_policy.md)
-- [Travis CI](travis-ci.md)
+- [Unit Tests](unit-tests.md)
 - [Unauthenticated REST Interface](REST-interface.md)
 - [Shared Libraries](shared-libraries.md)
 - [BIPS](bips.md)
@@ -63,21 +60,17 @@ The AIB repo's [root README](/README.md) contains relevant information on the de
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [AIBTalk](https://bitcointalk.org/) forums, in the [Development & Technical Discussion board](https://bitcointalk.org/index.php?board=6.0).
-* Discuss project-specific development on #aib-core-dev on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=bitcoin-core-dev).
-* Discuss general AIB development on #aib-dev on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=bitcoin-dev).
+* Discuss on the [AibcoinTalk](https://aibcointalk.io/) forums.
+* Discuss project-specific development on #aibcoin on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=aibcoin).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
 - [Files](files.md)
-- [Fuzz-testing](fuzzing.md)
-- [Reduce Traffic](reduce-traffic.md)
 - [Tor Support](tor.md)
 - [Init Scripts (systemd/upstart/openrc)](init.md)
-- [ZMQ](zmq.md)
 
 License
 ---------------------
-Distributed under the [MIT software license](/COPYING).
+Distributed under the [MIT software license](http://www.opensource.org/licenses/mit-license.php).
 This product includes software developed by the OpenSSL Project for use in the [OpenSSL Toolkit](https://www.openssl.org/). This product includes
 cryptographic software written by Eric Young ([eay@cryptsoft.com](mailto:eay@cryptsoft.com)), and UPnP software written by Thomas Bernard.

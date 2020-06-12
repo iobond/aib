@@ -90,8 +90,8 @@
         <translation>&amp;செய்தியை சரிசெய்...</translation>
     </message>
     <message>
-        <source>Bitcoin</source>
-        <translation>Bitcoin</translation>
+        <source>AIB</source>
+        <translation>AIB</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -120,6 +120,14 @@
     <message>
         <source>&amp;Help</source>
         <translation>&amp;உதவி</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation><numerusform>%n மணி</numerusform><numerusform>%n மணி</numerusform></translation>
+    </message>
+    <message>
+        <source>%1 and %2</source>
+        <translation>%1 மற்றும் %2</translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -177,6 +185,10 @@
         <translation>விலை:</translation>
     </message>
     <message>
+        <source>Priority:</source>
+        <translation>முன்னுரிமை</translation>
+    </message>
+    <message>
         <source>Fee:</source>
         <translation>கட்டணம்:</translation>
     </message>
@@ -204,6 +216,10 @@
         <source>Confirmed</source>
         <translation>உறுதியாக</translation>
     </message>
+    <message>
+        <source>Priority</source>
+        <translation>முன்னுரிமை</translation>
+    </message>
     </context>
 <context>
     <name>EditAddressDialog</name>
@@ -225,23 +241,8 @@
         <translation>நல்வரவு</translation>
     </message>
     <message>
-        <source>Bitcoin</source>
-        <translation>Bitcoin</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>தவறு</translation>
-    </message>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    <message>
-        <source>Form</source>
-        <translation>படிவம்</translation>
-    </message>
-    <message>
-        <source>Hide</source>
-        <translation>மறை</translation>
     </message>
     </context>
 <context>
@@ -317,10 +318,6 @@
         <source>none</source>
         <translation>none</translation>
     </message>
-    <message>
-        <source>Error</source>
-        <translation>தவறு</translation>
-    </message>
     </context>
 <context>
     <name>OverviewPage</name>
@@ -359,10 +356,10 @@
         <translation>பயனர் முகவர்</translation>
     </message>
     <message>
-        <source>Sent</source>
-        <translation>அனுப்பிய</translation>
+        <source>Ping Time</source>
+        <translation>பிங் நேரம்</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -389,30 +386,7 @@
         <source>%1 ms</source>
         <translation>%1 ms</translation>
     </message>
-    <message>
-        <source>%1 and %2</source>
-        <translation>%1 மற்றும் %2</translation>
-    </message>
-    <message>
-        <source>%1 B</source>
-        <translation>%1 B</translation>
-    </message>
-    <message>
-        <source>%1 KB</source>
-        <translation>%1 KB</translation>
-    </message>
-    <message>
-        <source>%1 MB</source>
-        <translation>%1 MB</translation>
-    </message>
-    <message>
-        <source>%1 GB</source>
-        <translation>%1 GB</translation>
-    </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
+</context>
 <context>
     <name>QRImageWidget</name>
     </context>
@@ -475,6 +449,10 @@
         <translation>&amp;பணியகம்</translation>
     </message>
     <message>
+        <source>&amp;Clear</source>
+        <translation>&amp;வழுநீக்கு</translation>
+    </message>
+    <message>
         <source>Totals</source>
         <translation>மொத்தம்</translation>
     </message>
@@ -503,8 +481,24 @@
         <translation>1 &amp;ஆண்டு</translation>
     </message>
     <message>
-        <source>via %1</source>
-        <translation>via %1</translation>
+        <source>%1 B</source>
+        <translation>%1 B</translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation>%1 KB</translation>
+    </message>
+    <message>
+        <source>%1 MB</source>
+        <translation>%1 MB</translation>
+    </message>
+    <message>
+        <source>%1 GB</source>
+        <translation>%1 GB</translation>
+    </message>
+    <message>
+        <source>aib %1</source>
+        <translation>aib %1</translation>
     </message>
     <message>
         <source>never</source>
@@ -580,10 +574,6 @@
         <source>Address</source>
         <translation>முகவரி</translation>
     </message>
-    <message>
-        <source>Wallet</source>
-        <translation>பணப்பை</translation>
-    </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
@@ -597,6 +587,10 @@
     <message>
         <source>Amount:</source>
         <translation>விலை</translation>
+    </message>
+    <message>
+        <source>Priority:</source>
+        <translation>முன்னுரிமை</translation>
     </message>
     <message>
         <source>Fee:</source>
@@ -617,6 +611,14 @@
     <message>
         <source>Hide</source>
         <translation>மறை</translation>
+    </message>
+    <message>
+        <source>normal</source>
+        <translation>இயல்பான</translation>
+    </message>
+    <message>
+        <source>fast</source>
+        <translation>வேகமாக</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -712,8 +714,12 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Bitcoin Core</source>
-        <translation>Bitcoin மையம்</translation>
+        <source>AIB</source>
+        <translation>AIB மையம்</translation>
+    </message>
+    <message>
+        <source>(default: %u)</source>
+        <translation>(default: %u)</translation>
     </message>
     <message>
         <source>Information</source>
@@ -722,6 +728,10 @@
     <message>
         <source>Warning</source>
         <translation>எச்சரிக்கை</translation>
+    </message>
+    <message>
+        <source>(default: %s)</source>
+        <translation>(default: %s)</translation>
     </message>
     <message>
         <source>Error</source>

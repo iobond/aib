@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "AIB"
-            VALUE "FileDescription",    "aibd (AIB node with a JSON-RPC server)"
+            VALUE "CompanyName",        "Aib"
+            VALUE "FileDescription",    "aibd (Aib node with a JSON-RPC server)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "aibd"
             VALUE "LegalCopyright",     COPYRIGHT_STR

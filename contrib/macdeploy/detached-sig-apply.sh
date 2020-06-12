@@ -1,9 +1,8 @@
 #!/bin/sh
-# Copyright (c) 2015-2019 The AIB Community developers
+# Copyright (c) 2015-2020 The AIB Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-export LC_ALL=C
 set -e
 
 UNSIGNED="$1"

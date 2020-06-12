@@ -1,16 +1,6 @@
 .vscode/
-release/
-
-src/aib-cli
-src/aib-tx
-src/aibd
-src/bench/bench_aib
-src/test/test_aib
-src/test/test_aib_fuzzy
-/nbproject
-.tx/
 *.tar.gz
-
+*.tgz
 *.exe
 src/bitcoin
 src/bitcoind
@@ -66,7 +56,7 @@ src/qt/test/moc*.cpp
 *.pyc
 *.o
 *.o-*
-# *.patch
+#*.patch
 *.a
 *.pb.cc
 *.pb.h
@@ -84,9 +74,10 @@ src/qt/test/moc*.cpp
 
 # Compilation and Qt preprocessor part
 *.qm
-# Makefile
+#Makefile
 bitcoin-qt
 Bitcoin-Qt.app
+background.tiff*
 
 # Unit-tests
 Makefile.test
