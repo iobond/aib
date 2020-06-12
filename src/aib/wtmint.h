@@ -87,7 +87,9 @@
 #define WTMINT_RPC_SUBJECT "AIB"
 
 // Moved to blockheader.h
-#define WTMINT_AUX_ChainID 0x0025  //Hex
+// https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+
+#define WTMINT_AUX_ChainID 0x0037  //Hex
 // moved to consensus.h
 #define WTMINT_AUX_StartBlock 3  // from block checking block 1 has 24xxxx block version so it's aux already
 // moved to pow.cpp

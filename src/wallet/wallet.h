@@ -167,11 +167,11 @@ private:
 public:
     uint256 hashBlock;
 
-    // Aib: SegWit removed the coinbase merkle tree and only included it for
-    // Aib: backwards compatibility with older bitcoin clients.
-    // Aib: Aib still needs it here
-    std::vector<uint256> vMerkleBranch;
-
+    // AIBcoin: SegWit removed the coinbase merkle tree and only included it for 
+    // AIBcoin: backwards compatibility with older bitcoin clients. 
+    // AIBcoin: Viacoin still needs it here 
+    std::vector<uint256> vMerkleBranch; 
+    
     /* An nIndex == -1 means that hashBlock (in nonzero) refers to the earliest
      * block in the chain we know this or any in-wallet dependency conflicts
      * with. Older clients interpret nIndex == -1 as unconfirmed for backward
