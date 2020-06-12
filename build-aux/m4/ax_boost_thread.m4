@@ -71,7 +71,7 @@ AC_DEFUN([AX_BOOST_THREAD],
 			 if test "x$host_os" = "xsolaris" ; then
 				 CXXFLAGS="-pthreads $CXXFLAGS"
 			 elif test "x$host_os" = "xmingw32" ; then
-				 CXXFLAGS="-mthreads $CXXFLAGS"
+				 CXXFLAGS="-pthreads $CXXFLAGS"
 			 else
 				CXXFLAGS="-pthread $CXXFLAGS"
 			 fi
@@ -86,7 +86,7 @@ AC_DEFUN([AX_BOOST_THREAD],
            if test "x$host_os" = "xsolaris" ; then
 			  BOOST_CPPFLAGS="-pthreads $BOOST_CPPFLAGS"
 		   elif test "x$host_os" = "xmingw32" ; then
-			  BOOST_CPPFLAGS="-mthreads $BOOST_CPPFLAGS"
+			  BOOST_CPPFLAGS="-pthreads $BOOST_CPPFLAGS"
 		   else
 			  BOOST_CPPFLAGS="-pthread $BOOST_CPPFLAGS"
 		   fi
