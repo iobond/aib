@@ -1,10 +1,11 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: AIB
-Upstream-Contact: AIB Core <aib@iobond.com>
-Source: https://github.com/iobond/aib
+Upstream-Name: Bitcoin
+Upstream-Contact: Satoshi Nakamoto <satoshin@gmx.com>
+ irc://#bitcoin@freenode.net
+Source: https://github.com/bitcoin/bitcoin
 
 Files: *
-Copyright (c) 2015-2020 The AIB Core developers
+Copyright: 2009-2016, Bitcoin Core Developers
 License: Expat
 Comment: The Bitcoin Core Developers encompasses the current developers listed on bitcoin.org,
          as well as the numerous contributors to the project.

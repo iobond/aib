@@ -1,5 +1,5 @@
 ---
-name: "aib-linux-0.14"
+name: "aibcoin-linux-0.14"
 enable_cache: true
 suites:
 - "trusty"

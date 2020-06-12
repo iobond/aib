@@ -1,5 +1,5 @@
 ---
-name: "aib-dmg-signer"
+name: "aibcoin-dmg-signer"
 suites:
 - "trusty"
 architectures:
@@ -7,10 +7,10 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/iobond/aib.git"
+- "url": "https://github.com/aibcoin/aibcoin-detached-sigs.git"
   "dir": "signature"
 files:
-- "aib-osx-unsigned.tar.gz"
+- "aibcoin-osx-unsigned.tar.gz"
 script: |
   WRAP_DIR=$HOME/wrapped
   mkdir -p ${WRAP_DIR}
@@ -27,8 +27,8 @@ script: |
     chmod +x ${WRAP_DIR}/${prog}
   done
 
-  UNSIGNED=aib-osx-unsigned.tar.gz
-  SIGNED=aib-osx-signed.dmg
+  UNSIGNED=aibcoin-osx-unsigned.tar.gz
+  SIGNED=aibcoin-osx-signed.dmg
 
   tar -xf ${UNSIGNED}
   OSX_VOLNAME="$(cat osx_volname)"

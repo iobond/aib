@@ -1,9 +1,9 @@
-AIB Core integration/staging tree
+AIB Core integration/staging tree [V5.14] Stable running version,Please use Branch V5.14
 =====================================
 
 [![Build Status](https://travis-ci.org/iobond/aib.svg?branch=master)](https://travis-ci.org/iobond/aib)
 
-https://aib.one
+https://www.aib.one
 
 What is AIB?
 ----------------
