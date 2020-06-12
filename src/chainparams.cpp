@@ -70,8 +70,11 @@
 #define WTMINT_ENFORCE_BIP66_HEIGHT 2400000 // TODO: AIB MERGE RECEHCK change to actual number after release 
 
 //Wallet starting letter
+//  https://en.bitcoin.it/wiki/Address
+// https://github.com/libbitcoin/libbitcoin-system/wiki/Altcoin-Version-Mappings#bip44-altcoin-version-mapping-table
+
 #define WTMINT_PUBKEY_ADDRESS 23    // Dec.  Start with Capital A
-#define WTMINT_SCRPIT_ADDRESS 23    // Dec.  Start with Capital A
+#define WTMINT_SCRPIT_ADDRESS 83    // Dec.  Start with Smallcase a
 #define WTMINT_SECRET_ADDRESS 151   // Dec.
 
 #define WTMINT_TESTNET_PUBKEY_ADDRESS 65 // Dec.
@@ -149,11 +152,6 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
     const char* pszTimestamp = WTMINT_pszTimestamp;
     const CScript genesisOutputScript = CScript() << ParseHex(WTMINT_scriptPubKey) << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
-	    // TODO: AIB MERGE REMOVE
-    /*const char* pszTimestamp = "NY Times 05/Oct/2011 Steve Jobs, Apple�s Visionary, Dies at 56";
-    const CScript genesisOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
-    return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
-    */
 }
 
 void CChainParams::UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout)
