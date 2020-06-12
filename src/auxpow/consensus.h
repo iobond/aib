@@ -15,8 +15,11 @@ const int START_MAINNET = WTMINT_AUX_StartBlock;
 const int START_TESTNET = 452608;
 const int START_REGTEST = 452608;
 
+// TODO: AIB MERGE remove
 // https://github.com/satoshilabs/slips/blob/master/slip-0044.md
-const int CHAIN_ID = 0x37;
+// const int CHAIN_ID = 0x37;
+const int CHAIN_ID = 0x25;
+
 enum
 {
     // primary version

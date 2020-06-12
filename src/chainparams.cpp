@@ -1,6 +1,6 @@
 
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
+// Copyright (c) 2015-2020 The AIB Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -29,7 +29,7 @@
 #define WTMINT_BLOCK_hashMerkleRoot	"0x85f6c5fd0e39b5aa8688a844b283accef86973fcfdb7deac12ab2d4bebdc7c82"
 
 #define WTMINT_TESTNET_GENESIS_BLOCK	"4843c056cccbd89dcc4324e2cae07051096f4c9fad0f8db49aa6f36363117bc2"
-#define WTMINT_TESTNET_BLOCK_nTime		1540597459
+#define WTMINT_TESTNET_BLOCK_nTime		1405168772
 #define WTMINT_TESTNET_BLOCK_nNonce		262929
 // TestNet uses same nBits as main net - WTMINT_BLOCK_nBits
 

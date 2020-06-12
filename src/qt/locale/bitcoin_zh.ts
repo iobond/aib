@@ -12,7 +12,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>AIBGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Error</source>
         <translation>错误</translation>
