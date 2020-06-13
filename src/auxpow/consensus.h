@@ -17,7 +17,8 @@ const int START_REGTEST = 452608;
 
 // TODO: AIB MERGE remove
 // https://github.com/satoshilabs/slips/blob/master/slip-0044.md
-const int CHAIN_ID = 0x37;
+// const int CHAIN_ID = 0x37;
+const int CHAIN_ID = 0x25;
 
 enum
 {
