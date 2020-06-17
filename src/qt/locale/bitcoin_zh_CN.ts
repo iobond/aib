@@ -63,11 +63,11 @@
     </message>
     <message>
         <source>These are your AIB addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>这些是你要付款过去的莱特币地址。在付钱之前，务必要检查金额和收款地址是否正确。</translation>
+        <translation>这些是你要付款过去的超联块地址。在付钱之前，务必要检查金额和收款地址是否正确。</translation>
     </message>
     <message>
         <source>These are your AIB addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>这些是你用来收款的莱特币地址。建议在每次交易时，都使用一个新的收款地址。</translation>
+        <translation>这些是你用来收款的超联块地址。建议在每次交易时，都使用一个新的收款地址。</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -169,7 +169,7 @@
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR AIBCOINS&lt;/b&gt;!</source>
-        <translation>警告: 如果把钱包加密后又忘记密码，你就会从此&lt;b&gt;失去其中所有的莱特币了&lt;/b&gt;！</translation>
+        <translation>警告: 如果把钱包加密后又忘记密码，你就会从此&lt;b&gt;失去其中所有的超联块了&lt;/b&gt;！</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -323,7 +323,7 @@
     </message>
     <message>
         <source>Send coins to a AIB address</source>
-        <translation>向一个莱特币地址发送莱特币</translation>
+        <translation>向一个超联块地址发送超联块</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -347,7 +347,7 @@
     </message>
     <message>
         <source>AIB</source>
-        <translation>莱特币</translation>
+        <translation>超联块</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -375,11 +375,11 @@
     </message>
     <message>
         <source>Sign messages with your AIB addresses to prove you own them</source>
-        <translation>用莱特币地址关联的私钥为消息签名，以证明您拥有这个莱特币地址</translation>
+        <translation>用超联块地址关联的私钥为消息签名，以证明您拥有这个超联块地址</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified AIB addresses</source>
-        <translation>校验消息，确保该消息是由指定的莱特币地址所有者签名的</translation>
+        <translation>校验消息，确保该消息是由指定的超联块地址所有者签名的</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -419,7 +419,7 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to AIB network</source>
-        <translation><numerusform>%n 个到莱特币网络的活动连接</numerusform></translation>
+        <translation><numerusform>%n 个到超联块网络的活动连接</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -803,7 +803,7 @@
     </message>
     <message>
         <source>The entered address "%1" is not a valid AIB address.</source>
-        <translation>输入的地址 %1 并不是有效的莱特币地址。</translation>
+        <translation>输入的地址 %1 并不是有效的超联块地址。</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -913,7 +913,7 @@
     </message>
     <message>
         <source>%1 will download and store a copy of the AIB block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>%1 会下载并存储一份莱特币区块链的副本。至少有 %2GB 的数据会存储到这个目录中，并且还会持续增长。另外钱包资料也会储存在这个目录。</translation>
+        <translation>%1 会下载并存储一份超联块区块链的副本。至少有 %2GB 的数据会存储到这个目录中，并且还会持续增长。另外钱包资料也会储存在这个目录。</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1059,7 +1059,7 @@
     </message>
     <message>
         <source>Automatically open the AIB client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自动在路由器中打开莱特币端口。只有当您的路由器开启了 UPnP 选项时此功能才有效。</translation>
+        <translation>自动在路由器中打开超联块端口。只有当您的路由器开启了 UPnP 选项时此功能才有效。</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1067,7 +1067,7 @@
     </message>
     <message>
         <source>Connect to the AIB network through a SOCKS5 proxy.</source>
-        <translation>通过 SOCKS5 代理连接莱特币网络。</translation>
+        <translation>通过 SOCKS5 代理连接超联块网络。</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1107,7 +1107,7 @@
     </message>
     <message>
         <source>Connect to the AIB network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>在 Tor 匿名网络下通过不同的 SOCKS5 代理连接莱特币网络</translation>
+        <translation>在 Tor 匿名网络下通过不同的 SOCKS5 代理连接超联块网络</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers aib Tor hidden services:</source>
@@ -1151,11 +1151,11 @@
     </message>
     <message>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>莱特币金额单位(&amp;U)：</translation>
+        <translation>超联块金额单位(&amp;U)：</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>选择莱特币单位。</translation>
+        <translation>选择超联块单位。</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1206,7 +1206,7 @@
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the AIB network after a connection is established, but this process has not completed yet.</source>
-        <translation>现在显示的消息可能是过期的。在连接上莱特币网络节点后，您的钱包将自动与网络同步，但是这个过程还没有完成。</translation>
+        <translation>现在显示的消息可能是过期的。在连接上超联块网络节点后，您的钱包将自动与网络同步，但是这个过程还没有完成。</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1298,7 +1298,7 @@
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid AIB address or malformed URI parameters.</source>
-        <translation>无法解析 URI 地址！可能是因为莱特币地址无效，或是 URI 参数格式错误。</translation>
+        <translation>无法解析 URI 地址！可能是因为超联块地址无效，或是 URI 参数格式错误。</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1348,7 +1348,7 @@
     </message>
     <message>
         <source>Enter a AIB address (e.g. %1)</source>
-        <translation>请输入一个莱特币地址 (例如 %1)</translation>
+        <translation>请输入一个超联块地址 (例如 %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1709,7 +1709,7 @@
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the AIB network.</source>
-        <translation>可在付款请求上备注一条信息，在打开付款请求时可以看到。注意：该消息不是通过莱特币网络传送。</translation>
+        <translation>可在付款请求上备注一条信息，在打开付款请求时可以看到。注意：该消息不是通过超联块网络传送。</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -1838,7 +1838,7 @@
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>发送莱特币</translation>
+        <translation>发送超联块</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
@@ -2030,7 +2030,7 @@
     </message>
     <message>
         <source>Warning: Invalid AIB address</source>
-        <translation>警告: 莱特币地址无效</translation>
+        <translation>警告: 超联块地址无效</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -2081,7 +2081,7 @@
     </message>
     <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less aibcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>交易费将从发送总额中扣除。接收人将收到比您在金额框中输入的更少的莱特币。如果选中了多个收件人，交易费平分。</translation>
+        <translation>交易费将从发送总额中扣除。接收人将收到比您在金额框中输入的更少的超联块。如果选中了多个收件人，交易费平分。</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2105,7 +2105,7 @@
     </message>
     <message>
         <source>A message that was attached to the aib: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AIB network.</source>
-        <translation>aib:URI 附带的备注信息，将会和交易一起存储，备查。 注意：该消息不会通过莱特币网络传输。</translation>
+        <translation>aib:URI 附带的备注信息，将会和交易一起存储，备查。 注意：该消息不会通过超联块网络传输。</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2146,7 +2146,7 @@
     </message>
     <message>
         <source>You can sign messages/agreements with your addresses to prove you can receive aibcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>您可以用你的地址对消息/协议进行签名，以证明您可以接收发送到该地址的莱特币。注意不要对任何模棱两可或者随机的消息进行签名，以免遭受钓鱼式攻击。请确保消息内容准确的表达了您的真实意愿。</translation>
+        <translation>您可以用你的地址对消息/协议进行签名，以证明您可以接收发送到该地址的超联块。注意不要对任何模棱两可或者随机的消息进行签名，以免遭受钓鱼式攻击。请确保消息内容准确的表达了您的真实意愿。</translation>
     </message>
     <message>
         <source>The AIB address to sign the message with</source>
@@ -2210,7 +2210,7 @@
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified AIB address</source>
-        <translation>验证消息，确保消息是由指定的莱特币地址签名过的。</translation>
+        <translation>验证消息，确保消息是由指定的超联块地址签名过的。</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -2508,7 +2508,7 @@
     </message>
     <message>
         <source>AIB</source>
-        <translation>AIB</translation>
+        <translation>超联块</translation>
     </message>
     <message>
         <source>The %s developers</source>
