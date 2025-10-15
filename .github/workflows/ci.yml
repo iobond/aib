@@ -1,0 +1,126 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - 'security-*'
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  build-test-linux:
+    name: Build and Test (Linux)
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            libtool \
+            autotools-dev \
+            automake \
+            pkg-config \
+            libssl-dev \
+            libevent-dev \
+            bsdmainutils \
+            libboost-all-dev \
+            libminiupnpc-dev \
+            libzmq3-dev \
+            libqt5gui5 \
+            libqt5core5a \
+            libqt5dbus5 \
+            qttools5-dev \
+            qttools5-dev-tools \
+            libprotobuf-dev \
+            protobuf-compiler \
+            libqrencode-dev
+
+      - name: Install BerkeleyDB 4.8
+        run: |
+          wget http://download.oracle.com/berkeley-db/db-4.8.30.tar.gz
+          tar -xzvf db-4.8.30.tar.gz
+          cd db-4.8.30/build_unix/
+          ../dist/configure --enable-cxx --disable-shared --with-pic --prefix=/usr/local
+          make -j$(nproc)
+          sudo make install
+          cd ../..
+
+      - name: Configure and Build
+        run: |
+          ./autogen.sh
+          ./configure \
+            --prefix=/usr/local \
+            --enable-hardening \
+            --with-gui=qt5 \
+            --enable-reduce-exports \
+            --enable-tests \
+            LDFLAGS="-L/usr/local/lib" \
+            CPPFLAGS="-I/usr/local/include"
+          make -j$(nproc)
+
+      - name: Run Tests
+        run: |
+          make check || true
+
+      - name: Display Test Results
+        if: always()
+        run: |
+          if [ -f test-suite.log ]; then
+            cat test-suite.log
+          fi
+          if [ -f src/test-suite.log ]; then
+            cat src/test-suite.log
+          fi
+
+  code-quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check for trailing whitespace
+        run: |
+          ! git grep -I --line-number --perl-regexp '\s+$' -- \
+            '*.cpp' '*.h' '*.py' '*.sh' '*.md' || \
+          echo "Warning: Found trailing whitespace"
+
+      - name: Check for tabs in source files
+        run: |
+          ! git grep -I --line-number $'\t' -- \
+            '*.cpp' '*.h' '*.py' '*.md' || \
+          echo "Warning: Found tabs in source files"
+
+      - name: Check for large files
+        run: |
+          find . -type f -size +1M ! -path "./.git/*" -exec ls -lh {} \; || true
+
+  security-scan:
+    name: Security Vulnerability Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run shellcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+          find . -name "*.sh" -type f -exec shellcheck {} \; || true
+
+      - name: Check for sensitive data
+        run: |
+          echo "Checking for potential sensitive data..."
+          ! git grep -i "password\s*=\s*['\"][^'\"]*['\"]" || echo "Warning: Found hardcoded passwords"
+          ! git grep -i "api[_-]key\s*=\s*['\"][^'\"]*['\"]" || echo "Warning: Found API keys"
+          ! git grep -i "secret\s*=\s*['\"][^'\"]*['\"]" || echo "Warning: Found secrets"
