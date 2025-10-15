@@ -1,12 +1,17 @@
-// Copyright (c) 2014-2015 The Bitcoin Core developers
+// Copyright (c) 2014-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_CHAINPARAMSBASE_H
 #define BITCOIN_CHAINPARAMSBASE_H
 
+#include <util/chaintype.h>
+
+#include <cstdint>
+#include <memory>
 #include <string>
-#include <vector>
+
+class ArgsManager;
 
 /**
  * CBaseChainParams defines the base parameters (shared between bitcoin-cli and bitcoind)
@@ -15,26 +20,27 @@
 class CBaseChainParams
 {
 public:
-    /** BIP70 chain name strings (main, test or regtest) */
-    static const std::string MAIN;
-    static const std::string TESTNET;
-    static const std::string REGTEST;
-
     const std::string& DataDir() const { return strDataDir; }
-    int RPCPort() const { return nRPCPort; }
+    uint16_t RPCPort() const { return m_rpc_port; }
 
-protected:
-    CBaseChainParams() {}
+    CBaseChainParams() = delete;
+    CBaseChainParams(const std::string& data_dir, uint16_t rpc_port)
+        : m_rpc_port(rpc_port), strDataDir(data_dir) {}
 
-    int nRPCPort;
+private:
+    const uint16_t m_rpc_port;
     std::string strDataDir;
 };
 
 /**
- * Append the help messages for the chainparams options to the
- * parameter string.
+ * Creates and returns a std::unique_ptr<CBaseChainParams> of the chosen chain.
  */
-void AppendParamsHelpMessages(std::string& strUsage, bool debugHelp=true);
+std::unique_ptr<CBaseChainParams> CreateBaseChainParams(const ChainType chain);
+
+/**
+ *Set the arguments for chainparams
+ */
+void SetupChainParamsBaseOptions(ArgsManager& argsman);
 
 /**
  * Return the currently selected parameters. This won't change after app
@@ -42,21 +48,10 @@ void AppendParamsHelpMessages(std::string& strUsage, bool debugHelp=true);
  */
 const CBaseChainParams& BaseParams();
 
-CBaseChainParams& BaseParams(const std::string& chain);
+/** Sets the params returned by Params() to those for the given chain. */
+void SelectBaseParams(const ChainType chain);
 
-/** Sets the params returned by Params() to those for the given network. */
-void SelectBaseParams(const std::string& chain);
-
-/**
- * Looks for -regtest, -testnet and returns the appropriate BIP70 chain name.
- * @return CBaseChainParams::MAX_NETWORK_TYPES if an invalid combination is given. CBaseChainParams::MAIN by default.
- */
-std::string ChainNameFromCommandLine();
-
-/**
- * Return true if SelectBaseParamsFromCommandLine() has been called to select
- * a network.
- */
-bool AreBaseParamsConfigured();
+/** List of possible chain / network names  */
+#define LIST_CHAIN_NAMES "main, test, testnet4, signet, regtest"
 
 #endif // BITCOIN_CHAINPARAMSBASE_H

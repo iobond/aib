@@ -1,113 +1,84 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
+// Copyright (c) 2009-present The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "sigcache.h"
+#include <script/sigcache.h>
 
-#include "memusage.h"
-#include "pubkey.h"
-#include "random.h"
-#include "uint256.h"
-#include "util.h"
+#include <crypto/sha256.h>
+#include <logging.h>
+#include <pubkey.h>
+#include <random.h>
+#include <script/interpreter.h>
+#include <span.h>
+#include <uint256.h>
 
-#include <boost/thread.hpp>
-#include <boost/unordered_set.hpp>
+#include <mutex>
+#include <shared_mutex>
+#include <vector>
 
-namespace {
-
-/**
- * We're hashing a nonce into the entries themselves, so we don't need extra
- * blinding in the set hash computation.
- */
-class CSignatureCacheHasher
+SignatureCache::SignatureCache(const size_t max_size_bytes)
 {
-public:
-    size_t operator()(const uint256& key) const {
-        return key.GetCheapHash();
-    }
-};
+    uint256 nonce = GetRandHash();
+    // We want the nonce to be 64 bytes long to force the hasher to process
+    // this chunk, which makes later hash computations more efficient. We
+    // just write our 32-byte entropy, and then pad with 'E' for ECDSA and
+    // 'S' for Schnorr (followed by 0 bytes).
+    static constexpr unsigned char PADDING_ECDSA[32] = {'E'};
+    static constexpr unsigned char PADDING_SCHNORR[32] = {'S'};
+    m_salted_hasher_ecdsa.Write(nonce.begin(), 32);
+    m_salted_hasher_ecdsa.Write(PADDING_ECDSA, 32);
+    m_salted_hasher_schnorr.Write(nonce.begin(), 32);
+    m_salted_hasher_schnorr.Write(PADDING_SCHNORR, 32);
 
-/**
- * Valid signature cache, to avoid doing expensive ECDSA signature checking
- * twice for every transaction (once when accepted into memory pool, and
- * again when accepted into the block chain)
- */
-class CSignatureCache
-{
-private:
-     //! Entries are SHA256(nonce || signature hash || public key || signature):
-    uint256 nonce;
-    typedef boost::unordered_set<uint256, CSignatureCacheHasher> map_type;
-    map_type setValid;
-    boost::shared_mutex cs_sigcache;
-
-
-public:
-    CSignatureCache()
-    {
-        GetRandBytes(nonce.begin(), 32);
-    }
-
-    void
-    ComputeEntry(uint256& entry, const uint256 &hash, const std::vector<unsigned char>& vchSig, const CPubKey& pubkey)
-    {
-        CSHA256().Write(nonce.begin(), 32).Write(hash.begin(), 32).Write(&pubkey[0], pubkey.size()).Write(&vchSig[0], vchSig.size()).Finalize(entry.begin());
-    }
-
-    bool
-    Get(const uint256& entry)
-    {
-        boost::shared_lock<boost::shared_mutex> lock(cs_sigcache);
-        return setValid.count(entry);
-    }
-
-    void Erase(const uint256& entry)
-    {
-        boost::unique_lock<boost::shared_mutex> lock(cs_sigcache);
-        setValid.erase(entry);
-    }
-
-    void Set(const uint256& entry)
-    {
-        size_t nMaxCacheSize = GetArg("-maxsigcachesize", DEFAULT_MAX_SIG_CACHE_SIZE) * ((size_t) 1 << 20);
-        if (nMaxCacheSize <= 0) return;
-
-        boost::unique_lock<boost::shared_mutex> lock(cs_sigcache);
-        while (memusage::DynamicUsage(setValid) > nMaxCacheSize)
-        {
-            map_type::size_type s = GetRand(setValid.bucket_count());
-            map_type::local_iterator it = setValid.begin(s);
-            if (it != setValid.end(s)) {
-                setValid.erase(*it);
-            }
-        }
-
-        setValid.insert(entry);
-    }
-};
-
+    const auto [num_elems, approx_size_bytes] = setValid.setup_bytes(max_size_bytes);
+    LogInfo("Using %zu MiB out of %zu MiB requested for signature cache, able to store %zu elements",
+              approx_size_bytes >> 20, max_size_bytes >> 20, num_elems);
 }
 
-bool CachingTransactionSignatureChecker::VerifySignature(const std::vector<unsigned char>& vchSig, const CPubKey& pubkey, const uint256& sighash) const
+void SignatureCache::ComputeEntryECDSA(uint256& entry, const uint256& hash, const std::vector<unsigned char>& vchSig, const CPubKey& pubkey) const
 {
-    static CSignatureCache signatureCache;
+    CSHA256 hasher = m_salted_hasher_ecdsa;
+    hasher.Write(hash.begin(), 32).Write(pubkey.data(), pubkey.size()).Write(vchSig.data(), vchSig.size()).Finalize(entry.begin());
+}
 
+void SignatureCache::ComputeEntrySchnorr(uint256& entry, const uint256& hash, std::span<const unsigned char> sig, const XOnlyPubKey& pubkey) const
+{
+    CSHA256 hasher = m_salted_hasher_schnorr;
+    hasher.Write(hash.begin(), 32).Write(pubkey.data(), pubkey.size()).Write(sig.data(), sig.size()).Finalize(entry.begin());
+}
+
+bool SignatureCache::Get(const uint256& entry, const bool erase)
+{
+    std::shared_lock<std::shared_mutex> lock(cs_sigcache);
+    return setValid.contains(entry, erase);
+}
+
+void SignatureCache::Set(const uint256& entry)
+{
+    std::unique_lock<std::shared_mutex> lock(cs_sigcache);
+    setValid.insert(entry);
+}
+
+bool CachingTransactionSignatureChecker::VerifyECDSASignature(const std::vector<unsigned char>& vchSig, const CPubKey& pubkey, const uint256& sighash) const
+{
     uint256 entry;
-    signatureCache.ComputeEntry(entry, sighash, vchSig, pubkey);
-
-    if (signatureCache.Get(entry)) {
-        if (!store) {
-            signatureCache.Erase(entry);
-        }
+    m_signature_cache.ComputeEntryECDSA(entry, sighash, vchSig, pubkey);
+    if (m_signature_cache.Get(entry, !store))
         return true;
-    }
-
-    if (!TransactionSignatureChecker::VerifySignature(vchSig, pubkey, sighash))
+    if (!TransactionSignatureChecker::VerifyECDSASignature(vchSig, pubkey, sighash))
         return false;
+    if (store)
+        m_signature_cache.Set(entry);
+    return true;
+}
 
-    if (store) {
-        signatureCache.Set(entry);
-    }
+bool CachingTransactionSignatureChecker::VerifySchnorrSignature(std::span<const unsigned char> sig, const XOnlyPubKey& pubkey, const uint256& sighash) const
+{
+    uint256 entry;
+    m_signature_cache.ComputeEntrySchnorr(entry, sighash, sig, pubkey);
+    if (m_signature_cache.Get(entry, !store)) return true;
+    if (!TransactionSignatureChecker::VerifySchnorrSignature(sig, pubkey, sighash)) return false;
+    if (store) m_signature_cache.Set(entry);
     return true;
 }

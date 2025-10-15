@@ -1,46 +1,40 @@
-AIB Core integration/staging tree [V5.14] Stable running version,Please use Branch V5.14
+Bitcoin Core integration/staging tree
 =====================================
 
-[![Build Status](https://travis-ci.org/iobond/aib.svg?branch=master)](https://travis-ci.org/iobond/aib)
+https://bitcoincore.org
 
-https://www.aib.one
+For an immediately usable, binary version of the Bitcoin Core software, see
+https://bitcoincore.org/en/download/.
 
-What is AIB?
-----------------
+What is Bitcoin Core?
+---------------------
 
-AIB is an experimental digital asset that enables instant payments to
-anyone, anywhere in the world. AIB uses peer-to-peer technology to operate
-with no central authority: managing transactions and issuing money are carried
-out collectively by the network. AIB Core is the name of open source
-software which enables the use of this asset.
+Bitcoin Core connects to the Bitcoin peer-to-peer network to download and fully
+validate blocks and transactions. It also includes a wallet and graphical user
+interface, which can be optionally built.
 
-AIB is also the dual value system to enable the special token econimic system for small projects
-It ensure the small , spreaded investment could less risky toward certain projects
-It will also enhanced by smart contract on the road.
-
-For more information, as well as an immediately useable, binary version of
-the AIB Core software, see [https://www.aib.one](https://www.aib.one).
+Further information about Bitcoin Core is available in the [doc folder](/doc).
 
 License
 -------
 
-AIB Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
-information or see https://opensource.org/licenses/MIT.
+Bitcoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+information or see https://opensource.org/license/MIT.
 
 Development Process
 -------------------
 
-The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/iobond/aib/tags) are created
-regularly to indicate new official, stable release versions of AIB Core.
+The `master` branch is regularly built (see `doc/build-*.md` for instructions) and tested, but it is not guaranteed to be
+completely stable. [Tags](https://github.com/bitcoin/bitcoin/tags) are created
+regularly from release branches to indicate new official, stable release versions of Bitcoin Core.
 
-The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
+The https://github.com/bitcoin-core/gui repository is used exclusively for the
+development of the GUI. Its master branch is identical in all monotree
+repositories. Release branches and tags do not exist, so please do not fork
+that repository unless it is for development reasons.
 
-The developer [mailing list](https://groups.google.com/forum/#!forum/aib-development)
-should be used to discuss complicated or controversial changes before working
-on a patch set.
-
-Developer IRC can be found on Freenode at #aib-dev.
+The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md)
+and useful hints for developers can be found in [doc/developer-notes.md](doc/developer-notes.md).
 
 Testing
 -------
@@ -52,15 +46,18 @@ lots of money.
 
 ### Automated Testing
 
-Developers are strongly encouraged to write [unit tests](/doc/unit-tests.md) for new code, and to
+Developers are strongly encouraged to write [unit tests](src/test/README.md) for new code, and to
 submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled in configure) with: `make check`
+(assuming they weren't disabled during the generation of the build system) with: `ctest`. Further details on running
+and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
 
-There are also [regression and integration tests](/qa) of the RPC interface, written
-in Python, that are run automatically on the build server.
-These tests can be run (if the [test dependencies](/qa) are installed) with: `qa/pull-tester/rpc-tests.py`
+There are also [regression and integration tests](/test), written
+in Python.
+These tests can be run (if the [test dependencies](/test) are installed) with: `build/test/functional/test_runner.py`
+(assuming `build` is your build directory).
 
-The Travis CI system makes sure that every pull request is built for Windows, Linux, and OS X, and that unit/sanity tests are run automatically.
+The CI (Continuous Integration) systems make sure that every pull request is tested on Windows, Linux, and macOS.
+The CI must pass on all commits before merge to avoid unrelated CI failures on new pull requests.
 
 ### Manual Quality Assurance (QA) Testing
 
@@ -72,8 +69,8 @@ not straightforward.
 Translations
 ------------
 
-We only accept translation fixes that are submitted through [AIB Core's Transifex page](https://www.transifex.com/projects/p/aib/).
-Translations are converted to Aib coin periodically.
+Changes to translations as well as new translations can be submitted to
+[Bitcoin Core's Transifex page](https://explore.transifex.com/bitcoin/bitcoin/).
 
 Translations are periodically pulled from Transifex and merged into the git repository. See the
 [translation process](doc/translation_process.md) for details on how this works.

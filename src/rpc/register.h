@@ -1,32 +1,43 @@
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_RPCREGISTER_H
-#define BITCOIN_RPCREGISTER_H
+#ifndef BITCOIN_RPC_REGISTER_H
+#define BITCOIN_RPC_REGISTER_H
+
+#include <bitcoin-build-config.h> // IWYU pragma: keep
 
 /** These are in one header file to avoid creating tons of single-function
  * headers for everything under src/rpc/ */
 class CRPCTable;
 
-/** Register block chain RPC commands */
 void RegisterBlockchainRPCCommands(CRPCTable &tableRPC);
-/** Register P2P networking RPC commands */
-void RegisterNetRPCCommands(CRPCTable &tableRPC);
-/** Register miscellaneous RPC commands */
-void RegisterMiscRPCCommands(CRPCTable &tableRPC);
-/** Register mining RPC commands */
+void RegisterFeeRPCCommands(CRPCTable&);
+void RegisterMempoolRPCCommands(CRPCTable&);
 void RegisterMiningRPCCommands(CRPCTable &tableRPC);
-/** Register raw transaction RPC commands */
+void RegisterNodeRPCCommands(CRPCTable&);
+void RegisterNetRPCCommands(CRPCTable&);
+void RegisterOutputScriptRPCCommands(CRPCTable&);
 void RegisterRawTransactionRPCCommands(CRPCTable &tableRPC);
+void RegisterSignMessageRPCCommands(CRPCTable&);
+void RegisterSignerRPCCommands(CRPCTable &tableRPC);
+void RegisterTxoutProofRPCCommands(CRPCTable&);
 
-static inline void RegisterAllCoreRPCCommands(CRPCTable &tableRPC)
+static inline void RegisterAllCoreRPCCommands(CRPCTable &t)
 {
-    RegisterBlockchainRPCCommands(tableRPC);
-    RegisterNetRPCCommands(tableRPC);
-    RegisterMiscRPCCommands(tableRPC);
-    RegisterMiningRPCCommands(tableRPC);
-    RegisterRawTransactionRPCCommands(tableRPC);
+    RegisterBlockchainRPCCommands(t);
+    RegisterFeeRPCCommands(t);
+    RegisterMempoolRPCCommands(t);
+    RegisterMiningRPCCommands(t);
+    RegisterNodeRPCCommands(t);
+    RegisterNetRPCCommands(t);
+    RegisterOutputScriptRPCCommands(t);
+    RegisterRawTransactionRPCCommands(t);
+    RegisterSignMessageRPCCommands(t);
+#ifdef ENABLE_EXTERNAL_SIGNER
+    RegisterSignerRPCCommands(t);
+#endif // ENABLE_EXTERNAL_SIGNER
+    RegisterTxoutProofRPCCommands(t);
 }
 
-#endif
+#endif // BITCOIN_RPC_REGISTER_H
