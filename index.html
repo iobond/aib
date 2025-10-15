@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIB区块链维护项目 - Project #32</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #667eea;
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 24px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-card h4 {
+            color: #667eea;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .info-card p {
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .code-block code {
+            font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+        }
+
+        .branch-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .branch-tag {
+            padding: 5px 12px;
+            background: #e3f2fd;
+            color: #1976d2;
+            border-radius: 5px;
+            font-size: 13px;
+            font-family: monospace;
+        }
+
+        .link-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .link-button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .link-button.secondary {
+            background: #28a745;
+        }
+
+        .link-button.secondary:hover {
+            background: #218838;
+        }
+
+        .features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .alert {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .alert h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .file-tree {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔗 AIB区块链维护项目</h1>
+            <div class="subtitle">AIB (Advanced Internet Blockchain) Core Maintenance</div>
+            <div>
+                <span class="badge">Project #32</span>
+                <span class="badge">Bitcoin Core Based</span>
+                <span class="badge">C++</span>
+                <span class="badge">MIT License</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 项目概述 (Project Overview)</h2>
+            <p>AIB是一个基于Bitcoin Core构建的实验性数字资产，支持全球范围内的即时点对点支付。该项目是AIB Core的维护仓库，用于代码同步、更新和开发工作。</p>
+            <br>
+            <p><strong>AIB is an experimental digital asset that enables instant payments to anyone, anywhere in the world.</strong> AIB uses peer-to-peer technology to operate with no central authority: managing transactions and issuing money are carried out collectively by the network.</p>
+        </div>
+
+        <div class="section">
+            <h2>📊 项目信息 (Project Information)</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>Repository</h4>
+                    <p>github.com/iobond/aib</p>
+                </div>
+                <div class="info-card">
+                    <h4>Current Version</h4>
+                    <p>V5.14 (Stable)</p>
+                </div>
+                <div class="info-card">
+                    <h4>Status</h4>
+                    <p>🔨 Building (Maintenance)</p>
+                </div>
+                <div class="info-card">
+                    <h4>Project ID</h4>
+                    <p>#32</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌟 核心特性 (Key Features)</h2>
+            <ul class="features">
+                <li>基于Bitcoin Core架构的实验性数字资产</li>
+                <li>全球范围内的即时点对点支付</li>
+                <li>双值系统支持特殊代币经济模型</li>
+                <li>去中心化网络，无中央权威机构</li>
+                <li>MIT开源许可证</li>
+                <li>完整的区块链功能和钱包系统</li>
+                <li>支持多平台构建 (Linux, macOS, Windows)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🔧 技术栈 (Technology Stack)</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>Language</h4>
+                    <p>C++</p>
+                </div>
+                <div class="info-card">
+                    <h4>Build System</h4>
+                    <p>Autotools</p>
+                </div>
+                <div class="info-card">
+                    <h4>Database</h4>
+                    <p>LevelDB/BerkeleyDB</p>
+                </div>
+                <div class="info-card">
+                    <h4>Base</h4>
+                    <p>Bitcoin Core</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌿 可用分支 (Available Branches)</h2>
+            <div class="branch-list">
+                <span class="branch-tag">master (V5.14)</span>
+                <span class="branch-tag">aib-5.14</span>
+                <span class="branch-tag">aib-5.14.1</span>
+                <span class="branch-tag">aib-5.14.2</span>
+                <span class="branch-tag">5.17</span>
+                <span class="branch-tag">5.19</span>
+                <span class="branch-tag">development</span>
+                <span class="branch-tag">token</span>
+                <span class="branch-tag">supernode</span>
+                <span class="branch-tag">bitcore</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📁 项目结构 (Project Structure)</h2>
+            <div class="file-tree">
+032-aib-maintenance/
+├── README.md               # 主项目文档
+├── CONTRIBUTING.md         # 贡献指南
+├── PROJECT_README.md       # Daydream项目文档
+├── src/                    # C++源代码
+│   ├── bitcoind.cpp       # 守护进程
+│   ├── bitcoin-cli.cpp    # 命令行工具
+│   └── ...
+├── doc/                    # 文档
+│   ├── build-unix.md      # Unix构建指南
+│   ├── build-osx.md       # macOS构建指南
+│   └── ...
+├── contrib/                # 贡献脚本和工具
+├── depends/                # 依赖管理
+├── share/                  # 共享资源
+├── build-aux/              # 构建自动化文件
+├── config/                 # 配置文件
+└── var/                    # 变量数据
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🚀 快速开始 (Quick Start)</h2>
+
+            <h3>安装依赖 (Install Dependencies)</h3>
+            <div class="code-block">
+                <code>sudo apt-get install build-essential libtool autotools-dev automake pkg-config
+sudo apt-get install libssl-dev libevent-dev bsdmainutils
+sudo apt-get install libboost-all-dev</code>
+            </div>
+
+            <h3>构建源码 (Build from Source)</h3>
+            <div class="code-block">
+                <code>cd /home/temple/daydream/projects/032-aib-maintenance
+
+# 生成配置脚本
+./autogen.sh
+
+# 配置
+./configure
+
+# 编译
+make
+
+# 可选: 运行测试
+make check
+
+# 可选: 安装
+sudo make install</code>
+            </div>
+
+            <h3>快速构建 (Linux)</h3>
+            <div class="code-block">
+                <code>./build-linux.sh</code>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔗 相关链接 (Links)</h2>
+            <a href="https://github.com/iobond/aib" target="_blank" class="link-button">
+                📦 GitHub Repository
+            </a>
+            <a href="https://www.aib.one" target="_blank" class="link-button secondary">
+                🌐 Official Website
+            </a>
+            <a href="https://travis-ci.org/iobond/aib" target="_blank" class="link-button">
+                ✅ Travis CI
+            </a>
+            <a href="PROJECT_README.md" target="_blank" class="link-button">
+                📄 Project Documentation
+            </a>
+            <a href="README.md" target="_blank" class="link-button">
+                📘 AIB Core README
+            </a>
+        </div>
+
+        <div class="alert">
+            <h4>⚠️ 注意事项 (Important Notes)</h4>
+            <ul>
+                <li>这是一个维护项目，用于保持AIB Core代码同步</li>
+                <li>基于Bitcoin Core架构和开发实践</li>
+                <li>MIT许可证开源项目</li>
+                <li>需要构建环境才能运行节点</li>
+                <li>详细文档请参考 /doc 目录</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>📝 维护任务 (Maintenance Tasks)</h2>
+            <ul class="features">
+                <li>代码维护 - 保持AIB Core最新</li>
+                <li>安全更新 - 应用安全补丁</li>
+                <li>功能开发 - 添加新功能</li>
+                <li>Bug修复 - 修复报告的问题</li>
+                <li>版本管理 - 管理版本分支</li>
+                <li>构建测试 - 在不同平台测试构建</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p><strong>Project #32 - AIB区块链维护项目</strong></p>
+            <p>Created: October 15, 2025 | Category: Fintech / Blockchain</p>
+            <p>Status: 🔨 Building (Maintenance Mode)</p>
+            <p style="margin-top: 10px; font-size: 12px;">
+                Part of the Daydream Project Ecosystem<br>
+                🤖 Generated with Claude Code
+            </p>
+        </div>
+    </div>
+</body>
+</html>
