@@ -33,6 +33,9 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&);
 bool CheckProofOfWorkImpl(uint256 hash, unsigned int nBits, const Consensus::Params&);
 
+/** AIB: Check auxpow proof of work for merge-mined blocks */
+bool CheckAuxProofOfWork(const CBlockHeader& block, const Consensus::Params&);
+
 /**
  * Return false if the proof-of-work requirement specified by new_nbits at a
  * given height is not possible, given the proof-of-work on the prior block as

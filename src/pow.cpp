@@ -10,6 +10,8 @@
 #include <primitives/block.h>
 #include <uint256.h>
 #include <util/check.h>
+#include <auxpow/auxpow.h>
+#include <logging.h>
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
@@ -166,6 +168,31 @@ bool CheckProofOfWorkImpl(uint256 hash, unsigned int nBits, const Consensus::Par
     // Check proof of work matches claimed amount
     if (UintToArith256(hash) > bnTarget)
         return false;
+
+    return true;
+}
+
+// AIB: Check auxpow proof of work
+bool CheckAuxProofOfWork(const CBlockHeader& block, const Consensus::Params& params)
+{
+    // Ensure we have auxpow data
+    if (!block.auxpow) {
+        LogPrintf("CheckAuxProofOfWork: auxpow flag set but no auxpow data\n");
+        return false;
+    }
+
+    // Validate the auxpow structure
+    if (!block.auxpow->Check(block.GetHash(), block.GetChainID(), params)) {
+        LogPrintf("CheckAuxProofOfWork: auxpow check failed\n");
+        return false;
+    }
+
+    // Check proof of work on parent block using scrypt
+    uint256 parentHash = block.auxpow->parentBlockHeader.GetPoWHash();
+    if (!CheckProofOfWorkImpl(parentHash, block.nBits, params)) {
+        LogPrintf("CheckAuxProofOfWork: parent block POW check failed\n");
+        return false;
+    }
 
     return true;
 }
