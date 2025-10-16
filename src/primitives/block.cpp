@@ -7,10 +7,26 @@
 
 #include <hash.h>
 #include <tinyformat.h>
+#include <crypto/scrypt.h>
+#include <streams.h>
 
 uint256 CBlockHeader::GetHash() const
 {
     return (HashWriter{} << *this).GetHash();
+}
+
+uint256 CBlockHeader::GetPoWHash() const
+{
+    // AIB: Serialize block header and compute scrypt hash
+    DataStream ss{};
+    ss << *this;
+
+    // Block header should be 80 bytes
+    assert(ss.size() == 80);
+
+    uint256 thash;
+    scrypt_1024_1_1_256((const char*)&ss[0], (char*)thash.begin());
+    return thash;
 }
 
 std::string CBlock::ToString() const

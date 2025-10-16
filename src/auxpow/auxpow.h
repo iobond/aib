@@ -2,28 +2,37 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_AUXPOW_H
-#define BITCOIN_AUXPOW_H
+#ifndef BITCOIN_AUXPOW_AUXPOW_H
+#define BITCOIN_AUXPOW_AUXPOW_H
 
-#include <memory.h>
-#include "versionbits.h"
-#include "consensus/params.h"
-#include "wallet/wallet.h"
-#include "primitives/blockheader.h"
-#include "auxpow/consensus.h"
-#include "serialize.h"
+#include <cstring>
+#include <memory>
+#include <consensus/params.h>
+#include <primitives/transaction.h>
+#include <primitives/block.h>
+#include <serialize.h>
+#include <uint256.h>
+#include <auxpow/consensus.h>
 
 
-class CAuxPow : public CMerkleTx
+class CAuxPow
 {
 public:
-    CAuxPow(const CTransaction& txIn) : CMerkleTx(txIn)
+    CAuxPow(CTransactionRef txIn) : coinbaseTx(txIn)
     {
     }
 
-    CAuxPow() :CMerkleTx()
+    CAuxPow() : coinbaseTx(MakeTransactionRef())
     {
     }
+
+    // Coinbase transaction from parent chain
+    CTransactionRef coinbaseTx;
+
+    // Merkle branch and block hash from parent chain (replaces old CMerkleTx fields)
+    uint256 hashBlock;
+    std::vector<uint256> vMerkleBranch;
+    int nIndex;
 
     // Merkle branch with root vchAux
     // root must be present inside the coinbase
@@ -33,16 +42,10 @@ public:
     unsigned int nChainIndex;
     CBlockHeader parentBlockHeader;
 
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
-        READWRITE(*(CMerkleTx*)this);
-        READWRITE(vChainMerkleBranch);
-        READWRITE(nChainIndex);
-        // Always serialize the saved parent block as header so that the size of CAuxPow
-        // is consistent.
-        READWRITE(parentBlockHeader);
+    SERIALIZE_METHODS(CAuxPow, obj) {
+        READWRITE(TX_WITH_WITNESS(obj.coinbaseTx), obj.hashBlock, obj.vMerkleBranch, obj.nIndex);
+        READWRITE(obj.vChainMerkleBranch, obj.nChainIndex);
+        READWRITE(obj.parentBlockHeader);
     }
 
     uint256 CheckMerkleBranch(const uint256& hash, const std::vector<uint256>& vMerkleBranch, int nIndex) const;

@@ -10,6 +10,17 @@
 #include <serialize.h>
 #include <uint256.h>
 #include <util/time.h>
+#include <memory>
+
+// Forward declarations
+class CAuxPow;
+
+namespace AuxPow {
+    // AIB chain ID
+    static const int BLOCK_VERSION_AUXPOW = (1 << 8);
+    static const int CHAIN_ID = 0x0025;
+    static const int BLOCK_VERSION_CHAIN_START = (1 << 16);
+}
 
 /** Nodes collect new transactions into a block, hash them into a hash tree,
  * and scan through nonce values to make the block's hash satisfy proof-of-work
@@ -29,12 +40,37 @@ public:
     uint32_t nBits;
     uint32_t nNonce;
 
+    // AIB: Auxpow for merge mining support
+    std::shared_ptr<CAuxPow> auxpow;
+
     CBlockHeader()
     {
         SetNull();
     }
 
-    SERIALIZE_METHODS(CBlockHeader, obj) { READWRITE(obj.nVersion, obj.hashPrevBlock, obj.hashMerkleRoot, obj.nTime, obj.nBits, obj.nNonce); }
+    // AIB: Custom serialization to handle auxpow conditionally
+    template <typename Stream>
+    void Serialize(Stream& s) const
+    {
+        s << nVersion << hashPrevBlock << hashMerkleRoot << nTime << nBits << nNonce;
+        // Auxpow is serialized after the header if the version flag is set
+        if (IsAuxPow() && auxpow) {
+            ::Serialize(s, *auxpow);
+        }
+    }
+
+    template <typename Stream>
+    void Unserialize(Stream& s)
+    {
+        s >> nVersion >> hashPrevBlock >> hashMerkleRoot >> nTime >> nBits >> nNonce;
+        // Deserialize auxpow if the version flag is set
+        if (IsAuxPow()) {
+            auxpow = std::make_shared<CAuxPow>();
+            ::Unserialize(s, *auxpow);
+        } else {
+            auxpow.reset();
+        }
+    }
 
     void SetNull()
     {
@@ -44,6 +80,7 @@ public:
         nTime = 0;
         nBits = 0;
         nNonce = 0;
+        auxpow.reset();
     }
 
     bool IsNull() const
@@ -52,6 +89,25 @@ public:
     }
 
     uint256 GetHash() const;
+
+    // AIB: GetPoWHash() uses scrypt for proof-of-work validation
+    uint256 GetPoWHash() const;
+
+    // AIB: Auxpow helper methods
+    bool IsAuxPow() const
+    {
+        return nVersion & AuxPow::BLOCK_VERSION_AUXPOW;
+    }
+
+    int GetChainID() const
+    {
+        return nVersion / AuxPow::BLOCK_VERSION_CHAIN_START;
+    }
+
+    void SetAuxPow(std::shared_ptr<CAuxPow> apow)
+    {
+        auxpow = apow;
+    }
 
     NodeSeconds Time() const
     {
