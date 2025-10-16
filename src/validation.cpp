@@ -3923,9 +3923,19 @@ void ChainstateManager::ReceivedBlockTransactions(const CBlock& block, CBlockInd
 
 static bool CheckBlockHeader(const CBlockHeader& block, BlockValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
-    // Check proof of work matches claimed amount
-    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
-        return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "high-hash", "proof of work failed");
+    // AIB: Check auxpow blocks
+    if (block.IsAuxPow()) {
+        if (!block.auxpow) {
+            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-auxpow-missing", "auxpow flag set but no auxpow data");
+        }
+        if (fCheckPOW && !CheckAuxProofOfWork(block, consensusParams)) {
+            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "high-hash", "auxpow validation failed");
+        }
+    } else {
+        // Regular block - check scrypt POW
+        if (fCheckPOW && !CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams))
+            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "high-hash", "proof of work failed");
+    }
 
     return true;
 }

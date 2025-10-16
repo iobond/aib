@@ -142,6 +142,12 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock()
         pblock->nVersion = gArgs.GetIntArg("-blockversion", pblock->nVersion);
     }
 
+    // AIB: Set auxpow version flag if auxpow is active
+    if (nHeight >= chainparams.GetConsensus().nAuxPowStartHeight) {
+        pblock->nVersion |= AuxPow::BLOCK_VERSION_AUXPOW;
+        pblock->nVersion |= (AuxPow::CHAIN_ID * AuxPow::BLOCK_VERSION_CHAIN_START);
+    }
+
     pblock->nTime = TicksSinceEpoch<std::chrono::seconds>(NodeClock::now());
     m_lock_time_cutoff = pindexPrev->GetMedianTimePast();
 
